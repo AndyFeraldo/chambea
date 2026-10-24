@@ -1,9 +1,9 @@
 import { useRef, useState } from 'react';
 import type { Ocupacion, Ruta } from '@shared/tipos';
-import type { Salud } from '../api';
+import { rutas as pedirRutas, type Salud } from '../api';
 import { t } from '../i18n';
 import { useApp } from '../estado';
-import { Icono, NotaIlustrativa, Pantalla } from '../componentes/comunes';
+import { Hoja, Icono, NotaIlustrativa, Pantalla } from '../componentes/comunes';
 import { AbejaVestida } from '../componentes/AbejaVestida';
 import { Colmena, ordenar, type CeldaVisual } from './Panal';
 
@@ -44,6 +44,7 @@ export function Rutas() {
   const [saliente, setSaliente] = useState<{ id: string; sentido: Sentido; n: number } | null>(null);
   const toque = useRef<number | null>(null);
   const escena = useRef<HTMLDivElement>(null);
+  const [preguntaFalta, setPreguntaFalta] = useState<string | null>(null);
   const contador = useRef(0);
 
   if (!resultado) return null;
@@ -64,6 +65,29 @@ export function Rutas() {
     cambiar({ rutaElegida: id, primerPaso: null, horas: null, modalidad: null, costo: null });
     ir('paso', 0);
   };
+
+  // "Sí, ya sé hacerlo": se suma al panal y las rutas se recalculan sin perder la ruta que se ve.
+  const agregarHabilidad = async (id: string) => {
+    const c = comp(id);
+    setPreguntaFalta(null);
+    if (!c || !ruta) return;
+    const actual = ruta.ocupacion_id;
+    const celdas = [...estado.celdas, { id, dimension: c.dimension, evidencia: null, confirmada: true }];
+    const r = await pedirRutas(datos, {
+      competencias_ids: celdas.map((x) => x.id),
+      region_id: estado.regionId,
+      perfil: estado.perfil ?? 'sin_empleo',
+      ocupacion_actual: estado.ocupacionActual,
+    });
+    // La ruta que estaba viendo se mantiene en el carrusel aunque cambie el orden.
+    if (!r.rutas.some((x) => x.ocupacion_id === actual)) {
+      const vista = rutas.find((x) => x.ocupacion_id === actual);
+      if (vista) r.rutas.push({ ...vista, tiene: [...vista.tiene, id], faltan: vista.faltan.filter((f) => f !== id) });
+    }
+    cambiar({ celdas, rutas: r, primerPaso: null });
+    setIndice(Math.max(0, r.rutas.findIndex((x) => x.ocupacion_id === actual)));
+  };
+  const infoFalta = preguntaFalta ? comp(preguntaFalta) : undefined;
 
   const ocupacion = datos.ocupaciones.find((o) => o.id === ruta?.ocupacion_id);
   const ofertas = enlacesOfertas(ocupacion, salud.enlaces);
@@ -138,7 +162,8 @@ export function Rutas() {
               {t('rutas.celdasPara', { x: ruta.tiene.length, y: ruta.tiene.length + ruta.faltan.length })}
             </p>
             <h2 className="ruta-hero__nombre">{ruta.nombre}</h2>
-            <Colmena chica celdas={celdasDeRuta(ruta, (id) => comp(id)?.dimension ?? 'habilidad')} />
+            <Colmena chica celdas={celdasDeRuta(ruta, (id) => comp(id)?.dimension ?? 'habilidad')} alTocarFalta={setPreguntaFalta} />
+            {ruta.faltan.length > 0 && <p className="toca-falta">{t('rutas.tocaFalta')}</p>}
             <div className="ruta-hero__datos">
               {ruta.demanda && <span className={`demanda demanda--${ruta.demanda}`}>{t(`rutas.demanda.${ruta.demanda}`)}</span>}
               {ruta.alias.length > 0 && (
@@ -172,6 +197,24 @@ export function Rutas() {
         </section>
       )}
       <NotaIlustrativa />
+
+      <Hoja abierta={!!infoFalta} alCerrar={() => setPreguntaFalta(null)} titulo={t('rutas.saberTitulo')}>
+        {infoFalta && (
+          <div className="detalle-celda">
+            <span className="etiqueta">{t('rutas.saberTitulo')}</span>
+            <h2>{infoFalta.nombre_corto ?? infoFalta.nombre_simple}</h2>
+            <p className="ayuda">{infoFalta.nombre_simple}</p>
+            <div className="fila-botones">
+              <button type="button" className="boton boton--secundario" onClick={() => setPreguntaFalta(null)}>
+                {t('rutas.saberNo')}
+              </button>
+              <button type="button" className="boton boton--primario" onClick={() => agregarHabilidad(infoFalta.id)}>
+                <Icono nombre="check" /> {t('rutas.saberSi')}
+              </button>
+            </div>
+          </div>
+        )}
+      </Hoja>
     </Pantalla>
   );
 }

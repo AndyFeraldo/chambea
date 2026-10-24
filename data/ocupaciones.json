@@ -24,7 +24,11 @@
         "Secundaria (frecuente)",
         "Disponibilidad de horario"
       ],
-      "busqueda": "cajero"
+      "busqueda": "cajero",
+      "menciones": [
+        "cajero",
+        "cajera"
+      ]
     },
     {
       "id": "vendedor_tienda",
@@ -49,7 +53,13 @@
         "Secundaria (frecuente)",
         "Disponibilidad de horario"
       ],
-      "busqueda": "vendedor de tienda"
+      "busqueda": "vendedor de tienda",
+      "menciones": [
+        "vendedor",
+        "vendedora",
+        "asesor de ventas",
+        "asesora de ventas"
+      ]
     },
     {
       "id": "reponedor",
@@ -73,7 +83,14 @@
         "Secundaria (a veces)",
         "Disponibilidad para turnos"
       ],
-      "busqueda": "reponedor"
+      "busqueda": "reponedor",
+      "menciones": [
+        "reponedor",
+        "reponedora",
+        "mercaderista",
+        "abastecedor",
+        "abastecedora"
+      ]
     },
     {
       "id": "auxiliar_administrativo",
@@ -97,7 +114,15 @@
         "Secundaria completa",
         "Ofimática básica"
       ],
-      "busqueda": "auxiliar administrativo"
+      "busqueda": "auxiliar administrativo",
+      "menciones": [
+        "auxiliar administrativo",
+        "auxiliar administrativa",
+        "asistente administrativo",
+        "asistente administrativa",
+        "secretaria",
+        "recepcionista"
+      ]
     },
     {
       "id": "limpieza",
@@ -120,7 +145,14 @@
       "requisitos_minimos": [
         "Secundaria (algunas empresas)"
       ],
-      "busqueda": "personal de limpieza"
+      "busqueda": "personal de limpieza",
+      "menciones": [
+        "personal de limpieza",
+        "limpiadora",
+        "trabajadora del hogar",
+        "operaria de limpieza",
+        "operario de limpieza"
+      ]
     },
     {
       "id": "ayudante_cocina",
@@ -144,7 +176,13 @@
         "Carné de sanidad (frecuente)",
         "Disponibilidad de horario"
       ],
-      "busqueda": "ayudante de cocina"
+      "busqueda": "ayudante de cocina",
+      "menciones": [
+        "ayudante de cocina",
+        "auxiliar de cocina",
+        "cocinera",
+        "cocinero"
+      ]
     },
     {
       "id": "mozo",
@@ -167,7 +205,13 @@
       "requisitos_minimos": [
         "Disponibilidad de horario (fines de semana)"
       ],
-      "busqueda": "mozo"
+      "busqueda": "mozo",
+      "menciones": [
+        "mozo",
+        "moza",
+        "mesero",
+        "mesera"
+      ]
     },
     {
       "id": "almacenero",
@@ -192,7 +236,13 @@
         "Secundaria (frecuente)",
         "Disponibilidad para turnos"
       ],
-      "busqueda": "auxiliar de almacen"
+      "busqueda": "auxiliar de almacen",
+      "menciones": [
+        "almacenero",
+        "almacenera",
+        "almacén",
+        "almacen"
+      ]
     },
     {
       "id": "repartidor",
@@ -217,7 +267,13 @@
         "Brevete de moto (si es motorizado)",
         "Celular con datos"
       ],
-      "busqueda": "repartidor"
+      "busqueda": "repartidor",
+      "menciones": [
+        "repartidor",
+        "repartidora",
+        "motorizado",
+        "motorizada"
+      ]
     },
     {
       "id": "operario_produccion",
@@ -241,7 +297,15 @@
         "Secundaria (a veces)",
         "Disponibilidad para turnos rotativos"
       ],
-      "busqueda": "operario de produccion"
+      "busqueda": "operario de produccion",
+      "menciones": [
+        "operario de producción",
+        "operaria de producción",
+        "operario de planta",
+        "operaria de planta",
+        "fábrica",
+        "fabrica"
+      ]
     },
     {
       "id": "teleoperador",
@@ -265,7 +329,12 @@
         "Secundaria completa",
         "Manejo básico de computadora"
       ],
-      "busqueda": "asesor de atencion al cliente"
+      "busqueda": "asesor de atencion al cliente",
+      "menciones": [
+        "call center",
+        "teleoperador",
+        "teleoperadora"
+      ]
     },
     {
       "id": "cuidador",
@@ -288,7 +357,12 @@
       "requisitos_minimos": [
         "Referencias de trabajos anteriores"
       ],
-      "busqueda": "cuidador"
+      "busqueda": "cuidador",
+      "menciones": [
+        "cuidadora",
+        "cuidador",
+        "niñera"
+      ]
     },
     {
       "id": "conserje",
@@ -312,7 +386,12 @@
         "Referencias",
         "Disponibilidad de horario"
       ],
-      "busqueda": "conserje"
+      "busqueda": "conserje",
+      "menciones": [
+        "conserje",
+        "portero",
+        "portera"
+      ]
     }
   ]
 }

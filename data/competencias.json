@@ -6,6 +6,7 @@
       "id": "con_medios_pago",
       "dimension": "conocimiento",
       "nombre": "Medios de pago (efectivo, tarjetas y billeteras digitales)",
+      "nombre_corto": "Medios de pago",
       "nombre_simple": "Sé cobrar con efectivo, tarjeta, Yape o Plin",
       "keywords": [
         "yape",
@@ -20,6 +21,7 @@
       "id": "con_productos_limpieza",
       "dimension": "conocimiento",
       "nombre": "Productos de limpieza y su uso seguro",
+      "nombre_corto": "Productos de limpieza",
       "nombre_simple": "Sé qué productos usar y cuáles no se mezclan",
       "keywords": [
         "lejía",
@@ -36,6 +38,7 @@
       "id": "con_ubicacion_productos",
       "dimension": "conocimiento",
       "nombre": "Ubicación y rotación de productos",
+      "nombre_corto": "Ubicación de productos",
       "nombre_simple": "Sé dónde va cada cosa y qué vence primero",
       "keywords": [
         "dónde va",
@@ -51,6 +54,7 @@
       "id": "con_documentos_comerciales",
       "dimension": "conocimiento",
       "nombre": "Documentos comerciales básicos",
+      "nombre_corto": "Documentos comerciales",
       "nombre_simple": "Conozco boletas, facturas y guías",
       "keywords": [
         "boleta",
@@ -64,6 +68,7 @@
       "id": "con_productos_venta",
       "dimension": "conocimiento",
       "nombre": "Características de los productos que se venden",
+      "nombre_corto": "Conocimiento de productos",
       "nombre_simple": "Conozco bien lo que vendo",
       "keywords": [
         "modelos",
@@ -77,6 +82,7 @@
       "id": "con_seguridad_trabajo",
       "dimension": "conocimiento",
       "nombre": "Normas básicas de seguridad en el trabajo",
+      "nombre_corto": "Seguridad en el trabajo",
       "nombre_simple": "Sé trabajar sin ponerme en riesgo",
       "keywords": [
         "seguridad",
@@ -90,18 +96,24 @@
       "id": "hab_cobro_caja",
       "dimension": "habilidad",
       "nombre": "Cobrar y dar vuelto con rapidez y exactitud",
+      "nombre_corto": "Cobro en caja",
       "nombre_simple": "Cobro rápido y sin equivocarme",
       "keywords": [
         "cobro",
         "cobrar",
-        "caja",
-        "vuelto"
+        "vuelto",
+        "la caja",
+        "en caja",
+        "mi caja",
+        "una caja registradora",
+        "en la caja"
       ]
     },
     {
       "id": "hab_cuadre_caja",
       "dimension": "habilidad",
       "nombre": "Cuadrar la caja al cierre",
+      "nombre_corto": "Cuadre de caja",
       "nombre_simple": "Cuadro la caja al final del día",
       "keywords": [
         "cuadro",
@@ -114,6 +126,7 @@
       "id": "hab_atencion_cliente",
       "dimension": "habilidad",
       "nombre": "Atender y orientar a clientes",
+      "nombre_corto": "Atención al cliente",
       "nombre_simple": "Atiendo bien a la gente",
       "keywords": [
         "atiendo",
@@ -128,6 +141,7 @@
       "id": "hab_reposicion",
       "dimension": "habilidad",
       "nombre": "Reponer y ordenar productos",
+      "nombre_corto": "Reposición",
       "nombre_simple": "Repongo y ordeno lo que falta",
       "keywords": [
         "repongo",
@@ -142,6 +156,7 @@
       "id": "hab_inventario",
       "dimension": "habilidad",
       "nombre": "Controlar stock e inventario",
+      "nombre_corto": "Control de inventario",
       "nombre_simple": "Veo qué falta y llevo la cuenta",
       "keywords": [
         "inventario",
@@ -155,6 +170,7 @@
       "id": "hab_limpieza_tecnica",
       "dimension": "habilidad",
       "nombre": "Limpiar y desinfectar según el tipo de ambiente",
+      "nombre_corto": "Limpieza y desinfección",
       "nombre_simple": "Limpio bien cada tipo de lugar",
       "keywords": [
         "limpio",
@@ -169,6 +185,7 @@
       "id": "hab_exhibicion",
       "dimension": "habilidad",
       "nombre": "Exhibir productos de forma atractiva",
+      "nombre_corto": "Exhibición de productos",
       "nombre_simple": "Acomodo los productos para que se vean bien",
       "keywords": [
         "exhibir",
@@ -181,6 +198,7 @@
       "id": "hab_tecnicas_venta",
       "dimension": "habilidad",
       "nombre": "Técnicas de venta y negociación",
+      "nombre_corto": "Técnicas de venta",
       "nombre_simple": "Sé ofrecer y convencer para vender",
       "keywords": [
         "vendo",
@@ -194,6 +212,7 @@
       "id": "hab_archivo",
       "dimension": "habilidad",
       "nombre": "Organizar y archivar documentos",
+      "nombre_corto": "Archivo de documentos",
       "nombre_simple": "Ordeno y archivo papeles",
       "keywords": [
         "archivo",
@@ -206,6 +225,7 @@
       "id": "hab_registro_datos",
       "dimension": "habilidad",
       "nombre": "Registrar datos sin errores",
+      "nombre_corto": "Registro de datos",
       "nombre_simple": "Anoto todo sin equivocarme",
       "keywords": [
         "anoto",
@@ -219,6 +239,7 @@
       "id": "hab_ofimatica_basica",
       "dimension": "habilidad",
       "nombre": "Usar computadora y hoja de cálculo básica",
+      "nombre_corto": "Computación básica",
       "nombre_simple": "Manejo la computadora y Excel básico",
       "keywords": [
         "excel",
@@ -231,6 +252,7 @@
       "id": "hab_carga_descarga",
       "dimension": "habilidad",
       "nombre": "Recibir, cargar y descargar mercadería",
+      "nombre_corto": "Recepción de mercadería",
       "nombre_simple": "Recibo y descargo mercadería",
       "keywords": [
         "mercadería",
@@ -245,6 +267,7 @@
       "id": "cua_honestidad",
       "dimension": "cualidad",
       "nombre": "Honestidad y confianza",
+      "nombre_corto": "Honestidad",
       "nombre_simple": "Me confían cosas importantes",
       "keywords": [
         "confían",
@@ -260,6 +283,7 @@
       "id": "cua_puntualidad",
       "dimension": "cualidad",
       "nombre": "Puntualidad y responsabilidad",
+      "nombre_corto": "Puntualidad",
       "nombre_simple": "Soy puntual y cumplo",
       "keywords": [
         "puntual",
@@ -273,6 +297,7 @@
       "id": "cua_orden",
       "dimension": "cualidad",
       "nombre": "Orden y atención al detalle",
+      "nombre_corto": "Organización y orden",
       "nombre_simple": "Soy ordenada y me fijo en los detalles",
       "keywords": [
         "ordenada",
@@ -285,6 +310,7 @@
       "id": "cua_paciencia",
       "dimension": "cualidad",
       "nombre": "Paciencia y trato amable",
+      "nombre_corto": "Paciencia",
       "nombre_simple": "Tengo paciencia con la gente",
       "keywords": [
         "paciencia",
@@ -297,6 +323,7 @@
       "id": "cua_trabajo_equipo",
       "dimension": "cualidad",
       "nombre": "Trabajo en equipo",
+      "nombre_corto": "Trabajo en equipo",
       "nombre_simple": "Ayudo a mis compañeros",
       "keywords": [
         "equipo",
@@ -308,6 +335,7 @@
       "id": "cua_resistencia",
       "dimension": "cualidad",
       "nombre": "Resistencia física y buen ritmo",
+      "nombre_corto": "Resistencia física",
       "nombre_simple": "Aguanto el ritmo todo el día",
       "keywords": [
         "de pie",
@@ -321,6 +349,7 @@
       "id": "comp_caja_sin_faltantes",
       "dimension": "competencia",
       "nombre": "Cierra caja sin faltantes de forma constante",
+      "nombre_corto": "Caja sin faltantes",
       "nombre_simple": "Mi caja siempre cuadra",
       "keywords": [
         "sin faltantes",
@@ -334,6 +363,7 @@
       "id": "comp_ambientes_impecables",
       "dimension": "competencia",
       "nombre": "Deja ambientes limpios y seguros en el tiempo pactado",
+      "nombre_corto": "Ambientes impecables",
       "nombre_simple": "Dejo todo limpio a tiempo",
       "keywords": [
         "impecable",
@@ -346,6 +376,7 @@
       "id": "comp_gondola_abastecida",
       "dimension": "competencia",
       "nombre": "Mantiene la zona abastecida en horas de alta demanda",
+      "nombre_corto": "Zona siempre abastecida",
       "nombre_simple": "Nunca falta producto en mi zona",
       "keywords": [
         "nunca falta",
@@ -358,6 +389,7 @@
       "id": "comp_resuelve_reclamos",
       "dimension": "competencia",
       "nombre": "Resuelve reclamos y deja al cliente satisfecho",
+      "nombre_corto": "Resolver reclamos",
       "nombre_simple": "Calmo al cliente molesto y lo resuelvo",
       "keywords": [
         "reclamo",
@@ -371,6 +403,7 @@
       "id": "comp_cumple_metas_venta",
       "dimension": "competencia",
       "nombre": "Cumple metas de venta",
+      "nombre_corto": "Metas de venta",
       "nombre_simple": "Llego a mis metas de venta",
       "keywords": [
         "meta",
@@ -383,6 +416,7 @@
       "id": "comp_gestiona_documentos",
       "dimension": "competencia",
       "nombre": "Mantiene documentos y pagos al día",
+      "nombre_corto": "Documentos al día",
       "nombre_simple": "Tengo todo al día",
       "keywords": [
         "al día",
@@ -395,6 +429,7 @@
       "id": "con_manejo_dinero",
       "dimension": "conocimiento",
       "nombre": "Manejo de dinero",
+      "nombre_corto": "Manejo de dinero",
       "nombre_simple": "Manejo plata sin que falte nada",
       "keywords": [
         "plata",
@@ -409,6 +444,7 @@
       "id": "con_higiene_alimentos",
       "dimension": "conocimiento",
       "nombre": "Higiene y manipulación de alimentos",
+      "nombre_corto": "Higiene de alimentos",
       "nombre_simple": "Sé manejar alimentos con higiene",
       "keywords": [
         "higiene",
@@ -424,6 +460,7 @@
       "id": "hab_cocina_basica",
       "dimension": "habilidad",
       "nombre": "Preparar alimentos",
+      "nombre_corto": "Cocina",
       "nombre_simple": "Sé cocinar y preparar alimentos",
       "keywords": [
         "cocino",
@@ -441,6 +478,7 @@
       "id": "hab_organizacion_tiempos",
       "dimension": "habilidad",
       "nombre": "Organizar los tiempos",
+      "nombre_corto": "Organización del tiempo",
       "nombre_simple": "Organizo mi tiempo para que todo salga a la hora",
       "keywords": [
         "a la hora",
@@ -454,6 +492,7 @@
       "id": "hab_comunicacion",
       "dimension": "habilidad",
       "nombre": "Comunicarse con claridad",
+      "nombre_corto": "Comunicación",
       "nombre_simple": "Explico las cosas claro y converso con la gente",
       "keywords": [
         "converso",
@@ -468,6 +507,7 @@
       "id": "hab_identifica_necesidades",
       "dimension": "habilidad",
       "nombre": "Identificar lo que necesita el cliente",
+      "nombre_corto": "Detectar necesidades",
       "nombre_simple": "Me doy cuenta de lo que la gente necesita",
       "keywords": [
         "qué necesita",
@@ -483,6 +523,7 @@
       "id": "hab_servicio_mesa",
       "dimension": "habilidad",
       "nombre": "Atender mesas y pedidos",
+      "nombre_corto": "Servicio de mesa",
       "nombre_simple": "Atiendo mesas y tomo pedidos",
       "keywords": [
         "mozo",
@@ -498,6 +539,7 @@
       "id": "hab_reparto_rutas",
       "dimension": "habilidad",
       "nombre": "Repartir pedidos por rutas",
+      "nombre_corto": "Reparto y rutas",
       "nombre_simple": "Reparto pedidos y conozco las rutas",
       "keywords": [
         "reparto",
@@ -513,6 +555,7 @@
       "id": "hab_cuidado_personas",
       "dimension": "habilidad",
       "nombre": "Cuidar a personas",
+      "nombre_corto": "Cuidado de personas",
       "nombre_simple": "Cuido a niños o adultos mayores",
       "keywords": [
         "cuido",
@@ -531,6 +574,7 @@
       "id": "hab_atencion_telefonica",
       "dimension": "habilidad",
       "nombre": "Atender por teléfono",
+      "nombre_corto": "Atención telefónica",
       "nombre_simple": "Atiendo llamadas y mensajes",
       "keywords": [
         "teléfono",
@@ -545,6 +589,7 @@
       "id": "hab_maquinas_produccion",
       "dimension": "habilidad",
       "nombre": "Operar máquinas y líneas de producción",
+      "nombre_corto": "Manejo de máquinas",
       "nombre_simple": "Trabajo con máquinas o en línea de producción",
       "keywords": [
         "máquina",
@@ -563,6 +608,7 @@
       "id": "hab_mantenimiento_basico",
       "dimension": "habilidad",
       "nombre": "Mantenimiento básico",
+      "nombre_corto": "Mantenimiento básico",
       "nombre_simple": "Arreglo y pinto cosas sencillas",
       "keywords": [
         "arreglo",
@@ -579,6 +625,7 @@
       "id": "cua_precision",
       "dimension": "cualidad",
       "nombre": "Precisión",
+      "nombre_corto": "Precisión",
       "nombre_simple": "Hago las cosas exactas, sin errores",
       "keywords": [
         "exacto",
@@ -593,6 +640,7 @@
       "id": "cua_cumple_protocolos",
       "dimension": "cualidad",
       "nombre": "Cumplimiento de protocolos",
+      "nombre_corto": "Cumplimiento de normas",
       "nombre_simple": "Sigo las normas y los pasos al pie de la letra",
       "keywords": [
         "protocolo",
@@ -606,6 +654,7 @@
       "id": "cua_trabajo_presion",
       "dimension": "cualidad",
       "nombre": "Trabajo bajo presión",
+      "nombre_corto": "Trabajo bajo presión",
       "nombre_simple": "Trabajo tranquila aunque haya mucha gente o apuro",
       "keywords": [
         "presión",
@@ -623,6 +672,7 @@
       "id": "comp_pedidos_a_tiempo",
       "dimension": "competencia",
       "nombre": "Entrega pedidos completos y a tiempo",
+      "nombre_corto": "Pedidos a tiempo",
       "nombre_simple": "Mis pedidos salen completos y a tiempo",
       "keywords": [
         "pedidos completos",
@@ -636,6 +686,7 @@
       "id": "comp_clientes_vuelven",
       "dimension": "competencia",
       "nombre": "Los clientes vuelven y lo recomiendan",
+      "nombre_corto": "Clientes que vuelven",
       "nombre_simple": "Mis clientes vuelven y me recomiendan",
       "keywords": [
         "me recomiendan",
@@ -650,6 +701,7 @@
       "id": "comp_meta_turno",
       "dimension": "competencia",
       "nombre": "Cumple la meta del turno",
+      "nombre_corto": "Meta del turno",
       "nombre_simple": "Cumplo la meta de mi turno",
       "keywords": [
         "meta del turno",

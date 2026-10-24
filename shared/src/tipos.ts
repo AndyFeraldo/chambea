@@ -12,6 +12,8 @@ export interface Competencia {
   id: string;
   dimension: Dimension;
   nombre: string;
+  /** Nombre claro de la habilidad para la celda: "Organización y orden". */
+  nombre_corto?: string;
   nombre_simple: string;
   keywords: string[];
 }
@@ -25,6 +27,8 @@ export interface Ocupacion {
   requisitos_minimos: string[];
   /** Texto para buscar ofertas reales en portales de empleo. */
   busqueda?: string;
+  /** Cómo lo dice la persona: "soy almacenero", "trabajé de mesera". */
+  menciones?: string[];
 }
 
 /** Una tarea del día a día y las habilidades transferibles que revela. */
@@ -82,6 +86,8 @@ export interface CompetenciaDetectada {
   evidencia: string | null;
   /** Si se dedujo de una tarea ("Cobrar en caja" -> precisión), su nombre. */
   tarea?: string | null;
+  /** Si es típica del oficio de la persona ("Auxiliar de almacén"), su nombre. */
+  oficio?: string | null;
 }
 
 export interface Ruta {

@@ -30,6 +30,7 @@ export interface Celda {
   dimension: Dimension;
   evidencia: string | null;
   tarea?: string | null;
+  oficio?: string | null;
   confirmada: boolean;
 }
 

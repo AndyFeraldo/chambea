@@ -1,7 +1,7 @@
 // Extracción por palabras clave (modo "mock"): funciona siempre, sin internet ni modelo.
 // Usa el campo `keywords` de data/competencias.json.
 
-import type { Competencia, CompetenciaDetectada, Tarea } from './tipos';
+import type { Competencia, CompetenciaDetectada, Ocupacion, Tarea } from './tipos';
 
 /** Minúsculas y sin tildes: "Dónde" -> "donde". */
 export function normalizar(texto: string): string {
@@ -91,4 +91,39 @@ function deducirDeTareas(
 export function tareasMencionadas(textos: string[], tareas: Tarea[]): Tarea[] {
   const todas = textos.flatMap((t) => frases(t ?? ''));
   return tareas.filter((t) => todas.some((f) => t.keywords.some((k) => contiene(f, k, false))));
+}
+
+/** Oficios que la persona menciona al hablar ("soy almacenero", "trabajé de mesera"). */
+export function oficiosMencionados(textos: string[], ocupaciones: Ocupacion[]): Ocupacion[] {
+  const todas = textos.flatMap((t) => frases(t ?? ''));
+  return ocupaciones.filter((o) => (o.menciones ?? []).some((k) => todas.some((f) => contiene(f, k, false))));
+}
+
+/**
+ * Suma las habilidades típicas del oficio de la persona (el que eligió o el que mencionó),
+ * sin repetir las que ya salieron de su relato. Quedan por confirmar.
+ */
+export function completarConOficios(
+  catalogo: Competencia[],
+  ocupaciones: Ocupacion[],
+  detectadas: CompetenciaDetectada[],
+  textos: string[],
+  ocupacionActual: string | null,
+): CompetenciaDetectada[] {
+  const porId = new Map(catalogo.map((c) => [c.id, c]));
+  const oficios = [
+    ...ocupaciones.filter((o) => o.id === ocupacionActual),
+    ...oficiosMencionados(textos, ocupaciones).filter((o) => o.id !== ocupacionActual),
+  ];
+  const ya = new Set(detectadas.map((d) => d.id));
+  const extra: CompetenciaDetectada[] = [];
+  for (const o of oficios) {
+    for (const id of o.requeridas) {
+      const c = porId.get(id);
+      if (!c || ya.has(id)) continue;
+      ya.add(id);
+      extra.push({ id, dimension: c.dimension, evidencia: null, oficio: o.nombre });
+    }
+  }
+  return [...detectadas, ...extra];
 }

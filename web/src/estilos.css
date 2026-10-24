@@ -553,3 +553,26 @@ button.hex:active { filter: brightness(0.94); }
 .viene-de { display: flex; align-items: center; gap: 6px; font-size: 0.92rem; color: var(--verde-oscuro); }
 .mosaico__item { min-height: 128px; gap: 2px; }
 .mosaico__item .abeja-vestida { animation: flotar 3s ease-in-out infinite; animation-delay: calc(var(--i, 0) * -0.4s); }
+
+/* ---------- Habilidades claras y "acercarte a otro trabajo" ---------- */
+.objetivos { display: flex; gap: 8px; overflow-x: auto; padding: 2px 2px 8px; scroll-snap-type: x mandatory; }
+.objetivo {
+  flex: none; width: 104px; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 8px 6px;
+  border: 2px solid var(--borde); border-radius: 14px; background: var(--blanco); font-size: 0.8rem; font-weight: 700;
+  line-height: 1.2; text-align: center; cursor: pointer; scroll-snap-align: start;
+}
+.objetivo[aria-pressed='true'] { border-color: var(--verde-oscuro); background: var(--dim-sabe); }
+.catalogo__textos { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.catalogo__textos small { color: var(--texto-suave); font-weight: 500; font-size: 0.85rem; }
+.catalogo__item { color: var(--negro); }
+.catalogo__item .icono { color: var(--verde-oscuro); flex: none; }
+.catalogo__dim { font-weight: 800; font-size: 0.9rem; }
+.toca-falta { font-size: 0.85rem; color: #c5d3cf; margin-top: -4px; }
+.ruta-hero button.hex--falta { cursor: pointer; }
+.ruta-hero button.hex--falta::after {
+  content: '+'; position: absolute; top: 9%; left: 50%; transform: translateX(-50%);
+  font-size: 0.9rem; font-weight: 800; color: var(--miel);
+}
+.viene-de { display: block; }
+.viene-de .icono { display: inline-block; vertical-align: -3px; margin-right: 4px; }
+.hoja__panel > h2, .detalle-celda h2 { padding-right: 44px; }

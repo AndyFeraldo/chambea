@@ -79,23 +79,35 @@
     "armando": "Armando tu panal…"
   },
   "panal": {
-    "titulo": "Tu panal",
-    "ayuda": "Toca una celda para ver por qué está ahí.",
+    "titulo": "Tus habilidades",
+    "ayuda": "Esto es lo que sabes hacer. Toca una celda para ver por qué está ahí.",
     "dimensiones": {
-      "conocimiento": "Sabe",
-      "habilidad": "Sabe hacer",
-      "cualidad": "Cómo es",
-      "competencia": "Logra"
+      "conocimiento": "Conocimientos",
+      "habilidad": "Habilidades",
+      "cualidad": "Cualidades",
+      "competencia": "Logros"
     },
     "loDemuestra": "Lo demuestra:",
     "confirmar": "Sí, eso hago",
     "quitar": "Quitar",
     "agregar": "Agregar",
-    "agregarTitulo": "¿Qué más sabes hacer?",
-    "vacio": "Aún no hay celdas. Toca + para agregar lo que haces.",
-    "celdas": "{n} celdas",
+    "agregarTitulo": "Agrega lo que sabes hacer",
+    "vacio": "Aún no hay celdas. Toca + para agregar lo que sabes hacer.",
+    "celdas": "{n} habilidades",
     "seguir": "Sí, ese es mi panal",
-    "vieneDe": "Viene de tu tarea:"
+    "vieneDe": "Viene de tu tarea:",
+    "dimension": {
+      "conocimiento": "Conocimiento · lo que sabes",
+      "habilidad": "Habilidad · lo que sabes hacer",
+      "cualidad": "Cualidad · cómo eres",
+      "competencia": "Logro · lo que consigues"
+    },
+    "agregarMas": "Agregar más habilidades",
+    "deTuOficio": "Típica de tu oficio:",
+    "acercarte": "¿A qué trabajo te quieres acercar?",
+    "paraSer": "Para {ocupacion} piden esto. Toca lo que ya sabes hacer:",
+    "yaTodo": "Ya tienes todo lo que piden para {ocupacion}.",
+    "todas": "Todas las habilidades"
   },
   "rutas": {
     "titulo": "Mira tus rutas",
@@ -117,7 +129,11 @@
     "verOfertas": "Ver ofertas reales:",
     "anterior": "Ruta anterior",
     "siguiente": "Siguiente",
-    "cuenta": "Ruta {n} de {total}"
+    "cuenta": "Ruta {n} de {total}",
+    "tocaFalta": "¿Ya sabes algo de lo que falta? Tócalo y agrégalo.",
+    "saberTitulo": "¿Ya sabes hacer esto?",
+    "saberSi": "Sí, agrégalo a mi panal",
+    "saberNo": "Todavía no"
   },
   "paso": {
     "preguntas": [

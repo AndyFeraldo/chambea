@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, type CSSProperties } from 'react';
+import { completarConOficios } from '@shared/extraccion';
 import { extraer } from '../api';
 import { t, textos } from '../i18n';
 import { NUM_PREGUNTAS, useApp } from '../estado';
@@ -132,7 +133,9 @@ export function Armando() {
     if (iniciado.current) return;
     iniciado.current = true;
     const minimo = new Promise((r) => setTimeout(r, 1800));
-    Promise.all([extraer(datos, estado.respuestas), minimo]).then(([detectadas]) => {
+    Promise.all([extraer(datos, estado.respuestas), minimo]).then(([delRelato]) => {
+      // Lo que contó + lo típico de su oficio (el que eligió o el que mencionó).
+      const detectadas = completarConOficios(datos.competencias, datos.ocupaciones, delRelato, estado.respuestas, estado.ocupacionActual);
       // Conserva lo que la persona ya había confirmado o agregado.
       const previas = new Map(estado.celdas.map((c) => [c.id, c]));
       const celdas = detectadas.map((d) => ({ ...d, confirmada: previas.get(d.id)?.confirmada ?? false }));
@@ -140,7 +143,7 @@ export function Armando() {
       cambiar({ celdas, rutas: null, rutaElegida: null, primerPaso: null });
       ir('panal');
     });
-  }, [datos, estado.respuestas, estado.celdas, cambiar, ir]);
+  }, [datos, estado.respuestas, estado.celdas, estado.ocupacionActual, cambiar, ir]);
 
   return (
     <div className="armando entrar" role="status">

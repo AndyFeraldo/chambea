@@ -63,10 +63,11 @@
         "con_ubicacion_productos"
       ],
       "resultado_esperado": {
-        "primera_ruta": "reponedor",
-        "nota": "Cobertura aproximada 0,6: falta recepción de mercadería y zona abastecida",
-        "primer_paso": "Capacitarse: curso c_almacen (corto, desde el celular, perfil informal)",
-        "tiene": "5 de 7"
+        "primera_ruta": "conserje",
+        "segunda_ruta": "reponedor",
+        "tiene": "5 de 7 en ambas",
+        "nota": "Al sumar las habilidades típicas de su oficio (limpieza: seguridad en el trabajo), Conserje queda primero; Reponedor/a sigue con 5 de 7.",
+        "primer_paso_reponedor": "Capacitarse: curso c_almacen (corto, desde el celular, perfil informal)"
       }
     }
   ]

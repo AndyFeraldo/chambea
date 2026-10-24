@@ -3,14 +3,20 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { cargarDatos } from '../server/src/datos';
-import { extraerPorPalabrasClave } from '../shared/src/extraccion';
+import { completarConOficios, extraerPorPalabrasClave } from '../shared/src/extraccion';
 import { calcularPrimerPaso, calcularRutas } from '../shared/src/motor';
 
 const datos = cargarDatos();
 
 function recorrido(casoId: string, horas: '1-3' | '4-6' | '7+' = '1-3') {
   const caso = datos.casos.find((c) => c.id === casoId)!;
-  const comps = extraerPorPalabrasClave(datos.competencias, caso.respuestas, datos.tareas);
+  const comps = completarConOficios(
+    datos.competencias,
+    datos.ocupaciones,
+    extraerPorPalabrasClave(datos.competencias, caso.respuestas, datos.tareas),
+    caso.respuestas,
+    caso.ocupacion_actual,
+  );
   const ids = comps.map((c) => c.id);
   const rutas = calcularRutas(datos, {
     competencias_ids: ids,
@@ -44,18 +50,20 @@ test('Rosa: extrae lo esperado, primera ruta vendedor/a de tienda 6 de 7, curso 
   assert.equal(rutas.aviso_demanda?.ocupacion_id, 'cajero');
   assert.equal(paso.principal.tipo, 'capacitate');
   assert.equal(paso.principal.curso?.id, 'c_ventas');
-  assert.match(paso.porque, /solo te falta «Sé ofrecer y convencer para vender»/);
+  assert.match(paso.porque, /solo te falta Técnicas de venta/);
   assert.equal(paso.alternativas.length, 2);
   const honestidad = comps.find((c) => c.id === 'cua_honestidad');
   assert.match(honestidad!.evidencia!, /cerrar la caja sola/);
 });
 
-test('Marleny: primera ruta reponedor/a 5 de 7, curso de almacén', () => {
-  const { rutas, paso } = recorrido('marleny');
-  const r = rutas.rutas[0];
-  assert.equal(r.ocupacion_id, 'reponedor');
-  assert.equal(`${r.tiene.length} de ${r.tiene.length + r.faltan.length}`, '5 de 7');
-  assert.equal(paso.principal.tipo, 'capacitate');
+test('Marleny: conserje y reponedor/a, ambos 5 de 7; para reponedor/a, curso de almacén', () => {
+  const caso = datos.casos.find((c) => c.id === 'marleny')!;
+  const { rutas, ids } = recorrido('marleny');
+  // Al sumar lo típico de su oficio (limpieza), Conserje queda primero.
+  assert.deepEqual(rutas.rutas.slice(0, 2).map((r) => r.ocupacion_id), ['conserje', 'reponedor']);
+  const rep = rutas.rutas[1];
+  assert.equal(`${rep.tiene.length} de ${rep.tiene.length + rep.faltan.length}`, '5 de 7');
+  const paso = calcularPrimerPaso(datos, { ocupacion_id: 'reponedor', competencias_ids: ids, perfil: caso.perfil, horas: '1-3', modalidad: 'celular', costo: 'gratis' });
   assert.equal(paso.principal.curso?.id, 'c_almacen');
 });
 
@@ -121,4 +129,25 @@ test('Oficios distintos llevan a rutas distintas (no siempre limpieza)', () => {
   assert.ok(primera('Cuido a mi abuelita y a niños del barrio, les cocino y soy paciente.').includes('cuidador'));
   const vendedor = primera('Vendo celulares, le ofrezco al cliente lo que necesita y le explico.');
   assert.ok(!vendedor.slice(0, 2).includes('limpieza'), `vendedor no debería ir a limpieza: ${vendedor}`);
+});
+
+test('"Soy almacenero": el panal suma las habilidades típicas del oficio', () => {
+  const texto = ['Soy almacenero hace 5 años.'];
+  const comps = completarConOficios(datos.competencias, datos.ocupaciones, extraerPorPalabrasClave(datos.competencias, texto, datos.tareas), texto, null);
+  const ids = comps.map((c) => c.id);
+  for (const e of ['cua_orden', 'hab_inventario', 'hab_carga_descarga', 'hab_registro_datos', 'cua_resistencia']) assert.ok(ids.includes(e), `falta ${e}`);
+  assert.equal(comps.find((c) => c.id === 'cua_orden')?.oficio, 'Auxiliar de almacén');
+  assert.equal(datos.competencias.find((c) => c.id === 'cua_orden')?.nombre_corto, 'Organización y orden');
+});
+
+test('El oficio elegido también suma sus habilidades, sin repetir', () => {
+  const comps = completarConOficios(datos.competencias, datos.ocupaciones, [], [], 'mozo');
+  assert.equal(new Set(comps.map((c) => c.id)).size, comps.length);
+  assert.ok(comps.some((c) => c.id === 'hab_servicio_mesa'));
+});
+
+test('"Cuento las cajas" (de mercadería) no es cobrar en caja', () => {
+  const ids = extraer('Recibo la mercadería y cuento las cajas.');
+  assert.ok(!ids.includes('hab_cobro_caja') && !ids.includes('con_manejo_dinero'));
+  assert.ok(extraer('Trabajo en la caja del mercado.').includes('hab_cobro_caja'));
 });

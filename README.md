@@ -14,7 +14,7 @@ Chambea ayuda a personas que aprendieron su oficio en la práctica a reconocer l
 |---|---|
 | Inicio | Abejas volando, eslogan, los 4 pasos en hexágonos, región, "Empezar", "Lo hago con un asesor" y 2 ejemplos (Rosa y Marleny) |
 | 1 · Cuéntalo | Situación (3 tarjetas con ícono), ocupación (mosaico) y 4 preguntas. Cada pregunta se responde **hablando** (botón de micrófono) o escribiendo |
-| 2 · Arma tu panal | Colmena animada de 4 colores (Sabe / Sabe hacer / Cómo es / Logra). Al tocar una celda: "Lo demuestra: «…»", confirmar o quitar. Hexágono "+" para agregar |
+| 2 · Tus habilidades | Colmena animada donde cada celda es una **habilidad con nombre claro** ("Organización y orden", "Control de inventario"…), en 4 colores: conocimientos, habilidades, cualidades y logros. Al tocar una celda: de dónde sale (tu relato, tu tarea o tu oficio), confirmar o quitar. "Agregar más habilidades": eliges a qué trabajo te quieres acercar y agregas lo que ya sabes |
 | 3 · Mira tus rutas | Carrusel de hasta 5 rutas. Cada trabajo llega con **su abeja vestida para ese oficio**, que entra volando desde la derecha; con "Siguiente" sale por la izquierda y entra la del siguiente trabajo. Mini panal con lo que tienes y lo que **falta**, demanda, alias y **enlaces a ofertas reales** (Empleos Perú y Computrabajo) |
 | 4 · Da el paso | 3 preguntas, una por pantalla, y **una** recomendación con su porqué, más 2 alternativas |
 | Mi panal | Tarjeta resumen e imagen descargable. "Empezar de nuevo" borra todo |
@@ -125,6 +125,12 @@ Chambea razona como la lámina del workshop "Descubriendo el valor de cada tarea
 
 Las 14 tareas están en `data/tareas.json`. En el panal, cada celda deducida así dice "Viene de tu tarea: …". El modo QVAC recibe la misma guía en su prompt.
 
+## Del oficio a las habilidades
+
+Si la persona elige su oficio o lo menciona al hablar ("soy almacenero", "trabajé de mesera"), el panal suma las habilidades típicas de ese oficio, como "Típica de tu oficio", para que las confirme o las quite. Las menciones se configuran en el campo `menciones` de cada ocupación (`data/ocupaciones.json`) y el nombre claro de cada habilidad en `nombre_corto` (`data/competencias.json`).
+
+En Rutas, las celdas que **faltan** se pueden tocar: "¿Ya sabes hacer esto?". Si la persona dice que sí, se suma a su panal y las rutas se recalculan.
+
 ## Fuentes reales enlazadas
 
 - **Empleos Perú** (MTPE): https://www.empleosperu.gob.pe/
@@ -168,6 +174,8 @@ chambea/
 - Primer paso: con cobertura ≥ 0,85 recomienda postular en Empleos Perú (si la persona está en planilla en riesgo, primero el curso). Entre 0,5 y 0,85 recomienda un curso que cubra lo que falta y respete horas, modalidad y costo. Por debajo de 0,5 recomienda un asesor.
 
 ## Registro de cambios
+
+**24/10/2026 (habilidades claras):** cada celda muestra el nombre de la habilidad. Se suman las habilidades típicas del oficio elegido o mencionado. "Agregar más habilidades" permite acercarse a otro trabajo, y en Rutas se pueden agregar las celdas que faltan. Marleny ahora ve primero Conserje (5 de 7) y luego Reponedor/a (5 de 7). Se corrigió que "cuento las cajas" contara como cobrar en caja.
 
 **24/10/2026 (más rutas y abejas vestidas):** 8 ocupaciones nuevas (13 en total) y hasta 5 rutas por persona. Tareas → habilidades (`data/tareas.json`). Enlaces reales a Empleos Perú, Capacíta-T y ofertas de Computrabajo. Carrusel de rutas con una abeja vestida por oficio. Se corrigió que "productos" sumara siempre la celda de limpieza.
 

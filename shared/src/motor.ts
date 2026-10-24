@@ -147,6 +147,11 @@ export function nombreCorto(c: Competencia | undefined): string {
   return base.charAt(0).toLowerCase() + base.slice(1);
 }
 
+/** "Organización y orden" (nombre claro de la habilidad). */
+export function nombreHabilidad(c: Competencia | undefined, id = ''): string {
+  return c?.nombre_corto ?? c?.nombre_simple ?? id;
+}
+
 function enumerar(items: string[]): string {
   if (items.length <= 1) return items[0] ?? '';
   return items.slice(0, -1).join(', ') + ' y ' + items[items.length - 1];
@@ -208,8 +213,8 @@ export function calcularPrimerPaso(
   const fuertes = [...tenidas]
     .sort((a, b) => peso(cat, b) - peso(cat, a))
     .slice(0, 2)
-    .map((id) => `«${cat.get(id)?.nombre_simple ?? id}»`);
-  const faltanNombres = faltan.map((id) => `«${cat.get(id)?.nombre_simple ?? id}»`);
+    .map((id) => nombreHabilidad(cat.get(id), id));
+  const faltanNombres = faltan.map((id) => nombreHabilidad(cat.get(id), id));
   let porque: string;
   if (principal.tipo === 'asesor') {
     porque = tenidas.length
