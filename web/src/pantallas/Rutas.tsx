@@ -1,118 +1,105 @@
-import { useState } from 'react';
+import { useState, type CSSProperties } from 'react';
+import type { Ruta } from '@shared/tipos';
 import { t } from '../i18n';
 import { useApp } from '../estado';
-import { Icono, NotaIlustrativa, Pantalla } from '../componentes/comunes';
+import { Icono, ICONO_OCUPACION, NotaIlustrativa, Pantalla } from '../componentes/comunes';
+import { Colmena, ordenar, type CeldaVisual } from './Panal';
+
+function celdasDeRuta(r: Ruta, dimension: (id: string) => CeldaVisual['dimension']): CeldaVisual[] {
+  // Primero lo que ya tiene, al final lo que falta (como en el flyer).
+  return [
+    ...ordenar(r.tiene.map((id) => ({ id, dimension: dimension(id) }))),
+    ...r.faltan.map((id) => ({ id, dimension: dimension(id), falta: true })),
+  ];
+}
 
 export function Rutas() {
   const { estado, cambiar, ir, comp } = useApp();
   const resultado = estado.rutas;
-  const [abierta, setAbierta] = useState<string | null>(estado.rutaElegida ?? resultado?.rutas[0]?.ocupacion_id ?? null);
-
+  const [elegida, setElegida] = useState<string | null>(estado.rutaElegida ?? resultado?.rutas[0]?.ocupacion_id ?? null);
   if (!resultado) return null;
 
-  const elegir = (id: string | null) => {
-    cambiar({ rutaElegida: id, primerPaso: null });
-    ir('paso');
+  const ruta = resultado.rutas.find((r) => r.ocupacion_id === elegida) ?? resultado.rutas[0];
+  const otras = resultado.rutas.filter((r) => r !== ruta);
+  const irAlPaso = (id: string | null) => {
+    cambiar({ rutaElegida: id, primerPaso: null, horas: null, modalidad: null, costo: null });
+    ir('paso', 0);
   };
 
   return (
     <Pantalla>
-      <div className="pila-chica">
-        <h1>{t('rutas.titulo')}</h1>
-        <p className="ayuda">{t('rutas.ayuda')}</p>
-      </div>
+      <h1>{t('rutas.titulo')}</h1>
 
       {resultado.aviso_demanda && (
         <p className="alerta" role="alert">
-          <Icono nombre="alerta" tam={22} />
-          <span>
-            {t('rutas.avisoDemanda', {
-              ocupacion: resultado.aviso_demanda.nombre.toLowerCase(),
-              region: resultado.aviso_demanda.region,
-            })}
-          </span>
+          <Icono nombre="alerta" tam={20} />
+          {t('rutas.avisoDemanda', { ocupacion: resultado.aviso_demanda.nombre })}
         </p>
       )}
 
-      {resultado.rutas.length === 0 && (
+      {!ruta ? (
         <div className="pila">
           <p className="aviso-cert">{t('rutas.ninguna')}</p>
-          <button type="button" className="boton boton--primario" onClick={() => elegir(null)}>
+          <button type="button" className="boton boton--primario" onClick={() => irAlPaso(null)}>
             {t('rutas.irAsesor')}
           </button>
         </div>
-      )}
-
-      <div className="pila">
-        {resultado.rutas.map((r) => {
-          const total = r.tiene.length + r.faltan.length;
-          const expandida = abierta === r.ocupacion_id;
-          return (
-            <div key={r.ocupacion_id} className="ruta" aria-expanded={expandida}>
-              <button
-                type="button"
-                className="pila"
-                style={{ background: 'none', border: 0, padding: 0, textAlign: 'left', cursor: 'pointer', width: '100%' }}
-                aria-expanded={expandida}
-                onClick={() => setAbierta(expandida ? null : r.ocupacion_id)}
-              >
-                <span className="ruta__cabeza">
-                  <span className="ruta__nombre">{r.nombre}</span>
-                  <span className="ruta__tienes">{t('rutas.tienes', { x: r.tiene.length, y: total })}</span>
-                </span>
-                <span className="barra" aria-hidden="true">
-                  <span className="barra__lleno" style={{ width: `${(r.tiene.length / total) * 100}%`, display: 'block' }} />
-                </span>
-                {r.demanda && <span className={`demanda demanda--${r.demanda}`}>{t(`rutas.demanda.${r.demanda}`)}</span>}
-                {r.alias.length > 0 && (
-                  <span className="alias">
-                    <b>{t('rutas.alias')}</b> {r.alias.join(' · ')}
-                  </span>
-                )}
-              </button>
-
-              {expandida && (
-                <div className="detalle">
-                  <div className="pila-chica">
-                    <span className="etiqueta">{t('rutas.yaTienes')}</span>
-                    <ul className="lista-check">
-                      {r.tiene.map((id) => (
-                        <li key={id} className="si">
-                          <span className="punto punto--si">✓</span>
-                          {comp(id)?.nombre_simple}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div className="pila-chica">
-                    <span className="etiqueta">{t('rutas.teFalta')}</span>
-                    {r.faltan.length === 0 ? (
-                      <p>{t('rutas.nadaFalta')}</p>
-                    ) : (
-                      <ul className="lista-check">
-                        {r.faltan.map((id) => (
-                          <li key={id} className="no">
-                            <span className="punto punto--no">○</span>
-                            {comp(id)?.nombre_simple}
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </div>
-                  {r.requisitos_minimos.length > 0 && (
-                    <p className="alias">
-                      <b>{t('rutas.requisitos')}</b> {r.requisitos_minimos.join(' · ')}
-                    </p>
-                  )}
-                  <button type="button" className="boton boton--primario" onClick={() => elegir(r.ocupacion_id)}>
-                    {t('rutas.elegir')}
-                  </button>
-                </div>
+      ) : (
+        <>
+          <section key={ruta.ocupacion_id} className="ruta-hero entrar">
+            <p className="ruta-hero__lema">
+              {t('rutas.celdasPara', { x: ruta.tiene.length, y: ruta.tiene.length + ruta.faltan.length })}
+            </p>
+            <h2 className="ruta-hero__nombre">{ruta.nombre}</h2>
+            <Colmena chica celdas={celdasDeRuta(ruta, (id) => comp(id)?.dimension ?? 'habilidad')} />
+            <div className="ruta-hero__datos">
+              {ruta.demanda && <span className={`demanda demanda--${ruta.demanda}`}>{t(`rutas.demanda.${ruta.demanda}`)}</span>}
+              {ruta.alias.length > 0 && (
+                <p className="alias">
+                  {t('rutas.alias')} <b>{ruta.alias.slice(0, 2).join(' · ')}</b>
+                </p>
+              )}
+              {ruta.requisitos_minimos.length > 0 && (
+                <p className="alias">
+                  {t('rutas.requisitos')} {ruta.requisitos_minimos.join(' · ')}
+                </p>
               )}
             </div>
-          );
-        })}
-      </div>
+            <button type="button" className="boton boton--miel boton--grande" onClick={() => irAlPaso(ruta.ocupacion_id)}>
+              {t('rutas.elegir')} <Icono nombre="adelante" />
+            </button>
+          </section>
+
+          {otras.length > 0 && (
+            <div className="pila">
+              <h3>{t('rutas.otras')}</h3>
+              {otras.map((r, i) => {
+                const total = r.tiene.length + r.faltan.length;
+                return (
+                  <button
+                    key={r.ocupacion_id}
+                    type="button"
+                    className="ruta-fila aparecer"
+                    style={{ '--i': i + 2 } as CSSProperties}
+                    onClick={() => setElegida(r.ocupacion_id)}
+                  >
+                    <span className="ruta-fila__icono">
+                      <Icono nombre={ICONO_OCUPACION[r.ocupacion_id] ?? 'hexagono'} />
+                    </span>
+                    <span className="ruta-fila__texto">
+                      <span className="ruta-fila__nombre">{r.nombre}</span>
+                      <span className="barra" aria-hidden="true">
+                        <span className="barra__lleno" style={{ width: `${(r.tiene.length / total) * 100}%` }} />
+                      </span>
+                    </span>
+                    <span className="ruta-fila__cuenta">{t('rutas.tienes', { x: r.tiene.length, y: total })}</span>
+                  </button>
+                );
+              })}
+            </div>
+          )}
+        </>
+      )}
       <NotaIlustrativa />
     </Pantalla>
   );

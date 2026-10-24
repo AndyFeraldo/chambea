@@ -1,18 +1,19 @@
-import type { ReactNode } from 'react';
+import { useEffect, type CSSProperties, type ReactNode } from 'react';
+import { createPortal } from 'react-dom';
 import { t } from '../i18n';
 import { pasoDe, useApp } from '../estado';
 
-export function IconoAbeja({ tam = 36 }: { tam?: number }) {
+/** Abeja de la marca, con alas que aletean (ver .abeja en estilos.css). */
+export function Abeja({ tam = 40, className = '', style }: { tam?: number; className?: string; style?: CSSProperties }) {
   return (
-    <svg width={tam} height={tam} viewBox="0 0 64 64" aria-hidden="true">
+    <svg className={`abeja ${className}`} style={style} width={tam} height={tam} viewBox="0 0 64 64" aria-hidden="true">
       <defs>
         <clipPath id="cuerpo-abeja">
           <ellipse cx="34" cy="37" rx="13" ry="10" />
         </clipPath>
       </defs>
-      <path d="M32 3 L57 17.5 L57 46.5 L32 61 L7 46.5 L7 17.5 Z" fill="#26A17B" />
-      <ellipse cx="29" cy="25" rx="7" ry="9" fill="#FFFFFF" opacity="0.92" transform="rotate(-20 29 25)" />
-      <ellipse cx="38" cy="24" rx="6" ry="8.5" fill="#FFFFFF" opacity="0.8" transform="rotate(18 38 24)" />
+      <ellipse className="abeja__ala" cx="29" cy="24" rx="7" ry="10" fill="#FFFFFF" opacity="0.92" transform="rotate(-20 29 25)" />
+      <ellipse className="abeja__ala abeja__ala--2" cx="38" cy="23" rx="6" ry="9" fill="#FFFFFF" opacity="0.8" transform="rotate(18 38 24)" />
       <ellipse cx="34" cy="37" rx="13" ry="10" fill="#F5B82E" />
       <g clipPath="url(#cuerpo-abeja)">
         <rect x="30" y="24" width="4" height="26" fill="#0E1A17" />
@@ -23,6 +24,38 @@ export function IconoAbeja({ tam = 36 }: { tam?: number }) {
       <circle cx="18" cy="35.5" r="1.4" fill="#FFFFFF" />
       <path d="M18 31 Q15 25 12 24" fill="none" stroke="#0E1A17" strokeWidth="1.6" strokeLinecap="round" />
       <path d="M21 31 Q21 25 19 22" fill="none" stroke="#0E1A17" strokeWidth="1.6" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+/** Abejas que cruzan volando, con una estela borrosa detrás (efecto de movimiento). */
+export function Enjambre({ cantidad = 3 }: { cantidad?: number }) {
+  return (
+    <div className="enjambre" aria-hidden="true">
+      {Array.from({ length: cantidad }, (_, i) => (
+        <div key={i} className={`vuelo vuelo--${(i % 4) + 1}`}>
+          <Abeja tam={i === 0 ? 38 : 28} className="abeja--estela" />
+          <Abeja tam={i === 0 ? 38 : 28} />
+        </div>
+      ))}
+    </div>
+  );
+}
+
+export function IconoAbeja({ tam = 36 }: { tam?: number }) {
+  return (
+    <svg width={tam} height={tam} viewBox="0 0 64 64" aria-hidden="true">
+      <path d="M32 3 L57 17.5 L57 46.5 L32 61 L7 46.5 L7 17.5 Z" fill="#26A17B" />
+      <g transform="translate(0 2)">
+        <ellipse cx="29" cy="25" rx="7" ry="9" fill="#FFFFFF" opacity="0.92" transform="rotate(-20 29 25)" />
+        <ellipse cx="38" cy="24" rx="6" ry="8.5" fill="#FFFFFF" opacity="0.8" transform="rotate(18 38 24)" />
+        <ellipse cx="34" cy="37" rx="13" ry="10" fill="#F5B82E" />
+        <rect x="30" y="27.4" width="4" height="19.2" fill="#0E1A17" />
+        <rect x="38" y="27.6" width="4" height="18.8" fill="#0E1A17" />
+        <path d="M47 37 L52 37 L47 40 Z" fill="#0E1A17" />
+        <circle cx="20" cy="37" r="6.5" fill="#0E1A17" />
+        <circle cx="18" cy="35.5" r="1.4" fill="#FFFFFF" />
+      </g>
     </svg>
   );
 }
@@ -41,6 +74,7 @@ export function Logo({ oscuro = false, tam = 28 }: { oscuro?: boolean; tam?: num
 
 const iconos = {
   atras: <path d="M15 5l-7 7 7 7" />,
+  adelante: <path d="M9 5l7 7-7 7" />,
   libro: <path d="M5 4h11a3 3 0 013 3v13H8a3 3 0 01-3-3V4zm0 13a3 3 0 013-3h11" />,
   maletin: (
     <>
@@ -66,6 +100,13 @@ const iconos = {
       <path d="M5 11a7 7 0 0014 0M12 18v3" />
     </>
   ),
+  detener: <rect x="7" y="7" width="10" height="10" rx="2" />,
+  teclado: (
+    <>
+      <rect x="2" y="6" width="20" height="12" rx="2" />
+      <path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M7 14h10" />
+    </>
+  ),
   alerta: <path d="M12 3l10 18H2L12 3zm0 7v5m0 3v.5" />,
   candado: (
     <>
@@ -74,11 +115,79 @@ const iconos = {
     </>
   ),
   mas: <path d="M12 5v14M5 12h14" />,
+  check: <path d="M5 12.5l4.5 4.5L19 7.5" />,
+  cerrar: <path d="M6 6l12 12M18 6L6 18" />,
+  lupa: (
+    <>
+      <circle cx="11" cy="11" r="6.5" />
+      <path d="M16 16l5 5" />
+    </>
+  ),
+  ola: <path d="M2 9c2.5-3 5-3 7.5 0s5 3 7.5 0 3.5-2 5-1M2 16c2.5-3 5-3 7.5 0s5 3 7.5 0 3.5-2 5-1" />,
+  escudo: (
+    <>
+      <path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z" />
+      <path d="M12 8v4m0 3v.5" />
+    </>
+  ),
+  caja: (
+    <>
+      <rect x="3" y="11" width="18" height="9" rx="2" />
+      <path d="M6 11V5h8v6M14 7h4l2 4M7 15h2m3 0h2" />
+    </>
+  ),
+  etiqueta: (
+    <>
+      <path d="M3 12V4h8l10 10-8 8L3 12z" />
+      <circle cx="7.5" cy="8.5" r="1.5" />
+    </>
+  ),
+  cajas: (
+    <>
+      <rect x="3" y="12" width="8" height="8" />
+      <rect x="13" y="12" width="8" height="8" />
+      <rect x="8" y="4" width="8" height="8" />
+    </>
+  ),
+  carpeta: <path d="M3 6a2 2 0 012-2h4l2 2h8a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V6z" />,
+  balde: (
+    <>
+      <path d="M5 8h14l-1.5 12h-11L5 8z" />
+      <path d="M8 8a4 4 0 018 0M3 8h18" />
+    </>
+  ),
+  hexagono: <path d="M12 2.5l8.2 4.75v9.5L12 21.5l-8.2-4.75v-9.5z" />,
+  reloj: (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 7v5l3 2" />
+    </>
+  ),
+  celular: (
+    <>
+      <rect x="7" y="2" width="10" height="20" rx="2" />
+      <path d="M11 18h2" />
+    </>
+  ),
+  edificio: <path d="M4 21V5l8-3 8 3v16M4 21h16M9 21v-5h6v5M8 8h.01M12 8h.01M16 8h.01M8 12h.01M12 12h.01M16 12h.01" />,
+  igual: <path d="M5 9h14M5 15h14" />,
+  moneda: (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M15 9a3 3 0 00-3-1.5c-1.7 0-3 .9-3 2.2 0 3 6 1.6 6 4.5 0 1.3-1.3 2.3-3 2.3a3.4 3.4 0 01-3-1.5M12 6v1.5m0 9V18" />
+    </>
+  ),
+  regalo: (
+    <>
+      <rect x="3" y="9" width="18" height="12" rx="1" />
+      <path d="M12 9v12M3 13h18M12 9c-2-4-6-4-6-1.5S10 9 12 9zm0 0c2-4 6-4 6-1.5S14 9 12 9z" />
+    </>
+  ),
 };
 
 export type NombreIcono = keyof typeof iconos;
 
-export function Icono({ nombre, tam = 24 }: { nombre: NombreIcono; tam?: number }) {
+export function Icono({ nombre, tam = 24, grosor = 2 }: { nombre: NombreIcono; tam?: number; grosor?: number }) {
   return (
     <svg
       className="icono"
@@ -87,7 +196,7 @@ export function Icono({ nombre, tam = 24 }: { nombre: NombreIcono; tam?: number 
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      strokeWidth="2"
+      strokeWidth={grosor}
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden="true"
@@ -96,6 +205,15 @@ export function Icono({ nombre, tam = 24 }: { nombre: NombreIcono; tam?: number 
     </svg>
   );
 }
+
+/** Ícono por ocupación (si se agrega una nueva en data/, usa el hexágono). */
+export const ICONO_OCUPACION: Record<string, NombreIcono> = {
+  cajero: 'caja',
+  vendedor_tienda: 'etiqueta',
+  reponedor: 'cajas',
+  auxiliar_administrativo: 'carpeta',
+  limpieza: 'balde',
+};
 
 /** Encabezado con "Atrás", logo y progreso de 4 hexágonos. */
 export function Encabezado() {
@@ -108,15 +226,14 @@ export function Encabezado() {
           <button type="button" className="encabezado__atras" onClick={atras}>
             <Icono nombre="atras" /> {t('comun.atras')}
           </button>
-          <Logo tam={20} />
+          <Logo tam={18} />
           <span className="encabezado__paso">{paso <= 4 ? t('comun.paso', { n: paso }) : t('comun.listo')}</span>
         </div>
         <div className="progreso" role="progressbar" aria-valuemin={1} aria-valuemax={4} aria-valuenow={Math.min(paso, 4)}>
           {[1, 2, 3, 4].map((n) => (
-            <span
-              key={n}
-              className={`progreso__celda ${n < paso ? 'progreso__celda--lleno' : ''} ${n === paso ? 'progreso__celda--actual' : ''}`}
-            />
+            <span key={n} className={`progreso__celda ${n < paso ? 'progreso__celda--lleno' : ''} ${n === paso ? 'progreso__celda--actual' : ''}`}>
+              <span className="progreso__relleno" />
+            </span>
           ))}
         </div>
       </div>
@@ -129,9 +246,13 @@ export function Franjas() {
   const caso = datos.casos.find((c) => c.id === estado.demo);
   if (!estado.asesor && !caso) return null;
   return (
-    <div className="pila-chica">
-      {estado.asesor && <p className="franja-asesor">{t('comun.modoAsesor')}</p>}
-      {caso && <p className="franja-demo">{t('comun.casoSimulado', { nombre: caso.nombre.replace(/\s*\(.*\)/, '') })}</p>}
+    <div className="franjas">
+      {estado.asesor && (
+        <span className="franja franja--asesor">
+          <Icono nombre="persona" tam={16} /> {t('comun.modoAsesor')}
+        </span>
+      )}
+      {caso && <span className="franja franja--demo">{t('comun.casoSimulado', { nombre: caso.nombre.replace(/\s*\(.*\)/, '') })}</span>}
     </div>
   );
 }
@@ -145,17 +266,43 @@ export function NotaIlustrativa() {
 export function AvisoCertificacion() {
   return (
     <p className="aviso-cert" role="note">
-      <Icono nombre="medalla" tam={22} />
+      <Icono nombre="medalla" tam={20} />
       <span>{t('comun.noCertifica')}</span>
     </p>
   );
 }
 
-export function Pantalla({ children }: { children: ReactNode }) {
+export function Pantalla({ children, clase = '' }: { children: ReactNode; clase?: string }) {
+  const { estado } = useApp();
   return (
-    <main className="contenedor pantalla">
+    <main key={`${estado.lugar.pantalla}-${estado.lugar.pregunta}`} className={`contenedor pantalla entrar ${clase}`}>
       <Franjas />
       {children}
     </main>
+  );
+}
+
+/** Hoja que sube desde abajo (detalle de una celda, lista para agregar). */
+export function Hoja({ abierta, alCerrar, titulo, children }: { abierta: boolean; alCerrar: () => void; titulo: string; children: ReactNode }) {
+  useEffect(() => {
+    if (!abierta) return;
+    const tecla = (e: KeyboardEvent) => e.key === 'Escape' && alCerrar();
+    window.addEventListener('keydown', tecla);
+    return () => window.removeEventListener('keydown', tecla);
+  }, [abierta, alCerrar]);
+  if (!abierta) return null;
+  // Portal al <body>: las animaciones de la pantalla no deben mover la hoja.
+  return createPortal(
+    <div className="hoja" role="dialog" aria-modal="true" aria-label={titulo}>
+      <button type="button" className="hoja__fondo" aria-label={t('comun.cerrar')} onClick={alCerrar} />
+      <div className="hoja__panel">
+        <div className="hoja__tirador" />
+        <button type="button" className="hoja__cerrar" aria-label={t('comun.cerrar')} onClick={alCerrar}>
+          <Icono nombre="cerrar" />
+        </button>
+        {children}
+      </div>
+    </div>,
+    document.body,
   );
 }

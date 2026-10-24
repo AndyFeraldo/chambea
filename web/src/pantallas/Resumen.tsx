@@ -1,9 +1,12 @@
 import { useState } from 'react';
+import type { Dimension } from '@shared/tipos';
 import { t } from '../i18n';
-import { ORDEN_DIMENSIONES, useApp } from '../estado';
+import { useApp } from '../estado';
 import { generarImagen } from '../imagenPanal';
-import { AvisoCertificacion, Icono, NotaIlustrativa, Pantalla } from '../componentes/comunes';
-import { COLOR_DIM, Colmena } from './Panal';
+import { AvisoCertificacion, Enjambre, Logo, Pantalla } from '../componentes/comunes';
+import { Colmena, Leyenda, ordenar } from './Panal';
+
+const PRIORIDAD: Dimension[] = ['competencia', 'cualidad', 'habilidad', 'conocimiento'];
 
 export function Resumen() {
   const { datos, estado, comp, reiniciar } = useApp();
@@ -14,16 +17,20 @@ export function Resumen() {
   const ruta = estado.rutas?.rutas.find((r) => r.ocupacion_id === estado.rutaElegida) ?? null;
   const region = datos.regiones.find((r) => r.id === estado.regionId)?.nombre ?? '';
   const paso = estado.primerPaso?.principal;
-  const celdas = [...estado.celdas].sort(
-    (a, b) => ORDEN_DIMENSIONES.indexOf(a.dimension) - ORDEN_DIMENSIONES.indexOf(b.dimension),
-  );
+
+  // Las 2 frases que mejor muestran la confianza que se ganó (logros y cualidades primero).
+  const vistas = new Set<string>();
+  const frases = [...estado.celdas]
+    .filter((c) => c.evidencia)
+    .sort((a, b) => PRIORIDAD.indexOf(a.dimension) - PRIORIDAD.indexOf(b.dimension))
+    .filter((c) => !vistas.has(c.evidencia!) && vistas.add(c.evidencia!))
+    .slice(0, 2);
 
   const descargar = async () => {
     setGenerando(true);
     const url = await generarImagen({ celdas: estado.celdas, comp, ruta, paso: estado.primerPaso, region });
     setImagen(url);
     setGenerando(false);
-    // Descarga directa (en algunos visores no se permite: por eso también mostramos la imagen).
     const a = document.createElement('a');
     a.href = url;
     a.download = 'mi-panal-chambea.png';
@@ -32,61 +39,42 @@ export function Resumen() {
 
   return (
     <Pantalla>
-      <div className="pila-chica">
-        <h1>{t('resumen.titulo')}</h1>
-        <p className="ayuda">{t('resumen.ayuda')}</p>
-      </div>
-
-      <article className="tarjeta-panal">
+      <article className="tarjeta-panal revelar">
         <div className="tarjeta-panal__cabeza">
-          <span className="logo logo--oscuro">
-            <span className="logo__palabra" style={{ fontSize: 22 }}>
-              <span className="logo__cham">cham</span>
-              <span className="logo__bea">bea</span>
-            </span>
-          </span>
-          <span style={{ fontSize: '0.9rem', color: '#b9c8c3' }}>{region}</span>
+          <Enjambre cantidad={2} />
+          <Logo oscuro tam={20} />
+          <h1>{t('resumen.titulo')}</h1>
+          <span className="tarjeta-panal__region">{region}</span>
         </div>
         <div className="tarjeta-panal__cuerpo">
-          <Colmena celdas={estado.celdas} />
-          <section className="tarjeta-panal__seccion">
-            <span className="etiqueta">{t('resumen.competencias')}</span>
-            {celdas.map((c) => (
-              <div key={c.id} className="resumen-comp">
-                <span className="celda__marca" style={{ background: COLOR_DIM[c.dimension] }} />
-                <div>
-                  {comp(c.id)?.nombre_simple}
-                  {c.confirmada && <span style={{ color: 'var(--verde-oscuro)', fontWeight: 700 }}> ✓</span>}
-                  {c.evidencia && <small>{t('panal.loDemuestra')} «{c.evidencia}»</small>}
-                </div>
-              </div>
-            ))}
-          </section>
-          <section className="tarjeta-panal__seccion">
-            <span className="etiqueta">{t('resumen.miRuta')}</span>
-            <h3>{ruta?.nombre ?? '—'}</h3>
+          <Colmena chica celdas={ordenar(estado.celdas)} />
+          <Leyenda />
+          {frases.map((c) => (
+            <p key={c.id} className="evidencia">
+              «{c.evidencia}»
+            </p>
+          ))}
+          <div className="resumen-filas">
             {ruta && (
-              <p className="ayuda">
-                {t('rutas.tienes', { x: ruta.tiene.length, y: ruta.tiene.length + ruta.faltan.length })}
-              </p>
+              <div className="resumen-fila">
+                <span className="etiqueta">{t('resumen.miRuta')}</span>
+                <b>{ruta.nombre}</b>
+                <span className="ayuda">{t('rutas.tienes', { x: ruta.tiene.length, y: ruta.tiene.length + ruta.faltan.length })}</span>
+              </div>
             )}
-          </section>
-          {paso && (
-            <section className="tarjeta-panal__seccion">
-              <span className="etiqueta">{t('resumen.miPaso')}</span>
-              <h3>{paso.titulo}</h3>
-              <p className="ayuda">{paso.detalle}</p>
-            </section>
-          )}
-          <p className="nota" style={{ textAlign: 'left' }}>
-            {t('comun.preliminar')}
-          </p>
+            {paso && (
+              <div className="resumen-fila">
+                <span className="etiqueta">{t('resumen.miPaso')}</span>
+                <b>{paso.titulo}</b>
+                <span className="ayuda">{paso.detalle}</span>
+              </div>
+            )}
+          </div>
+          <p className="nota">{t('comun.preliminar')}</p>
         </div>
       </article>
 
-      <AvisoCertificacion />
-
-      <button type="button" className="boton boton--primario" onClick={descargar} disabled={generando}>
+      <button type="button" className="boton boton--miel boton--grande" onClick={descargar} disabled={generando}>
         {generando ? t('resumen.generando') : t('resumen.descargar')}
       </button>
       {imagen && (
@@ -95,22 +83,23 @@ export function Resumen() {
           <img className="imagen-panal" src={imagen} alt={t('resumen.titulo')} />
         </div>
       )}
-
-      <NotaIlustrativa />
+      <AvisoCertificacion />
 
       {confirmando ? (
         <div className="confirmar" role="alertdialog" aria-label={t('resumen.reiniciarSeguro')}>
           <p>{t('resumen.reiniciarSeguro')}</p>
-          <button type="button" className="boton boton--primario" onClick={reiniciar}>
-            {t('resumen.reiniciarSi')}
-          </button>
-          <button type="button" className="boton boton--secundario" onClick={() => setConfirmando(false)}>
-            {t('resumen.reiniciarNo')}
-          </button>
+          <div className="fila-botones">
+            <button type="button" className="boton boton--secundario" onClick={() => setConfirmando(false)}>
+              {t('resumen.reiniciarNo')}
+            </button>
+            <button type="button" className="boton boton--primario" onClick={reiniciar}>
+              {t('resumen.reiniciarSi')}
+            </button>
+          </div>
         </div>
       ) : (
-        <button type="button" className="boton boton--secundario" onClick={() => setConfirmando(true)}>
-          <Icono nombre="atras" /> {t('resumen.reiniciar')}
+        <button type="button" className="boton boton--fantasma" onClick={() => setConfirmando(true)}>
+          {t('resumen.reiniciar')}
         </button>
       )}
     </Pantalla>

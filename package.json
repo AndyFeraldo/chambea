@@ -8,6 +8,7 @@
     "dev": "concurrently -n server,web -c green,yellow \"npm run dev -w server\" \"npm run dev -w web\"",
     "build": "npm run build -w web",
     "build:demo": "npm run build:demo -w web",
+    "build:pages": "npm run build:pages -w web",
     "start": "npm run start -w server",
     "test": "tsx --test tests/*.test.ts",
     "typecheck": "tsc -p server --noEmit && tsc -p web --noEmit"

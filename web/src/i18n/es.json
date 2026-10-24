@@ -1,45 +1,38 @@
 {
   "marca": {
     "eslogan": "Tu chamba cuenta.",
-    "queHace": "Te ayudamos a reconocer lo que ya sabes hacer y a convertirlo en tu siguiente paso laboral, con lo que el Estado ya ofrece."
+    "queHace": "Cuéntanos lo que haces. Te mostramos a dónde puedes llegar."
   },
   "comun": {
     "atras": "Atrás",
     "siguiente": "Siguiente",
-    "saltar": "Saltar esta pregunta",
+    "saltar": "Saltar",
+    "cerrar": "Cerrar",
     "paso": "Paso {n} de 4",
-    "listo": "Listo",
+    "listo": "¡Listo!",
     "notaIlustrativa": "Datos de ejemplo para el prototipo.",
     "noCertifica": "Esto no es una certificación. Para certificarte, el Ministerio de Trabajo tiene un proceso oficial.",
-    "preliminar": "Identificación preliminar a partir de lo que contaste.",
-    "modoAsesor": "Modo asesor: úsalo junto a la persona, en un Centro de Empleo.",
-    "casoSimulado": "Caso simulado: {nombre}. No es una persona real.",
-    "enlaceTodo": "Enlace por confirmar (TODO)"
+    "preliminar": "Identificación preliminar.",
+    "modoAsesor": "Con un asesor",
+    "casoSimulado": "Ejemplo: {nombre} (simulado)",
+    "enlaceTodo": "Enlace por confirmar"
   },
   "ia": {
     "mock": "IA: modo simulado",
     "qvac": "IA: QVAC conectado",
-    "qvacCaido": "IA: QVAC no disponible, modo simulado",
-    "local": "Funciona en tu navegador"
+    "qvacCaido": "IA: QVAC no disponible",
+    "local": "Demo en tu navegador"
   },
   "inicio": {
-    "region": "¿En qué región buscas trabajo?",
+    "region": "Tu región",
     "empezar": "Empezar",
     "conAsesor": "Lo hago con un asesor",
-    "comoFunciona": "Así funciona",
-    "pasos": [
-      { "titulo": "Cuéntalo", "texto": "Con tus palabras, cómo aprendiste y qué haces." },
-      { "titulo": "Arma tu panal", "texto": "Lo que sabes y logras, ordenado en celdas." },
-      { "titulo": "Mira tus rutas", "texto": "Puestos cercanos que se buscan en tu región." },
-      { "titulo": "Da el paso", "texto": "Un curso, una vacante o un asesor. Uno solo, el que te sirve." }
-    ],
-    "privacidad": "No pedimos tu nombre, ni correo, ni CV. Lo que cuentas no se guarda: se borra al salir.",
-    "demoTitulo": "Ver un ejemplo",
-    "demoTexto": "Casos simulados para la demostración."
+    "pasos": ["Cuéntalo", "Tu panal", "Tus rutas", "Tu paso"],
+    "privacidad": "Sin nombre, sin correo, sin CV. No guardamos nada.",
+    "demo": "Ver un ejemplo:"
   },
   "situacion": {
     "titulo": "¿Cómo estás hoy con tu trabajo?",
-    "ayuda": "Así te mostramos lo que más te sirve.",
     "opciones": {
       "sin_empleo": "Busco trabajo",
       "informal": "Trabajo, pero es inestable",
@@ -48,36 +41,29 @@
   },
   "ocupacion": {
     "titulo": "¿En qué trabajas o trabajabas?",
-    "ayuda": "Elige lo que más se parezca.",
-    "otro": "Otro / prefiero no decir"
+    "otro": "Otro"
   },
   "preguntas": {
-    "contador": "Pregunta {n} de {total}",
-    "voz": "Voz: próximamente con QVAC",
-    "etiqueta": "Tu respuesta",
     "lista": [
-      {
-        "texto": "Cuéntame cómo aprendiste lo que haces hoy.",
-        "ejemplo": "Por ejemplo: Aprendí viendo a mi tía en su bodega, desde los 15 años."
-      },
-      {
-        "texto": "¿Cómo es un día normal en tu trabajo?",
-        "ejemplo": "Por ejemplo: Abro temprano, ordeno lo que llegó, atiendo y al final cuento la plata."
-      },
-      {
-        "texto": "¿Qué cosas te piden a ti porque saben que las haces bien?",
-        "ejemplo": "Por ejemplo: Me piden que atienda a los clientes difíciles."
-      },
-      {
-        "texto": "¿Cómo le demostrarías a un nuevo empleador que sabes hacerlo?",
-        "ejemplo": "Por ejemplo: Que llamen a mi jefa anterior. Nunca falté."
-      }
+      { "texto": "¿Cómo aprendiste lo que haces hoy?", "ejemplo": "Aprendí viendo a mi tía en su bodega…" },
+      { "texto": "¿Cómo es un día normal en tu trabajo?", "ejemplo": "Abro temprano, ordeno, atiendo…" },
+      { "texto": "¿Qué te piden a ti porque lo haces bien?", "ejemplo": "Me piden que atienda a los clientes difíciles…" },
+      { "texto": "¿Cómo demostrarías que sabes hacerlo?", "ejemplo": "Que llamen a mi jefa anterior…" }
     ],
+    "tocaYHabla": "Toca y habla",
+    "escuchando": "Te escucho… toca para terminar",
+    "escribir": "Prefiero escribir",
+    "hablar": "Prefiero hablar",
+    "tuRespuesta": "Tu respuesta",
+    "errorPermiso": "No pudimos usar el micrófono. Revisa el permiso o escribe tu respuesta.",
+    "errorRed": "La voz necesita internet. Puedes escribir tu respuesta.",
+    "errorNada": "No te escuchamos. Toca el micro e inténtalo otra vez.",
+    "errorOtro": "La voz no está disponible aquí. Escribe tu respuesta.",
     "armando": "Armando tu panal…"
   },
   "panal": {
     "titulo": "Tu panal",
-    "ayuda": "Esto encontramos en lo que contaste. Confirma lo que sí haces y quita lo que no.",
+    "ayuda": "Toca una celda para ver por qué está ahí.",
     "dimensiones": {
       "conocimiento": "Sabe",
       "habilidad": "Sabe hacer",
@@ -86,74 +72,64 @@
     },
     "loDemuestra": "Lo demuestra:",
     "confirmar": "Sí, eso hago",
-    "confirmado": "Confirmado",
-    "confirmarTodo": "Sí, todo eso hago",
     "quitar": "Quitar",
-    "agregar": "Agregar algo que falta",
+    "agregar": "Agregar",
     "agregarTitulo": "¿Qué más sabes hacer?",
-    "agregarCerrar": "Cerrar lista",
-    "vacio": "Todavía no encontramos nada. Agrega lo que haces desde la lista.",
-    "celdas": "Tienes {n} celdas en tu panal.",
-    "verRutas": "Ver mis rutas"
+    "vacio": "Aún no hay celdas. Toca + para agregar lo que haces.",
+    "celdas": "{n} celdas",
+    "seguir": "Sí, ese es mi panal"
   },
   "rutas": {
     "titulo": "Mira tus rutas",
-    "ayuda": "Con lo que ya sabes, no empiezas de cero. Toca una ruta para ver el detalle.",
-    "avisoDemanda": "La demanda de {ocupacion} baja en {region}.",
-    "tienes": "Tienes {x} de {y}",
+    "avisoDemanda": "{ocupacion}: la demanda baja en tu región",
+    "celdasPara": "Tienes {x} de {y} celdas para ser",
+    "tienes": "{x} de {y}",
+    "falta": "falta",
     "demanda": {
       "alta": "Se busca en tu región",
-      "media": "Demanda media en tu región",
-      "baja": "Poca demanda en tu región"
+      "media": "Demanda media",
+      "baja": "Poca demanda"
     },
     "alias": "También se publica como:",
-    "yaTienes": "Ya tienes",
-    "teFalta": "Te falta",
-    "nadaFalta": "Nada: ya tienes todo lo que suelen pedir.",
     "requisitos": "Suelen pedir:",
-    "elegir": "Elegir esta ruta",
-    "ninguna": "Con lo que contaste aún no vemos una ruta clara. Un asesor puede ayudarte a encontrarla.",
+    "elegir": "Quiero esta ruta",
+    "otras": "Otras rutas",
+    "ninguna": "Aún no vemos una ruta clara. Un asesor te ayuda a encontrarla.",
     "irAsesor": "Hablar con un asesor"
   },
   "paso": {
-    "titulo": "Da el paso",
-    "ayuda": "Tres preguntas cortas para darte una sola recomendación.",
-    "horas": "¿Cuántas horas libres tienes por semana?",
-    "horasOp": { "1-3": "1 a 3", "4-6": "4 a 6", "7+": "7 o más" },
-    "modalidad": "¿Cómo prefieres aprender?",
+    "preguntas": [
+      { "id": "horas", "texto": "¿Cuántas horas libres tienes a la semana?" },
+      { "id": "modalidad", "texto": "¿Cómo prefieres aprender?" },
+      { "id": "costo", "texto": "¿Cuánto puedes gastar?" }
+    ],
+    "horasOp": { "1-3": "1 a 3 horas", "4-6": "4 a 6 horas", "7+": "7 o más" },
     "modalidadOp": { "celular": "Desde el celular", "presencial": "Presencial", "igual": "Me da igual" },
-    "costo": "¿Cuánto puedes gastar?",
     "costoOp": { "gratis": "Solo gratis", "poco": "Puedo pagar poco" },
-    "ver": "Ver mi primer paso",
     "tuPrimerPaso": "Tu primer paso",
-    "ruta": "Para llegar a: {ocupacion}",
-    "otrasOpciones": "Otras opciones",
-    "curso": "{semanas} semanas · {horas} h por semana · {modalidad} · {costo}",
-    "cursoModalidad": { "celular": "desde el celular", "presencial": "presencial" },
+    "ruta": "Para llegar a {ocupacion}",
+    "curso": "{semanas} semanas · {horas} h/sem · {modalidad} · {costo}",
+    "cursoModalidad": { "celular": "celular", "presencial": "presencial" },
     "cursoCosto": { "gratuito": "gratis", "pagado": "con costo" },
-    "cursoAjustado": "No encontramos un curso que encaje con todo lo que elegiste. Este es el más cercano.",
-    "cursoEjemplo": "Curso de ejemplo. El nombre real saldrá del catálogo de Capacítate Perú.",
+    "cursoAjustado": "El más cercano a lo que elegiste.",
     "ir": {
       "capacitate": "Ir a Capacítate Perú",
       "empleos": "Ir a Empleos Perú"
     },
-    "asesorTexto": "Pregunta por el Centro de Empleo más cercano. Lleva tu panal.",
-    "certificacion": "Luego: certificación de competencias del MTPE",
-    "certificacionTexto": "Cuando estés listo, el Ministerio de Trabajo puede certificar lo que sabes hacer.",
-    "verPanal": "Ver mi panal",
-    "cambiarRespuestas": "Cambiar respuestas"
+    "asesorTexto": "Ve a un Centro de Empleo y lleva tu panal.",
+    "otrasOpciones": "También puedes",
+    "certificacion": "Después: certifica lo que sabes con el MTPE",
+    "verPanal": "Ver mi panal"
   },
   "resumen": {
     "titulo": "Mi panal",
-    "ayuda": "Tu resumen para mostrar lo que sabes. No es un CV ni una certificación.",
-    "competencias": "Lo que sé y logro",
     "miRuta": "Mi ruta",
     "miPaso": "Mi primer paso",
-    "descargar": "Descargar mi panal (imagen)",
+    "descargar": "Descargar mi panal",
     "generando": "Preparando imagen…",
     "guardarImagen": "Si no se descargó, mantén presionada la imagen para guardarla.",
     "reiniciar": "Empezar de nuevo",
-    "reiniciarSeguro": "¿Seguro? Se borrará todo lo que contaste.",
+    "reiniciarSeguro": "¿Borramos todo lo que contaste?",
     "reiniciarSi": "Sí, borrar todo",
     "reiniciarNo": "No, volver"
   }

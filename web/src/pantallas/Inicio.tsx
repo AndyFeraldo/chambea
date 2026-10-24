@@ -1,6 +1,9 @@
+import type { CSSProperties } from 'react';
 import { t, textos } from '../i18n';
 import { estadoInicial, NUM_PREGUNTAS, useApp } from '../estado';
-import { Icono, Logo, NotaIlustrativa } from '../componentes/comunes';
+import { Enjambre, Icono, Logo, type NombreIcono } from '../componentes/comunes';
+
+const ICONO_PASO: NombreIcono[] = ['micro', 'hexagono', 'adelante', 'check'];
 
 export function Inicio() {
   const { datos, salud, estado, cambiar, ir } = useApp();
@@ -27,84 +30,70 @@ export function Inicio() {
 
   const ia = salud.ia;
   const textoIA =
-    salud.modo === 'navegador'
-      ? t('ia.local')
-      : ia.proveedor === 'qvac'
-        ? ia.conectado
-          ? t('ia.qvac')
-          : t('ia.qvacCaido')
-        : t('ia.mock');
+    salud.modo === 'navegador' ? t('ia.local') : ia.proveedor === 'qvac' ? (ia.conectado ? t('ia.qvac') : t('ia.qvacCaido')) : t('ia.mock');
 
   return (
-    <>
+    <div className="inicio entrar">
       <section className="portada">
+        <Enjambre cantidad={3} />
         <div className="contenedor portada__contenido">
-          <Logo oscuro tam={40} />
+          <Logo oscuro tam={42} />
           <h1 className="portada__eslogan">{t('marca.eslogan')}</h1>
           <p className="portada__texto">{t('marca.queHace')}</p>
 
-          <div className="pila-chica">
-            <label htmlFor="region">{t('inicio.region')}</label>
-            <select
-              id="region"
-              className="selector"
-              value={estado.regionId}
-              onChange={(e) => cambiar({ regionId: e.target.value })}
-            >
-              {datos.regiones.map((r) => (
-                <option key={r.id} value={r.id}>
-                  {r.nombre}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <button type="button" className="boton boton--miel" onClick={() => empezar(false)}>
-            {t('inicio.empezar')}
-          </button>
-          <button type="button" className="boton boton--en-oscuro" onClick={() => empezar(true)}>
-            <Icono nombre="persona" /> {t('inicio.conAsesor')}
-          </button>
-          <span className={`ia-estado ${ia.proveedor === 'qvac' && !ia.conectado ? 'ia-estado--aviso' : ''}`} title={ia.detalle}>
-            {textoIA}
-          </span>
+          <ol className="pasos-hex" aria-label="Así funciona">
+            {textos.inicio.pasos.map((p, i) => (
+              <li key={p} style={{ '--i': i } as CSSProperties}>
+                <span className="pasos-hex__hex">
+                  <Icono nombre={ICONO_PASO[i]} tam={22} />
+                </span>
+                <span>{p}</span>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
-      <main className="contenedor pantalla">
-        <h2>{t('inicio.comoFunciona')}</h2>
-        <div className="pasos-mini">
-          {textos.inicio.pasos.map((p, i) => (
-            <div className="paso-mini" key={p.titulo}>
-              <span className="num-hex">{i + 1}</span>
-              <h3>{p.titulo}</h3>
-              <p>{p.texto}</p>
-            </div>
-          ))}
-        </div>
+      <main className="contenedor pantalla inicio__acciones">
+        <label className="selector-region">
+          <span>{t('inicio.region')}</span>
+          <select id="region" className="selector" value={estado.regionId} onChange={(e) => cambiar({ regionId: e.target.value })}>
+            {datos.regiones.map((r) => (
+              <option key={r.id} value={r.id}>
+                {r.nombre}
+              </option>
+            ))}
+          </select>
+        </label>
 
-        <p className="aviso-cert">
-          <Icono nombre="candado" tam={22} />
-          <span>{t('inicio.privacidad')}</span>
-        </p>
+        <button type="button" className="boton boton--miel boton--grande" onClick={() => empezar(false)}>
+          {t('inicio.empezar')} <Icono nombre="adelante" />
+        </button>
+        <button type="button" className="boton boton--fantasma" onClick={() => empezar(true)}>
+          <Icono nombre="persona" tam={20} /> {t('inicio.conAsesor')}
+        </button>
 
         {datos.casos.length > 0 && (
-          <div className="pila">
-            <div className="pila-chica">
-              <h3>{t('inicio.demoTitulo')}</h3>
-              <p className="ayuda">{t('inicio.demoTexto')}</p>
-            </div>
-            <div className="demo-casos">
-              {datos.casos.map((c) => (
-                <button key={c.id} type="button" className="boton boton--secundario" onClick={() => cargarCaso(c.id)}>
-                  {c.nombre.replace(/\s*\(.*\)/, '')}
-                </button>
-              ))}
-            </div>
+          <div className="demo-casos">
+            <span>{t('inicio.demo')}</span>
+            {datos.casos.map((c) => (
+              <button key={c.id} type="button" className="chip chip--chico" onClick={() => cargarCaso(c.id)}>
+                {c.nombre.replace(/\s*\(.*\)/, '')}
+              </button>
+            ))}
           </div>
         )}
-        <NotaIlustrativa />
+
+        <p className="pie-privacidad">
+          <Icono nombre="candado" tam={16} /> {t('inicio.privacidad')}
+        </p>
+        <p className="nota">
+          <span className="ia-estado" title={ia.detalle}>
+            {textoIA}
+          </span>
+          {datos.ilustrativo && ` · ${t('comun.notaIlustrativa')}`}
+        </p>
       </main>
-    </>
+    </div>
   );
 }

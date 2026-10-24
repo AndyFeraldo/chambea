@@ -12,12 +12,14 @@ Chambea ayuda a personas que aprendieron su oficio en la práctica a reconocer l
 
 | Pantalla | Qué hace |
 |---|---|
-| Inicio | Logo, eslogan, región, "Empezar", "Lo hago con un asesor" y 2 casos de ejemplo (Rosa y Marleny) |
-| 1 · Cuéntalo | Situación laboral (3 perfiles), ocupación actual y 4 preguntas abiertas (se pueden saltar) |
-| 2 · Arma tu panal | Celdas de 4 colores (Sabe / Sabe hacer / Cómo es / Logra) con "Lo demuestra: «…»". Se confirman, se quitan o se agregan |
-| 3 · Mira tus rutas | Máximo 3 ocupaciones operativas, "Tienes X de Y", demanda en la región, alias de avisos y aviso de demanda baja |
-| 4 · Da el paso | 3 preguntas (horas, modalidad, costo) y **una** recomendación con su porqué, más 2 alternativas |
-| Mi panal | Resumen e imagen descargable. "Empezar de nuevo" borra todo |
+| Inicio | Abejas volando, eslogan, los 4 pasos en hexágonos, región, "Empezar", "Lo hago con un asesor" y 2 ejemplos (Rosa y Marleny) |
+| 1 · Cuéntalo | Situación (3 tarjetas con ícono), ocupación (mosaico) y 4 preguntas. Cada pregunta se responde **hablando** (botón de micrófono) o escribiendo |
+| 2 · Arma tu panal | Colmena animada de 4 colores (Sabe / Sabe hacer / Cómo es / Logra). Al tocar una celda: "Lo demuestra: «…»", confirmar o quitar. Hexágono "+" para agregar |
+| 3 · Mira tus rutas | La mejor ruta como mini panal: celdas que ya tienes y celdas oscuras que **faltan**. Demanda, alias de avisos y otras rutas debajo |
+| 4 · Da el paso | 3 preguntas, una por pantalla, y **una** recomendación con su porqué, más 2 alternativas |
+| Mi panal | Tarjeta resumen e imagen descargable. "Empezar de nuevo" borra todo |
+
+**Diseño:** una idea por pantalla, poco texto, íconos grandes y movimiento de marca: abejas con estela, celdas que brotan y transiciones suaves. Si el teléfono tiene activado "reducir movimiento", las animaciones se apagan.
 
 **Privacidad:** no hay cuentas, ni base de datos, ni analítica. Lo que la persona cuenta vive solo en la memoria del navegador. El servidor no guarda ni registra esos textos.
 
@@ -65,6 +67,24 @@ El celular y la computadora tienen que estar en el **mismo wifi**. Al correr `np
 | `npm test` | Prueba el motor con los casos de Rosa y Marleny. Debe decir `pass 7` |
 | `npm run build` y luego `npm start` | Versión final: un solo servidor en http://localhost:3001 |
 | `npm run build:demo` | Genera `web/dist-demo/index.html`: la app completa en **un solo archivo** que funciona sin servidor (motor en el navegador). Sirve para compartir un enlace de prueba |
+
+---
+
+## Voz (micrófono) en la demo
+
+En cada pregunta hay un botón grande de micrófono: **"Toca y habla"**. Lo que la persona dice aparece escrito en vivo y se puede corregir con "Prefiero escribir".
+
+- Funciona en **Chrome (Android)** y **Safari (iPhone)**. Necesita internet y que la página se abra por **HTTPS** (GitHub Pages) o en `localhost`. Por la red local (`http://192.168.x.x`) el navegador bloquea el micrófono.
+- La primera vez, el teléfono pide permiso para usar el micrófono.
+- ⚠️ **Excepción solo para la demo:** el dictado usa el reconocimiento de voz del navegador, que envía el audio a Google o Apple. Esto va contra la regla de privacidad de `CLAUDE.md` y se acordó solo para la demostración. En producción se reemplaza por el reconocimiento de voz de **QVAC** en el backend propio. El código está aislado en `web/src/voz.ts`. Para apagar la voz, usa `VITE_VOZ=apagada`.
+
+## Demo en internet (GitHub Pages)
+
+La demo se publica como sitio estático: el motor corre en el navegador y no necesita servidor.
+
+1. Para actualizarla: `bash scripts/publicar-pages.sh`. Construye la web y la sube a la rama `gh-pages`.
+2. La primera vez, en GitHub: **Settings → Pages → Branch: `gh-pages` / `(root)` → Save**. En una cuenta gratuita, el repositorio debe ser público para usar Pages.
+3. La dirección queda así: `https://<usuario>.github.io/chambea/`
 
 ---
 
@@ -128,5 +148,7 @@ chambea/
 - Primer paso: con cobertura ≥ 0,85 recomienda postular en Empleos Perú (si la persona está en planilla en riesgo, primero el curso). Entre 0,5 y 0,85 recomienda un curso que cubra lo que falta y respete horas, modalidad y costo. Por debajo de 0,5 recomienda un asesor.
 
 ## Registro de cambios
+
+**24/10/2026 (rediseño):** menos información por pantalla, flujo más ilustrativo, micrófono para responder, abejas animadas con estela, colmena que brota, rutas como mini panal (tienes / falta), preguntas del primer paso una por una y hoja inferior para el detalle de cada celda. Se agregó la publicación en GitHub Pages.
 
 **24/10/2026:** primera versión completa con el recorrido de 4 pasos y Mi panal, el motor con pruebas (Rosa → Vendedor/a de tienda 6 de 7 y curso de ventas; Marleny → Reponedor/a 5 de 7 y curso de almacén), los modos mock y QVAC con respaldo automático, el modo asesor, el modo demo y la versión de un solo archivo para compartir.
