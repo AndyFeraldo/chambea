@@ -1,0 +1,7 @@
+{
+  "serve": {
+    "models": {
+      "chambea-llm": { "model": "QWEN3_600M_INST_Q4" }
+    }
+  }
+}

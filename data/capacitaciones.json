@@ -1,0 +1,101 @@
+{
+  "ilustrativo": true,
+  "nota": "Cursos de ejemplo. No son cursos reales: reemplazar con el catálogo de Capacítate Perú.",
+  "capacitaciones": [
+    {
+      "id": "c_ventas",
+      "titulo": "Curso de ejemplo: Técnicas de venta y atención",
+      "proveedor": "Capacítate Perú (por confirmar)",
+      "url": null,
+      "cubre": [
+        "hab_tecnicas_venta",
+        "comp_cumple_metas_venta",
+        "comp_resuelve_reclamos"
+      ],
+      "duracion_semanas": 4,
+      "horas_semana": 3,
+      "modalidad": "celular",
+      "costo": "gratuito",
+      "ilustrativo": true
+    },
+    {
+      "id": "c_almacen",
+      "titulo": "Curso de ejemplo: Recepción y abastecimiento de mercadería",
+      "proveedor": "Capacítate Perú (por confirmar)",
+      "url": null,
+      "cubre": [
+        "hab_carga_descarga",
+        "comp_gondola_abastecida",
+        "con_seguridad_trabajo"
+      ],
+      "duracion_semanas": 3,
+      "horas_semana": 3,
+      "modalidad": "celular",
+      "costo": "gratuito",
+      "ilustrativo": true
+    },
+    {
+      "id": "c_ofimatica",
+      "titulo": "Curso de ejemplo: Computadora y Excel básico",
+      "proveedor": "Capacítate Perú (por confirmar)",
+      "url": null,
+      "cubre": [
+        "hab_ofimatica_basica",
+        "hab_registro_datos"
+      ],
+      "duracion_semanas": 6,
+      "horas_semana": 4,
+      "modalidad": "celular",
+      "costo": "gratuito",
+      "ilustrativo": true
+    },
+    {
+      "id": "c_documentos",
+      "titulo": "Curso de ejemplo: Documentos comerciales básicos",
+      "proveedor": "Capacítate Perú (por confirmar)",
+      "url": null,
+      "cubre": [
+        "con_documentos_comerciales",
+        "comp_gestiona_documentos",
+        "hab_archivo"
+      ],
+      "duracion_semanas": 4,
+      "horas_semana": 3,
+      "modalidad": "celular",
+      "costo": "gratuito",
+      "ilustrativo": true
+    },
+    {
+      "id": "c_limpieza",
+      "titulo": "Curso de ejemplo: Limpieza y desinfección seguras",
+      "proveedor": "Capacítate Perú (por confirmar)",
+      "url": null,
+      "cubre": [
+        "con_productos_limpieza",
+        "con_seguridad_trabajo",
+        "hab_limpieza_tecnica"
+      ],
+      "duracion_semanas": 2,
+      "horas_semana": 2,
+      "modalidad": "presencial",
+      "costo": "gratuito",
+      "ilustrativo": true
+    },
+    {
+      "id": "c_caja",
+      "titulo": "Curso de ejemplo: Caja y medios de pago",
+      "proveedor": "Capacítate Perú (por confirmar)",
+      "url": null,
+      "cubre": [
+        "hab_cobro_caja",
+        "hab_cuadre_caja",
+        "con_medios_pago"
+      ],
+      "duracion_semanas": 2,
+      "horas_semana": 2,
+      "modalidad": "celular",
+      "costo": "gratuito",
+      "ilustrativo": true
+    }
+  ]
+}

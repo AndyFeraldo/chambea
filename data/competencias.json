@@ -1,0 +1,393 @@
+{
+  "ilustrativo": true,
+  "nota": "Catálogo de ejemplo. Reemplazar con los estándares de competencia del MTPE y el análisis de avisos reales.",
+  "competencias": [
+    {
+      "id": "con_medios_pago",
+      "dimension": "conocimiento",
+      "nombre": "Medios de pago (efectivo, tarjetas y billeteras digitales)",
+      "nombre_simple": "Sé cobrar con efectivo, tarjeta, Yape o Plin",
+      "keywords": [
+        "yape",
+        "plin",
+        "pos",
+        "tarjeta",
+        "efectivo",
+        "vuelto"
+      ]
+    },
+    {
+      "id": "con_productos_limpieza",
+      "dimension": "conocimiento",
+      "nombre": "Productos de limpieza y su uso seguro",
+      "nombre_simple": "Sé qué productos usar y cuáles no se mezclan",
+      "keywords": [
+        "lejía",
+        "lejia",
+        "productos",
+        "no se mezclan",
+        "desinfectante",
+        "detergente"
+      ]
+    },
+    {
+      "id": "con_ubicacion_productos",
+      "dimension": "conocimiento",
+      "nombre": "Ubicación y rotación de productos",
+      "nombre_simple": "Sé dónde va cada cosa y qué vence primero",
+      "keywords": [
+        "dónde va",
+        "donde va",
+        "estante",
+        "góndola",
+        "gondola",
+        "vence",
+        "vencimiento"
+      ]
+    },
+    {
+      "id": "con_documentos_comerciales",
+      "dimension": "conocimiento",
+      "nombre": "Documentos comerciales básicos",
+      "nombre_simple": "Conozco boletas, facturas y guías",
+      "keywords": [
+        "boleta",
+        "factura",
+        "guía",
+        "guia",
+        "comprobante"
+      ]
+    },
+    {
+      "id": "con_productos_venta",
+      "dimension": "conocimiento",
+      "nombre": "Características de los productos que se venden",
+      "nombre_simple": "Conozco bien lo que vendo",
+      "keywords": [
+        "modelos",
+        "marcas",
+        "precios",
+        "celulares",
+        "productos que vendo"
+      ]
+    },
+    {
+      "id": "con_seguridad_trabajo",
+      "dimension": "conocimiento",
+      "nombre": "Normas básicas de seguridad en el trabajo",
+      "nombre_simple": "Sé trabajar sin ponerme en riesgo",
+      "keywords": [
+        "seguridad",
+        "guantes",
+        "casco",
+        "accidente",
+        "epp"
+      ]
+    },
+    {
+      "id": "hab_cobro_caja",
+      "dimension": "habilidad",
+      "nombre": "Cobrar y dar vuelto con rapidez y exactitud",
+      "nombre_simple": "Cobro rápido y sin equivocarme",
+      "keywords": [
+        "cobro",
+        "cobrar",
+        "caja",
+        "vuelto"
+      ]
+    },
+    {
+      "id": "hab_cuadre_caja",
+      "dimension": "habilidad",
+      "nombre": "Cuadrar la caja al cierre",
+      "nombre_simple": "Cuadro la caja al final del día",
+      "keywords": [
+        "cuadro",
+        "cuadrar",
+        "cierre",
+        "cerrar la caja"
+      ]
+    },
+    {
+      "id": "hab_atencion_cliente",
+      "dimension": "habilidad",
+      "nombre": "Atender y orientar a clientes",
+      "nombre_simple": "Atiendo bien a la gente",
+      "keywords": [
+        "atiendo",
+        "atender",
+        "cliente",
+        "clientes",
+        "gente",
+        "señoras"
+      ]
+    },
+    {
+      "id": "hab_reposicion",
+      "dimension": "habilidad",
+      "nombre": "Reponer y ordenar productos",
+      "nombre_simple": "Repongo y ordeno lo que falta",
+      "keywords": [
+        "repongo",
+        "reponer",
+        "ordeno",
+        "ordenar",
+        "abastecer",
+        "despensa"
+      ]
+    },
+    {
+      "id": "hab_inventario",
+      "dimension": "habilidad",
+      "nombre": "Controlar stock e inventario",
+      "nombre_simple": "Veo qué falta y llevo la cuenta",
+      "keywords": [
+        "inventario",
+        "stock",
+        "qué falta",
+        "que falta",
+        "conteo"
+      ]
+    },
+    {
+      "id": "hab_limpieza_tecnica",
+      "dimension": "habilidad",
+      "nombre": "Limpiar y desinfectar según el tipo de ambiente",
+      "nombre_simple": "Limpio bien cada tipo de lugar",
+      "keywords": [
+        "limpio",
+        "limpieza",
+        "desinfecto",
+        "trapear",
+        "baños",
+        "oficinas"
+      ]
+    },
+    {
+      "id": "hab_exhibicion",
+      "dimension": "habilidad",
+      "nombre": "Exhibir productos de forma atractiva",
+      "nombre_simple": "Acomodo los productos para que se vean bien",
+      "keywords": [
+        "exhibir",
+        "vitrina",
+        "acomodo",
+        "se vean"
+      ]
+    },
+    {
+      "id": "hab_tecnicas_venta",
+      "dimension": "habilidad",
+      "nombre": "Técnicas de venta y negociación",
+      "nombre_simple": "Sé ofrecer y convencer para vender",
+      "keywords": [
+        "vendo",
+        "venta",
+        "ofrezco",
+        "convencer",
+        "negociar"
+      ]
+    },
+    {
+      "id": "hab_archivo",
+      "dimension": "habilidad",
+      "nombre": "Organizar y archivar documentos",
+      "nombre_simple": "Ordeno y archivo papeles",
+      "keywords": [
+        "archivo",
+        "archivar",
+        "papeles",
+        "documentos"
+      ]
+    },
+    {
+      "id": "hab_registro_datos",
+      "dimension": "habilidad",
+      "nombre": "Registrar datos sin errores",
+      "nombre_simple": "Anoto todo sin equivocarme",
+      "keywords": [
+        "anoto",
+        "registro",
+        "cuaderno",
+        "digitar",
+        "apunto"
+      ]
+    },
+    {
+      "id": "hab_ofimatica_basica",
+      "dimension": "habilidad",
+      "nombre": "Usar computadora y hoja de cálculo básica",
+      "nombre_simple": "Manejo la computadora y Excel básico",
+      "keywords": [
+        "excel",
+        "computadora",
+        "sistema",
+        "word"
+      ]
+    },
+    {
+      "id": "hab_carga_descarga",
+      "dimension": "habilidad",
+      "nombre": "Recibir, cargar y descargar mercadería",
+      "nombre_simple": "Recibo y descargo mercadería",
+      "keywords": [
+        "mercadería",
+        "mercaderia",
+        "descargar",
+        "cargar",
+        "recibo",
+        "cajas"
+      ]
+    },
+    {
+      "id": "cua_honestidad",
+      "dimension": "cualidad",
+      "nombre": "Honestidad y confianza",
+      "nombre_simple": "Me confían cosas importantes",
+      "keywords": [
+        "confían",
+        "confian",
+        "llaves",
+        "nunca me falta",
+        "honrada",
+        "honrado",
+        "confianza"
+      ]
+    },
+    {
+      "id": "cua_puntualidad",
+      "dimension": "cualidad",
+      "nombre": "Puntualidad y responsabilidad",
+      "nombre_simple": "Soy puntual y cumplo",
+      "keywords": [
+        "puntual",
+        "temprano",
+        "nunca falto",
+        "responsable",
+        "cumplo"
+      ]
+    },
+    {
+      "id": "cua_orden",
+      "dimension": "cualidad",
+      "nombre": "Orden y atención al detalle",
+      "nombre_simple": "Soy ordenada y me fijo en los detalles",
+      "keywords": [
+        "ordenada",
+        "ordenado",
+        "detalle",
+        "todo en su sitio"
+      ]
+    },
+    {
+      "id": "cua_paciencia",
+      "dimension": "cualidad",
+      "nombre": "Paciencia y trato amable",
+      "nombre_simple": "Tengo paciencia con la gente",
+      "keywords": [
+        "paciencia",
+        "amable",
+        "calma",
+        "tranquila"
+      ]
+    },
+    {
+      "id": "cua_trabajo_equipo",
+      "dimension": "cualidad",
+      "nombre": "Trabajo en equipo",
+      "nombre_simple": "Ayudo a mis compañeros",
+      "keywords": [
+        "equipo",
+        "compañeros",
+        "ayudo"
+      ]
+    },
+    {
+      "id": "cua_resistencia",
+      "dimension": "cualidad",
+      "nombre": "Resistencia física y buen ritmo",
+      "nombre_simple": "Aguanto el ritmo todo el día",
+      "keywords": [
+        "de pie",
+        "fuerza",
+        "ritmo",
+        "cargar",
+        "todo el día"
+      ]
+    },
+    {
+      "id": "comp_caja_sin_faltantes",
+      "dimension": "competencia",
+      "nombre": "Cierra caja sin faltantes de forma constante",
+      "nombre_simple": "Mi caja siempre cuadra",
+      "keywords": [
+        "sin faltantes",
+        "nunca me falta",
+        "siempre cuadra",
+        "cierro la caja",
+        "cerrar la caja sola"
+      ]
+    },
+    {
+      "id": "comp_ambientes_impecables",
+      "dimension": "competencia",
+      "nombre": "Deja ambientes limpios y seguros en el tiempo pactado",
+      "nombre_simple": "Dejo todo limpio a tiempo",
+      "keywords": [
+        "impecable",
+        "dejo limpio",
+        "a tiempo",
+        "me vuelven a llamar"
+      ]
+    },
+    {
+      "id": "comp_gondola_abastecida",
+      "dimension": "competencia",
+      "nombre": "Mantiene la zona abastecida en horas de alta demanda",
+      "nombre_simple": "Nunca falta producto en mi zona",
+      "keywords": [
+        "nunca falta",
+        "abastecido",
+        "en campaña",
+        "horas punta"
+      ]
+    },
+    {
+      "id": "comp_resuelve_reclamos",
+      "dimension": "competencia",
+      "nombre": "Resuelve reclamos y deja al cliente satisfecho",
+      "nombre_simple": "Calmo al cliente molesto y lo resuelvo",
+      "keywords": [
+        "reclamo",
+        "molesto",
+        "se queja",
+        "resuelvo",
+        "vuelve"
+      ]
+    },
+    {
+      "id": "comp_cumple_metas_venta",
+      "dimension": "competencia",
+      "nombre": "Cumple metas de venta",
+      "nombre_simple": "Llego a mis metas de venta",
+      "keywords": [
+        "meta",
+        "metas",
+        "vendí más",
+        "vendi mas"
+      ]
+    },
+    {
+      "id": "comp_gestiona_documentos",
+      "dimension": "competencia",
+      "nombre": "Mantiene documentos y pagos al día",
+      "nombre_simple": "Tengo todo al día",
+      "keywords": [
+        "al día",
+        "al dia",
+        "proveedores",
+        "pagos"
+      ]
+    }
+  ]
+}

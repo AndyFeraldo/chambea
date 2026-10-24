@@ -1,0 +1,73 @@
+{
+  "ilustrativo": true,
+  "nota": "Casos SIMULADOS para el modo demo y para pruebas automáticas. No son personas reales.",
+  "casos": [
+    {
+      "id": "rosa",
+      "nombre": "Rosa (caso simulado)",
+      "region_id": "lima-metropolitana",
+      "perfil": "planilla_riesgo",
+      "ocupacion_actual": "cajero",
+      "respuestas": [
+        "Aprendí mirando a mi compañera, en la caja del supermercado. Ya van 8 años.",
+        "Cobro, cuadro caja, atiendo a la gente y veo qué falta en los estantes para que repongan. Cobro con Yape, tarjeta y efectivo.",
+        "Me dejan cerrar la caja sola, nunca me falta plata. Cuando un cliente está molesto me lo pasan a mí y lo resuelvo.",
+        "Les diría que pregunten a mi supervisora: nunca falto y soy puntual. Tengo paciencia con la gente."
+      ],
+      "competencias_esperadas": [
+        "hab_cobro_caja",
+        "hab_cuadre_caja",
+        "con_medios_pago",
+        "hab_atencion_cliente",
+        "cua_honestidad",
+        "cua_paciencia",
+        "comp_caja_sin_faltantes",
+        "comp_resuelve_reclamos",
+        "hab_inventario",
+        "hab_reposicion",
+        "cua_puntualidad",
+        "con_ubicacion_productos"
+      ],
+      "resultado_esperado": {
+        "primera_ruta": "vendedor_tienda",
+        "tiene": "6 de 7",
+        "falta": [
+          "hab_tecnicas_venta"
+        ],
+        "primer_paso": "Capacitarse: curso c_ventas (perfil en planilla en riesgo prioriza capacitación)",
+        "aviso_demanda": "Cajero/a: demanda baja en Lima Metropolitana"
+      }
+    },
+    {
+      "id": "marleny",
+      "nombre": "Marleny (caso simulado)",
+      "region_id": "lima-metropolitana",
+      "perfil": "informal",
+      "ocupacion_actual": "limpieza",
+      "respuestas": [
+        "Aprendí sola, limpiando casas desde joven.",
+        "Limpio casas y oficinas, los baños, desinfecto todo. Sé qué productos no se mezclan. También ordeno la despensa y repongo lo que falta, y aviso qué falta. Sé dónde va cada cosa.",
+        "Las señoras me dejan las llaves. Dejo todo impecable y a tiempo, por eso me vuelven a llamar.",
+        "Soy puntual, nunca falto. Aguanto todo el día de pie y soy ordenada."
+      ],
+      "competencias_esperadas": [
+        "hab_limpieza_tecnica",
+        "con_productos_limpieza",
+        "cua_honestidad",
+        "comp_ambientes_impecables",
+        "cua_puntualidad",
+        "cua_resistencia",
+        "cua_orden",
+        "hab_reposicion",
+        "hab_inventario",
+        "con_ubicacion_productos"
+      ],
+      "resultado_esperado": {
+        "primera_ruta": "reponedor",
+        "nota": "Cobertura aproximada 0,6: falta recepción de mercadería y zona abastecida",
+        "primer_paso": "Capacitarse: curso c_almacen (corto, desde el celular, perfil informal)",
+        "tiene": "5 de 7"
+      }
+    }
+  ]
+}

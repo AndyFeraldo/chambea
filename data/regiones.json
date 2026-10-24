@@ -1,0 +1,39 @@
+{
+  "ilustrativo": true,
+  "nota": "Niveles de demanda de ejemplo. Reemplazar con la Encuesta de Demanda Ocupacional (EDO) 2026.",
+  "regiones": [
+    {
+      "id": "lima-metropolitana",
+      "nombre": "Lima Metropolitana",
+      "demanda": {
+        "cajero": "baja",
+        "vendedor_tienda": "alta",
+        "reponedor": "alta",
+        "auxiliar_administrativo": "media",
+        "limpieza": "media"
+      }
+    },
+    {
+      "id": "arequipa",
+      "nombre": "Arequipa",
+      "demanda": {
+        "cajero": "media",
+        "vendedor_tienda": "media",
+        "reponedor": "alta",
+        "auxiliar_administrativo": "media",
+        "limpieza": "alta"
+      }
+    },
+    {
+      "id": "la-libertad",
+      "nombre": "La Libertad",
+      "demanda": {
+        "cajero": "baja",
+        "vendedor_tienda": "alta",
+        "reponedor": "media",
+        "auxiliar_administrativo": "baja",
+        "limpieza": "media"
+      }
+    }
+  ]
+}

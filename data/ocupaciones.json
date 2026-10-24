@@ -1,0 +1,122 @@
+{
+  "ilustrativo": true,
+  "nota": "Ocupaciones priorizadas por el MTPE. Requeridas y alias de ejemplo; validar con estándares y avisos reales.",
+  "ocupaciones": [
+    {
+      "id": "cajero",
+      "nombre": "Cajero/a",
+      "nivel": "operativo",
+      "alias": [
+        "Cajera",
+        "Cajero/a polifuncional",
+        "Operador/a de caja"
+      ],
+      "requeridas": [
+        "hab_cobro_caja",
+        "hab_cuadre_caja",
+        "con_medios_pago",
+        "hab_atencion_cliente",
+        "cua_honestidad",
+        "cua_paciencia",
+        "comp_caja_sin_faltantes"
+      ],
+      "requisitos_minimos": [
+        "Secundaria (frecuente)",
+        "Disponibilidad de horario"
+      ]
+    },
+    {
+      "id": "vendedor_tienda",
+      "nombre": "Vendedor/a de tienda",
+      "nivel": "operativo",
+      "alias": [
+        "Asesor/a de ventas",
+        "Promotor/a de ventas",
+        "Vendedor/a de piso",
+        "Atención al cliente en tienda"
+      ],
+      "requeridas": [
+        "hab_atencion_cliente",
+        "con_medios_pago",
+        "hab_cobro_caja",
+        "cua_paciencia",
+        "comp_resuelve_reclamos",
+        "hab_reposicion",
+        "hab_tecnicas_venta"
+      ],
+      "requisitos_minimos": [
+        "Secundaria (frecuente)",
+        "Disponibilidad de horario"
+      ]
+    },
+    {
+      "id": "reponedor",
+      "nombre": "Reponedor/a y abastecedor/a",
+      "nivel": "operativo",
+      "alias": [
+        "Reponedor/a",
+        "Abastecedor/a",
+        "Mercaderista",
+        "Auxiliar de almacén"
+      ],
+      "requeridas": [
+        "hab_reposicion",
+        "hab_inventario",
+        "con_ubicacion_productos",
+        "hab_carga_descarga",
+        "cua_orden",
+        "cua_resistencia",
+        "comp_gondola_abastecida"
+      ],
+      "requisitos_minimos": [
+        "Secundaria (a veces)",
+        "Disponibilidad para turnos"
+      ]
+    },
+    {
+      "id": "auxiliar_administrativo",
+      "nombre": "Auxiliar administrativo/a",
+      "nivel": "operativo",
+      "alias": [
+        "Asistente administrativo/a",
+        "Auxiliar de oficina",
+        "Recepcionista"
+      ],
+      "requeridas": [
+        "hab_archivo",
+        "hab_registro_datos",
+        "hab_ofimatica_basica",
+        "con_documentos_comerciales",
+        "cua_orden",
+        "cua_puntualidad",
+        "comp_gestiona_documentos"
+      ],
+      "requisitos_minimos": [
+        "Secundaria completa",
+        "Ofimática básica"
+      ]
+    },
+    {
+      "id": "limpieza",
+      "nombre": "Personal de limpieza",
+      "nivel": "operativo",
+      "alias": [
+        "Operario/a de limpieza",
+        "Auxiliar de limpieza",
+        "Personal de mantenimiento"
+      ],
+      "requeridas": [
+        "hab_limpieza_tecnica",
+        "con_productos_limpieza",
+        "con_seguridad_trabajo",
+        "cua_honestidad",
+        "cua_puntualidad",
+        "cua_resistencia",
+        "comp_ambientes_impecables"
+      ],
+      "requisitos_minimos": [
+        "Secundaria (algunas empresas)"
+      ]
+    }
+  ]
+}

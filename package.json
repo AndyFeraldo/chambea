@@ -1,0 +1,21 @@
+{
+  "name": "chambea",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Chambea — Tu chamba cuenta. MVP para la Innovathon Ulima x Tether 2026 (reto MTPE).",
+  "workspaces": ["server", "web"],
+  "scripts": {
+    "dev": "concurrently -n server,web -c green,yellow \"npm run dev -w server\" \"npm run dev -w web\"",
+    "build": "npm run build -w web",
+    "build:demo": "npm run build:demo -w web",
+    "start": "npm run start -w server",
+    "test": "tsx --test tests/*.test.ts",
+    "typecheck": "tsc -p server --noEmit && tsc -p web --noEmit"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3"
+  },
+  "engines": { "node": ">=20" }
+}
