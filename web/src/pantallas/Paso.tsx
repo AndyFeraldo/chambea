@@ -134,6 +134,11 @@ function Resultado() {
         <p className="recomendacion__detalle">{p.detalle}</p>
         {detalleCurso(p) && <p className="recomendacion__meta">{detalleCurso(p)}</p>}
         <p className="recomendacion__porque">{resultado.porque}</p>
+        {p.curso && (
+          <p className="recomendacion__meta">
+            {p.curso.verificado ? t('paso.cursoReal') : t('paso.cursoEjemplo')} {t('paso.cursoAprox')}
+          </p>
+        )}
         {p.curso_ajustado && <p className="recomendacion__meta">{t('paso.cursoAjustado')}</p>}
         {p.tipo === 'asesor' ? (
           <p className="recomendacion__meta">{t('paso.asesorTexto')}</p>

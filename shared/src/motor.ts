@@ -25,7 +25,7 @@ export const PESOS: Record<Dimension, number> = {
 };
 
 const ORDEN_DEMANDA: Record<NivelDemanda, number> = { alta: 3, media: 2, baja: 1 };
-export const MAX_RUTAS = 3;
+export const MAX_RUTAS = 5;
 export const UMBRAL_POSTULAR = 0.85;
 export const UMBRAL_CURSO = 0.5;
 export const UMBRAL_SIN_EMPLEO = 0.8;
@@ -177,7 +177,7 @@ export function calcularPrimerPaso(
   const opCurso: OpcionPaso | null = elegido
     ? {
         tipo: 'capacitate',
-        titulo: 'Capacítate Perú',
+        titulo: 'Capacíta-T',
         detalle: elegido.curso.titulo,
         curso: elegido.curso,
         curso_ajustado: elegido.ajustado,

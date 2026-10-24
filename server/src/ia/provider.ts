@@ -1,4 +1,4 @@
-import type { Competencia, CompetenciaDetectada } from '../../../shared/src/tipos';
+import type { CompetenciaDetectada, Datos } from '../../../shared/src/tipos';
 
 export interface EstadoIA {
   proveedor: 'mock' | 'qvac';
@@ -9,6 +9,6 @@ export interface EstadoIA {
 /** Capa de IA intercambiable (AI_PROVIDER=mock|qvac). */
 export interface AIProvider {
   nombre: 'mock' | 'qvac';
-  extraer(catalogo: Competencia[], textos: string[]): Promise<CompetenciaDetectada[]>;
+  extraer(datos: Pick<Datos, 'competencias' | 'tareas'>, textos: string[]): Promise<CompetenciaDetectada[]>;
   salud(): Promise<EstadoIA>;
 }

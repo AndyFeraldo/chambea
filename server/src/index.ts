@@ -30,7 +30,7 @@ app.get('/api/regiones', (_req, res) => res.json({ regiones: datos.regiones.map(
 app.post('/api/extraer', async (req, res) => {
   const { texto, respuestas_guiadas } = req.body ?? {};
   const textos = [...ids(respuestas_guiadas), ...(typeof texto === 'string' ? [texto] : [])];
-  res.json({ competencias: await ia.extraer(datos.competencias, textos), proveedor: ia.nombre });
+  res.json({ competencias: await ia.extraer(datos, textos), proveedor: ia.nombre });
 });
 
 app.post('/api/rutas', (req, res) => {

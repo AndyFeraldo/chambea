@@ -485,3 +485,71 @@ button.hex:active { filter: brightness(0.94); }
   .colmena--chica { --hx: 98px; }
   .hex { font-size: 0.84rem; }
 }
+
+/* ---------- Carrusel de rutas: una abeja vestida por trabajo ---------- */
+.carrusel { display: flex; flex-direction: column; gap: 0; touch-action: pan-y; }
+.escenario {
+  position: relative; height: 170px; z-index: 2; pointer-events: none;
+  overflow: visible;
+}
+.escenario__sombra {
+  position: absolute; left: 50%; bottom: 4px; width: 90px; height: 12px; margin-left: -45px;
+  border-radius: 50%; background: rgba(14, 26, 23, 0.12); filter: blur(3px);
+  animation: sombra 2.6s ease-in-out infinite;
+}
+@keyframes sombra { 0%, 100% { transform: scaleX(1); opacity: 0.9; } 50% { transform: scaleX(0.8); opacity: 0.6; } }
+.abeja-escena { position: absolute; left: 50%; top: -6px; width: 180px; margin-left: -90px; }
+.abeja-escena__flota { position: relative; animation: flotar 2.6s ease-in-out infinite 0.8s; }
+.abeja-escena .abeja--estela { opacity: 0; }
+.entra-derecha { animation: entra-derecha 0.85s cubic-bezier(0.25, 0.9, 0.3, 1.05) both; }
+.entra-izquierda { animation: entra-izquierda 0.85s cubic-bezier(0.25, 0.9, 0.3, 1.05) both; }
+.entra-izquierda .abeja-vestida { transform: scaleX(-1); }
+.entra-derecha .abeja--estela, .entra-izquierda .abeja--estela { animation: estela 0.85s ease-out both; }
+@keyframes estela { 0% { opacity: 0.55; transform: translateX(26px) scaleX(1.45); } 70% { opacity: 0.25; } 100% { opacity: 0; transform: none; } }
+.entra-izquierda .abeja--estela { animation-name: estela-izq; }
+@keyframes estela-izq { 0% { opacity: 0.55; transform: translateX(-26px) scaleX(-1.45); } 100% { opacity: 0; transform: scaleX(-1); } }
+@keyframes entra-derecha {
+  0% { transform: translate(115vw, -30px) rotate(-6deg); }
+  60% { transform: translate(-14px, 8px) rotate(4deg); }
+  100% { transform: none; }
+}
+@keyframes entra-izquierda {
+  0% { transform: translate(-115vw, -30px) rotate(6deg); }
+  60% { transform: translate(14px, 8px) rotate(-4deg); }
+  100% { transform: none; }
+}
+.sale-izquierda { animation: sale-izquierda 0.7s cubic-bezier(0.5, 0, 0.75, 0.4) both; }
+.sale-derecha { animation: sale-derecha 0.7s cubic-bezier(0.5, 0, 0.75, 0.4) both; }
+.mirar-derecha { transform: scaleX(-1); }
+@keyframes sale-izquierda {
+  0% { transform: none; filter: blur(0); }
+  100% { transform: translate(-115vw, -40px) rotate(-10deg); filter: blur(3px); }
+}
+@keyframes sale-derecha {
+  0% { transform: none; filter: blur(0); }
+  100% { transform: translate(115vw, -40px) rotate(10deg); filter: blur(3px); }
+}
+.carrusel .ruta-hero { margin-top: 14px; }
+.desliza-derecha { animation: desliza-derecha 0.5s var(--suave) both 0.15s; }
+.desliza-izquierda { animation: desliza-izquierda 0.5s var(--suave) both 0.15s; }
+@keyframes desliza-derecha { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: none; } }
+@keyframes desliza-izquierda { from { opacity: 0; transform: translateX(-40px); } to { opacity: 1; transform: none; } }
+.carrusel__control { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.carrusel__flecha {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 52px; min-width: 52px; padding: 0 14px;
+  border-radius: 16px; border: 2px solid var(--borde); background: var(--blanco); color: var(--verde-oscuro); font-weight: 800; cursor: pointer;
+}
+.carrusel__flecha--siguiente { background: var(--verde-oscuro); border-color: var(--verde-oscuro); color: var(--blanco); padding: 0 20px; }
+.carrusel__puntos { display: flex; gap: 4px; justify-content: center; min-width: 0; }
+.carrusel__puntos .puntos__hex { width: 16px; height: 14px; flex: none; }
+
+.ofertas { display: flex; flex-direction: column; gap: 6px; }
+.ofertas__titulo { font-size: 0.85rem; font-weight: 700; color: #c5d3cf; }
+.ofertas__enlaces { display: flex; flex-wrap: wrap; gap: 8px; }
+.ofertas__enlace {
+  display: inline-flex; align-items: center; gap: 4px; min-height: 44px; padding: 8px 14px; border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.25); color: var(--blanco); font-weight: 700; text-decoration: none; font-size: 0.92rem;
+}
+.viene-de { display: flex; align-items: center; gap: 6px; font-size: 0.92rem; color: var(--verde-oscuro); }
+.mosaico__item { min-height: 128px; gap: 2px; }
+.mosaico__item .abeja-vestida { animation: flotar 3s ease-in-out infinite; animation-delay: calc(var(--i, 0) * -0.4s); }

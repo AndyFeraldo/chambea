@@ -5,8 +5,8 @@ import type { AIProvider } from './provider';
 export class MockProvider implements AIProvider {
   nombre = 'mock' as const;
 
-  async extraer(...args: Parameters<AIProvider['extraer']>) {
-    return extraerPorPalabrasClave(...args);
+  async extraer(datos: Parameters<AIProvider['extraer']>[0], textos: string[]) {
+    return extraerPorPalabrasClave(datos.competencias, textos, datos.tareas);
   }
 
   async salud() {

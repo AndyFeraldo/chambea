@@ -27,7 +27,12 @@
     "region": "Tu región",
     "empezar": "Empezar",
     "conAsesor": "Lo hago con un asesor",
-    "pasos": ["Cuéntalo", "Tu panal", "Tus rutas", "Tu paso"],
+    "pasos": [
+      "Cuéntalo",
+      "Tu panal",
+      "Tus rutas",
+      "Tu paso"
+    ],
     "privacidad": "Sin nombre, sin correo, sin CV. No guardamos nada.",
     "demo": "Ver un ejemplo:"
   },
@@ -45,10 +50,22 @@
   },
   "preguntas": {
     "lista": [
-      { "texto": "¿Cómo aprendiste lo que haces hoy?", "ejemplo": "Aprendí viendo a mi tía en su bodega…" },
-      { "texto": "¿Cómo es un día normal en tu trabajo?", "ejemplo": "Abro temprano, ordeno, atiendo…" },
-      { "texto": "¿Qué te piden a ti porque lo haces bien?", "ejemplo": "Me piden que atienda a los clientes difíciles…" },
-      { "texto": "¿Cómo demostrarías que sabes hacerlo?", "ejemplo": "Que llamen a mi jefa anterior…" }
+      {
+        "texto": "¿Cómo aprendiste lo que haces hoy?",
+        "ejemplo": "Aprendí viendo a mi tía en su bodega…"
+      },
+      {
+        "texto": "¿Cómo es un día normal en tu trabajo?",
+        "ejemplo": "Abro temprano, ordeno, atiendo…"
+      },
+      {
+        "texto": "¿Qué te piden a ti porque lo haces bien?",
+        "ejemplo": "Me piden que atienda a los clientes difíciles…"
+      },
+      {
+        "texto": "¿Cómo demostrarías que sabes hacerlo?",
+        "ejemplo": "Que llamen a mi jefa anterior…"
+      }
     ],
     "tocaYHabla": "Toca y habla",
     "escuchando": "Te escucho… toca para terminar",
@@ -77,7 +94,8 @@
     "agregarTitulo": "¿Qué más sabes hacer?",
     "vacio": "Aún no hay celdas. Toca + para agregar lo que haces.",
     "celdas": "{n} celdas",
-    "seguir": "Sí, ese es mi panal"
+    "seguir": "Sí, ese es mi panal",
+    "vieneDe": "Viene de tu tarea:"
   },
   "rutas": {
     "titulo": "Mira tus rutas",
@@ -95,31 +113,64 @@
     "elegir": "Quiero esta ruta",
     "otras": "Otras rutas",
     "ninguna": "Aún no vemos una ruta clara. Un asesor te ayuda a encontrarla.",
-    "irAsesor": "Hablar con un asesor"
+    "irAsesor": "Hablar con un asesor",
+    "verOfertas": "Ver ofertas reales:",
+    "anterior": "Ruta anterior",
+    "siguiente": "Siguiente",
+    "cuenta": "Ruta {n} de {total}"
   },
   "paso": {
     "preguntas": [
-      { "id": "horas", "texto": "¿Cuántas horas libres tienes a la semana?" },
-      { "id": "modalidad", "texto": "¿Cómo prefieres aprender?" },
-      { "id": "costo", "texto": "¿Cuánto puedes gastar?" }
+      {
+        "id": "horas",
+        "texto": "¿Cuántas horas libres tienes a la semana?"
+      },
+      {
+        "id": "modalidad",
+        "texto": "¿Cómo prefieres aprender?"
+      },
+      {
+        "id": "costo",
+        "texto": "¿Cuánto puedes gastar?"
+      }
     ],
-    "horasOp": { "1-3": "1 a 3 horas", "4-6": "4 a 6 horas", "7+": "7 o más" },
-    "modalidadOp": { "celular": "Desde el celular", "presencial": "Presencial", "igual": "Me da igual" },
-    "costoOp": { "gratis": "Solo gratis", "poco": "Puedo pagar poco" },
+    "horasOp": {
+      "1-3": "1 a 3 horas",
+      "4-6": "4 a 6 horas",
+      "7+": "7 o más"
+    },
+    "modalidadOp": {
+      "celular": "Desde el celular",
+      "presencial": "Presencial",
+      "igual": "Me da igual"
+    },
+    "costoOp": {
+      "gratis": "Solo gratis",
+      "poco": "Puedo pagar poco"
+    },
     "tuPrimerPaso": "Tu primer paso",
     "ruta": "Para llegar a {ocupacion}",
     "curso": "{semanas} semanas · {horas} h/sem · {modalidad} · {costo}",
-    "cursoModalidad": { "celular": "celular", "presencial": "presencial" },
-    "cursoCosto": { "gratuito": "gratis", "pagado": "con costo" },
+    "cursoModalidad": {
+      "celular": "celular",
+      "presencial": "presencial"
+    },
+    "cursoCosto": {
+      "gratuito": "gratis",
+      "pagado": "con costo"
+    },
     "cursoAjustado": "El más cercano a lo que elegiste.",
     "ir": {
-      "capacitate": "Ir a Capacítate Perú",
+      "capacitate": "Ir a Capacíta-T",
       "empleos": "Ir a Empleos Perú"
     },
     "asesorTexto": "Ve a un Centro de Empleo y lleva tu panal.",
     "otrasOpciones": "También puedes",
     "certificacion": "Después: certifica lo que sabes con el MTPE",
-    "verPanal": "Ver mi panal"
+    "verPanal": "Ver mi panal",
+    "cursoAprox": "Duración aproximada.",
+    "cursoEjemplo": "Curso de ejemplo: búscalo en el catálogo.",
+    "cursoReal": "Curso de la plataforma gratuita del MTPE."
   },
   "resumen": {
     "titulo": "Mi panal",

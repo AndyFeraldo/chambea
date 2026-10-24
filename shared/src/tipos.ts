@@ -23,6 +23,16 @@ export interface Ocupacion {
   alias: string[];
   requeridas: string[];
   requisitos_minimos: string[];
+  /** Texto para buscar ofertas reales en portales de empleo. */
+  busqueda?: string;
+}
+
+/** Una tarea del día a día y las habilidades transferibles que revela. */
+export interface Tarea {
+  id: string;
+  nombre: string;
+  keywords: string[];
+  aporta: string[];
 }
 
 export interface Region {
@@ -41,6 +51,8 @@ export interface Capacitacion {
   horas_semana: number;
   modalidad: 'celular' | 'presencial';
   costo: 'gratuito' | 'pagado';
+  /** true si el curso es un tema que el MTPE anuncia en su plataforma. */
+  verificado?: boolean;
   ilustrativo?: boolean;
 }
 
@@ -58,6 +70,7 @@ export interface Datos {
   ocupaciones: Ocupacion[];
   regiones: Region[];
   capacitaciones: Capacitacion[];
+  tareas: Tarea[];
   casos: CasoDemo[];
   ilustrativo: boolean;
 }
@@ -67,6 +80,8 @@ export interface CompetenciaDetectada {
   id: string;
   dimension: Dimension;
   evidencia: string | null;
+  /** Si se dedujo de una tarea ("Cobrar en caja" -> precisión), su nombre. */
+  tarea?: string | null;
 }
 
 export interface Ruta {

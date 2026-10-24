@@ -141,6 +141,11 @@ export function Panal() {
             <span className={`detalle-celda__hex hex--${celda.dimension}`} />
             <span className="etiqueta">{t(`panal.dimensiones.${celda.dimension}`)}</span>
             <h2>{info?.nombre_simple}</h2>
+            {celda.tarea && (
+              <p className="viene-de">
+                <Icono nombre="hexagono" tam={18} /> {t('panal.vieneDe')} <b>{celda.tarea}</b>
+              </p>
+            )}
             {celda.evidencia && (
               <p className="evidencia">
                 <b>{t('panal.loDemuestra')}</b> «{celda.evidencia}»

@@ -29,6 +29,7 @@ export interface Celda {
   id: string;
   dimension: Dimension;
   evidencia: string | null;
+  tarea?: string | null;
   confirmada: boolean;
 }
 

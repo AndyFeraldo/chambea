@@ -19,9 +19,9 @@ export const config = {
     apiKey: texto('QVAC_API_KEY'),
     timeoutMs: Number(process.env.QVAC_TIMEOUT_MS ?? 60000),
   },
-  // TODO: el equipo debe confirmar los enlaces oficiales antes de llenarlos en .env
+  // Portales oficiales del MTPE (se pueden cambiar en .env).
   enlaces: {
-    empleos_peru: texto('EMPLEOS_PERU_URL'),
-    capacitate_peru: texto('CAPACITATE_PERU_URL'),
+    empleos_peru: texto('EMPLEOS_PERU_URL') ?? 'https://www.empleosperu.gob.pe/',
+    capacitate_peru: texto('CAPACITATE_PERU_URL') ?? 'https://capacitacionlaboral.trabajo.gob.pe/',
   },
 } as const;

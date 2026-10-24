@@ -24,10 +24,12 @@
       "keywords": [
         "lejía",
         "lejia",
-        "productos",
+        "productos de limpieza",
         "no se mezclan",
         "desinfectante",
-        "detergente"
+        "detergente",
+        "químicos",
+        "quimicos"
       ]
     },
     {
@@ -387,6 +389,274 @@
         "al dia",
         "proveedores",
         "pagos"
+      ]
+    },
+    {
+      "id": "con_manejo_dinero",
+      "dimension": "conocimiento",
+      "nombre": "Manejo de dinero",
+      "nombre_simple": "Manejo plata sin que falte nada",
+      "keywords": [
+        "plata",
+        "dinero",
+        "billetes",
+        "monedas",
+        "efectivo",
+        "sencillo"
+      ]
+    },
+    {
+      "id": "con_higiene_alimentos",
+      "dimension": "conocimiento",
+      "nombre": "Higiene y manipulación de alimentos",
+      "nombre_simple": "Sé manejar alimentos con higiene",
+      "keywords": [
+        "higiene",
+        "alimentos",
+        "manipulación",
+        "manipulacion",
+        "lavo las verduras",
+        "inocuidad",
+        "cocina limpia"
+      ]
+    },
+    {
+      "id": "hab_cocina_basica",
+      "dimension": "habilidad",
+      "nombre": "Preparar alimentos",
+      "nombre_simple": "Sé cocinar y preparar alimentos",
+      "keywords": [
+        "cocino",
+        "cocinar",
+        "cocina",
+        "preparo",
+        "menú",
+        "menu",
+        "picar",
+        "guisos",
+        "almuerzos"
+      ]
+    },
+    {
+      "id": "hab_organizacion_tiempos",
+      "dimension": "habilidad",
+      "nombre": "Organizar los tiempos",
+      "nombre_simple": "Organizo mi tiempo para que todo salga a la hora",
+      "keywords": [
+        "a la hora",
+        "organizo",
+        "varias cosas a la vez",
+        "me organizo",
+        "a tiempo"
+      ]
+    },
+    {
+      "id": "hab_comunicacion",
+      "dimension": "habilidad",
+      "nombre": "Comunicarse con claridad",
+      "nombre_simple": "Explico las cosas claro y converso con la gente",
+      "keywords": [
+        "converso",
+        "explico",
+        "hablo con",
+        "comunico",
+        "conversar",
+        "explicar"
+      ]
+    },
+    {
+      "id": "hab_identifica_necesidades",
+      "dimension": "habilidad",
+      "nombre": "Identificar lo que necesita el cliente",
+      "nombre_simple": "Me doy cuenta de lo que la gente necesita",
+      "keywords": [
+        "qué necesita",
+        "que necesita",
+        "qué busca",
+        "que busca",
+        "recomiendo",
+        "aconsejo",
+        "le ofrezco"
+      ]
+    },
+    {
+      "id": "hab_servicio_mesa",
+      "dimension": "habilidad",
+      "nombre": "Atender mesas y pedidos",
+      "nombre_simple": "Atiendo mesas y tomo pedidos",
+      "keywords": [
+        "mozo",
+        "moza",
+        "mesas",
+        "sirvo",
+        "pedidos",
+        "comanda",
+        "platos"
+      ]
+    },
+    {
+      "id": "hab_reparto_rutas",
+      "dimension": "habilidad",
+      "nombre": "Repartir pedidos por rutas",
+      "nombre_simple": "Reparto pedidos y conozco las rutas",
+      "keywords": [
+        "reparto",
+        "delivery",
+        "moto",
+        "bicicleta",
+        "entrego",
+        "rutas",
+        "motorizado"
+      ]
+    },
+    {
+      "id": "hab_cuidado_personas",
+      "dimension": "habilidad",
+      "nombre": "Cuidar a personas",
+      "nombre_simple": "Cuido a niños o adultos mayores",
+      "keywords": [
+        "cuido",
+        "cuidar",
+        "niños",
+        "ninos",
+        "adulto mayor",
+        "abuelita",
+        "abuelito",
+        "bebé",
+        "bebe",
+        "enfermo"
+      ]
+    },
+    {
+      "id": "hab_atencion_telefonica",
+      "dimension": "habilidad",
+      "nombre": "Atender por teléfono",
+      "nombre_simple": "Atiendo llamadas y mensajes",
+      "keywords": [
+        "teléfono",
+        "telefono",
+        "llamadas",
+        "whatsapp",
+        "celular de la tienda",
+        "contesto"
+      ]
+    },
+    {
+      "id": "hab_maquinas_produccion",
+      "dimension": "habilidad",
+      "nombre": "Operar máquinas y líneas de producción",
+      "nombre_simple": "Trabajo con máquinas o en línea de producción",
+      "keywords": [
+        "máquina",
+        "maquina",
+        "producción",
+        "produccion",
+        "fábrica",
+        "fabrica",
+        "empaco",
+        "embalo",
+        "envaso",
+        "planta"
+      ]
+    },
+    {
+      "id": "hab_mantenimiento_basico",
+      "dimension": "habilidad",
+      "nombre": "Mantenimiento básico",
+      "nombre_simple": "Arreglo y pinto cosas sencillas",
+      "keywords": [
+        "arreglo",
+        "reparo",
+        "pinto",
+        "gasfitería",
+        "gasfiteria",
+        "electricidad",
+        "focos",
+        "mantenimiento"
+      ]
+    },
+    {
+      "id": "cua_precision",
+      "dimension": "cualidad",
+      "nombre": "Precisión",
+      "nombre_simple": "Hago las cosas exactas, sin errores",
+      "keywords": [
+        "exacto",
+        "exacta",
+        "sin errores",
+        "preciso",
+        "precisa",
+        "no me equivoco"
+      ]
+    },
+    {
+      "id": "cua_cumple_protocolos",
+      "dimension": "cualidad",
+      "nombre": "Cumplimiento de protocolos",
+      "nombre_simple": "Sigo las normas y los pasos al pie de la letra",
+      "keywords": [
+        "protocolo",
+        "normas",
+        "procedimiento",
+        "reglas",
+        "al pie de la letra"
+      ]
+    },
+    {
+      "id": "cua_trabajo_presion",
+      "dimension": "cualidad",
+      "nombre": "Trabajo bajo presión",
+      "nombre_simple": "Trabajo tranquila aunque haya mucha gente o apuro",
+      "keywords": [
+        "presión",
+        "presion",
+        "hora punta",
+        "apuro",
+        "mucha gente",
+        "estrés",
+        "estres",
+        "rápido",
+        "rapido"
+      ]
+    },
+    {
+      "id": "comp_pedidos_a_tiempo",
+      "dimension": "competencia",
+      "nombre": "Entrega pedidos completos y a tiempo",
+      "nombre_simple": "Mis pedidos salen completos y a tiempo",
+      "keywords": [
+        "pedidos completos",
+        "nunca llego tarde",
+        "entrego a tiempo",
+        "sale a tiempo",
+        "sin demoras"
+      ]
+    },
+    {
+      "id": "comp_clientes_vuelven",
+      "dimension": "competencia",
+      "nombre": "Los clientes vuelven y lo recomiendan",
+      "nombre_simple": "Mis clientes vuelven y me recomiendan",
+      "keywords": [
+        "me recomiendan",
+        "clientes fijos",
+        "vuelven",
+        "me buscan",
+        "me vuelven a llamar",
+        "caseras"
+      ]
+    },
+    {
+      "id": "comp_meta_turno",
+      "dimension": "competencia",
+      "nombre": "Cumple la meta del turno",
+      "nombre_simple": "Cumplo la meta de mi turno",
+      "keywords": [
+        "meta del turno",
+        "cumplo la meta",
+        "mi producción",
+        "mi produccion",
+        "cajas por hora"
       ]
     }
   ]

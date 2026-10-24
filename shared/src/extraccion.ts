@@ -1,7 +1,7 @@
 // Extracción por palabras clave (modo "mock"): funciona siempre, sin internet ni modelo.
 // Usa el campo `keywords` de data/competencias.json.
 
-import type { Competencia, CompetenciaDetectada } from './tipos';
+import type { Competencia, CompetenciaDetectada, Tarea } from './tipos';
 
 /** Minúsculas y sin tildes: "Dónde" -> "donde". */
 export function normalizar(texto: string): string {
@@ -46,9 +46,15 @@ function recortar(frase: string, max = 160): string {
   return frase.length <= max ? frase : frase.slice(0, max - 1).trimEnd() + '…';
 }
 
+/**
+ * 1) Busca cada competencia por sus palabras clave.
+ * 2) Busca las tareas que la persona cuenta y suma las habilidades que esa tarea revela
+ *    (por ejemplo, "cobrar en caja" -> precisión, manejo de dinero y atención al cliente).
+ */
 export function extraerPorPalabrasClave(
   catalogo: Competencia[],
   textos: string[],
+  tareas: Tarea[] = [],
 ): CompetenciaDetectada[] {
   const todas = textos.flatMap((t) => frases(t ?? ''));
   const resultado: CompetenciaDetectada[] = [];
@@ -57,5 +63,32 @@ export function extraerPorPalabrasClave(
     const frase = todas.find((f) => c.keywords.some((k) => contiene(f, k, estricto)));
     if (frase) resultado.push({ id: c.id, dimension: c.dimension, evidencia: recortar(frase) });
   }
-  return resultado;
+  return [...resultado, ...deducirDeTareas(catalogo, todas, tareas, new Set(resultado.map((r) => r.id)))];
+}
+
+function deducirDeTareas(
+  catalogo: Competencia[],
+  frasesPersona: string[],
+  tareas: Tarea[],
+  yaTiene: Set<string>,
+): CompetenciaDetectada[] {
+  const porId = new Map(catalogo.map((c) => [c.id, c]));
+  const salida: CompetenciaDetectada[] = [];
+  for (const t of tareas) {
+    const frase = frasesPersona.find((f) => t.keywords.some((k) => contiene(f, k, false)));
+    if (!frase) continue;
+    for (const id of t.aporta) {
+      const c = porId.get(id);
+      if (!c || yaTiene.has(id)) continue;
+      yaTiene.add(id);
+      salida.push({ id, dimension: c.dimension, evidencia: recortar(frase), tarea: t.nombre });
+    }
+  }
+  return salida;
+}
+
+/** Las tareas que aparecen en el relato (para guiar al modelo de IA). */
+export function tareasMencionadas(textos: string[], tareas: Tarea[]): Tarea[] {
+  const todas = textos.flatMap((t) => frases(t ?? ''));
+  return tareas.filter((t) => todas.some((f) => t.keywords.some((k) => contiene(f, k, false))));
 }

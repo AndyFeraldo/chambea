@@ -1,0 +1,247 @@
+{
+  "ilustrativo": true,
+  "nota": "Guía para razonar: cada tarea que la persona cuenta revela habilidades transferibles. Basado en la lámina del workshop \"Descubriendo el valor de cada tarea\". Validar con estándares del MTPE.",
+  "tareas": [
+    {
+      "id": "limpiar",
+      "nombre": "Limpiar oficinas o casas",
+      "keywords": [
+        "limpio",
+        "limpieza",
+        "limpiar",
+        "desinfecto",
+        "trapeo",
+        "baños",
+        "oficinas"
+      ],
+      "aporta": [
+        "cua_orden",
+        "cua_cumple_protocolos",
+        "hab_limpieza_tecnica"
+      ]
+    },
+    {
+      "id": "cobrar",
+      "nombre": "Cobrar en caja",
+      "keywords": [
+        "cobro",
+        "cobrar",
+        "caja",
+        "vuelto"
+      ],
+      "aporta": [
+        "cua_precision",
+        "con_manejo_dinero",
+        "hab_atencion_cliente"
+      ]
+    },
+    {
+      "id": "cocinar",
+      "nombre": "Cocinar",
+      "keywords": [
+        "cocino",
+        "cocinar",
+        "cocina",
+        "preparo",
+        "menú",
+        "menu",
+        "almuerzos"
+      ],
+      "aporta": [
+        "hab_organizacion_tiempos",
+        "con_higiene_alimentos",
+        "cua_trabajo_presion",
+        "hab_cocina_basica"
+      ]
+    },
+    {
+      "id": "vender",
+      "nombre": "Vender en tienda",
+      "keywords": [
+        "vendo",
+        "vender",
+        "venta",
+        "ventas",
+        "tienda",
+        "bodega"
+      ],
+      "aporta": [
+        "hab_comunicacion",
+        "hab_identifica_necesidades",
+        "hab_atencion_cliente"
+      ]
+    },
+    {
+      "id": "atender",
+      "nombre": "Atender a la gente",
+      "keywords": [
+        "atiendo",
+        "atender",
+        "clientes",
+        "cliente",
+        "público",
+        "publico"
+      ],
+      "aporta": [
+        "hab_comunicacion",
+        "hab_atencion_cliente",
+        "cua_paciencia"
+      ]
+    },
+    {
+      "id": "reponer",
+      "nombre": "Reponer y ordenar mercadería",
+      "keywords": [
+        "repongo",
+        "reponer",
+        "estantes",
+        "góndola",
+        "gondola",
+        "abastecer",
+        "despensa"
+      ],
+      "aporta": [
+        "hab_reposicion",
+        "cua_orden",
+        "hab_inventario"
+      ]
+    },
+    {
+      "id": "cargar",
+      "nombre": "Cargar y recibir mercadería",
+      "keywords": [
+        "cargo",
+        "cargar",
+        "descargo",
+        "mercadería",
+        "mercaderia",
+        "camión",
+        "camion",
+        "mudanzas"
+      ],
+      "aporta": [
+        "hab_carga_descarga",
+        "cua_resistencia",
+        "con_seguridad_trabajo"
+      ]
+    },
+    {
+      "id": "repartir",
+      "nombre": "Repartir pedidos",
+      "keywords": [
+        "reparto",
+        "delivery",
+        "entrego",
+        "moto",
+        "motorizado"
+      ],
+      "aporta": [
+        "hab_reparto_rutas",
+        "cua_puntualidad",
+        "hab_atencion_cliente"
+      ]
+    },
+    {
+      "id": "cuidar",
+      "nombre": "Cuidar a personas",
+      "keywords": [
+        "cuido",
+        "cuidar",
+        "niños",
+        "ninos",
+        "adulto mayor",
+        "abuelita",
+        "abuelito"
+      ],
+      "aporta": [
+        "hab_cuidado_personas",
+        "cua_paciencia",
+        "cua_honestidad"
+      ]
+    },
+    {
+      "id": "archivar",
+      "nombre": "Ordenar papeles y documentos",
+      "keywords": [
+        "archivo",
+        "facturas",
+        "boletas",
+        "papeles",
+        "documentos",
+        "proveedores"
+      ],
+      "aporta": [
+        "hab_archivo",
+        "con_documentos_comerciales",
+        "cua_orden"
+      ]
+    },
+    {
+      "id": "servir",
+      "nombre": "Servir mesas",
+      "keywords": [
+        "mesas",
+        "sirvo",
+        "mozo",
+        "moza"
+      ],
+      "aporta": [
+        "hab_servicio_mesa",
+        "cua_trabajo_presion",
+        "hab_comunicacion"
+      ]
+    },
+    {
+      "id": "fabricar",
+      "nombre": "Trabajar en fábrica o planta",
+      "keywords": [
+        "fábrica",
+        "fabrica",
+        "planta",
+        "máquina",
+        "maquina",
+        "empaco",
+        "producción",
+        "produccion"
+      ],
+      "aporta": [
+        "hab_maquinas_produccion",
+        "cua_cumple_protocolos",
+        "cua_trabajo_equipo"
+      ]
+    },
+    {
+      "id": "arreglar",
+      "nombre": "Arreglar o dar mantenimiento",
+      "keywords": [
+        "arreglo",
+        "reparo",
+        "pinto",
+        "gasfitería",
+        "gasfiteria",
+        "mantenimiento"
+      ],
+      "aporta": [
+        "hab_mantenimiento_basico",
+        "con_seguridad_trabajo",
+        "cua_orden"
+      ]
+    },
+    {
+      "id": "telefono",
+      "nombre": "Atender llamadas o mensajes",
+      "keywords": [
+        "llamadas",
+        "teléfono",
+        "telefono",
+        "whatsapp",
+        "contesto"
+      ],
+      "aporta": [
+        "hab_atencion_telefonica",
+        "hab_comunicacion",
+        "cua_paciencia"
+      ]
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "ilustrativo": true,
-  "nota": "Ocupaciones priorizadas por el MTPE. Requeridas y alias de ejemplo; validar con estándares y avisos reales.",
+  "nota": "Las 5 primeras son las priorizadas por el MTPE; las demás amplían las rutas operativas. Requeridas y alias de ejemplo: validar con estándares y avisos reales.",
   "ocupaciones": [
     {
       "id": "cajero",
@@ -23,7 +23,8 @@
       "requisitos_minimos": [
         "Secundaria (frecuente)",
         "Disponibilidad de horario"
-      ]
+      ],
+      "busqueda": "cajero"
     },
     {
       "id": "vendedor_tienda",
@@ -47,7 +48,8 @@
       "requisitos_minimos": [
         "Secundaria (frecuente)",
         "Disponibilidad de horario"
-      ]
+      ],
+      "busqueda": "vendedor de tienda"
     },
     {
       "id": "reponedor",
@@ -56,8 +58,7 @@
       "alias": [
         "Reponedor/a",
         "Abastecedor/a",
-        "Mercaderista",
-        "Auxiliar de almacén"
+        "Mercaderista"
       ],
       "requeridas": [
         "hab_reposicion",
@@ -71,7 +72,8 @@
       "requisitos_minimos": [
         "Secundaria (a veces)",
         "Disponibilidad para turnos"
-      ]
+      ],
+      "busqueda": "reponedor"
     },
     {
       "id": "auxiliar_administrativo",
@@ -94,7 +96,8 @@
       "requisitos_minimos": [
         "Secundaria completa",
         "Ofimática básica"
-      ]
+      ],
+      "busqueda": "auxiliar administrativo"
     },
     {
       "id": "limpieza",
@@ -103,7 +106,7 @@
       "alias": [
         "Operario/a de limpieza",
         "Auxiliar de limpieza",
-        "Personal de mantenimiento"
+        "Personal de limpieza"
       ],
       "requeridas": [
         "hab_limpieza_tecnica",
@@ -116,7 +119,200 @@
       ],
       "requisitos_minimos": [
         "Secundaria (algunas empresas)"
-      ]
+      ],
+      "busqueda": "personal de limpieza"
+    },
+    {
+      "id": "ayudante_cocina",
+      "nombre": "Ayudante de cocina",
+      "nivel": "operativo",
+      "alias": [
+        "Auxiliar de cocina",
+        "Asistente de cocina",
+        "Ayudante de cocina por horas"
+      ],
+      "requeridas": [
+        "hab_cocina_basica",
+        "con_higiene_alimentos",
+        "hab_organizacion_tiempos",
+        "cua_trabajo_presion",
+        "hab_limpieza_tecnica",
+        "cua_trabajo_equipo",
+        "comp_pedidos_a_tiempo"
+      ],
+      "requisitos_minimos": [
+        "Carné de sanidad (frecuente)",
+        "Disponibilidad de horario"
+      ],
+      "busqueda": "ayudante de cocina"
+    },
+    {
+      "id": "mozo",
+      "nombre": "Mozo/a de restaurante",
+      "nivel": "operativo",
+      "alias": [
+        "Mesero/a",
+        "Azafata de restaurante",
+        "Anfitrión/a"
+      ],
+      "requeridas": [
+        "hab_servicio_mesa",
+        "hab_atencion_cliente",
+        "hab_comunicacion",
+        "cua_paciencia",
+        "cua_trabajo_presion",
+        "hab_cobro_caja",
+        "comp_clientes_vuelven"
+      ],
+      "requisitos_minimos": [
+        "Disponibilidad de horario (fines de semana)"
+      ],
+      "busqueda": "mozo"
+    },
+    {
+      "id": "almacenero",
+      "nombre": "Auxiliar de almacén",
+      "nivel": "operativo",
+      "alias": [
+        "Almacenero/a",
+        "Operario/a de almacén",
+        "Despachador/a",
+        "Picker"
+      ],
+      "requeridas": [
+        "hab_carga_descarga",
+        "hab_inventario",
+        "hab_registro_datos",
+        "cua_orden",
+        "cua_resistencia",
+        "con_seguridad_trabajo",
+        "comp_pedidos_a_tiempo"
+      ],
+      "requisitos_minimos": [
+        "Secundaria (frecuente)",
+        "Disponibilidad para turnos"
+      ],
+      "busqueda": "auxiliar de almacen"
+    },
+    {
+      "id": "repartidor",
+      "nombre": "Repartidor/a",
+      "nivel": "operativo",
+      "alias": [
+        "Motorizado/a",
+        "Delivery",
+        "Courier",
+        "Repartidor/a de pedidos"
+      ],
+      "requeridas": [
+        "hab_reparto_rutas",
+        "cua_puntualidad",
+        "cua_honestidad",
+        "con_manejo_dinero",
+        "hab_atencion_cliente",
+        "cua_resistencia",
+        "comp_pedidos_a_tiempo"
+      ],
+      "requisitos_minimos": [
+        "Brevete de moto (si es motorizado)",
+        "Celular con datos"
+      ],
+      "busqueda": "repartidor"
+    },
+    {
+      "id": "operario_produccion",
+      "nombre": "Operario/a de producción",
+      "nivel": "operativo",
+      "alias": [
+        "Operario/a de planta",
+        "Empacador/a",
+        "Operario/a de envasado"
+      ],
+      "requeridas": [
+        "hab_maquinas_produccion",
+        "cua_cumple_protocolos",
+        "con_seguridad_trabajo",
+        "cua_resistencia",
+        "cua_trabajo_equipo",
+        "cua_orden",
+        "comp_meta_turno"
+      ],
+      "requisitos_minimos": [
+        "Secundaria (a veces)",
+        "Disponibilidad para turnos rotativos"
+      ],
+      "busqueda": "operario de produccion"
+    },
+    {
+      "id": "teleoperador",
+      "nombre": "Asesor/a de atención al cliente",
+      "nivel": "operativo",
+      "alias": [
+        "Teleoperador/a",
+        "Agente de call center",
+        "Asesor/a telefónico/a"
+      ],
+      "requeridas": [
+        "hab_atencion_telefonica",
+        "hab_comunicacion",
+        "comp_resuelve_reclamos",
+        "cua_paciencia",
+        "hab_registro_datos",
+        "hab_ofimatica_basica",
+        "hab_identifica_necesidades"
+      ],
+      "requisitos_minimos": [
+        "Secundaria completa",
+        "Manejo básico de computadora"
+      ],
+      "busqueda": "asesor de atencion al cliente"
+    },
+    {
+      "id": "cuidador",
+      "nombre": "Cuidador/a de personas",
+      "nivel": "operativo",
+      "alias": [
+        "Cuidador/a de adulto mayor",
+        "Niñera",
+        "Asistente de cuidado"
+      ],
+      "requeridas": [
+        "hab_cuidado_personas",
+        "cua_paciencia",
+        "cua_honestidad",
+        "con_higiene_alimentos",
+        "cua_puntualidad",
+        "hab_cocina_basica",
+        "comp_clientes_vuelven"
+      ],
+      "requisitos_minimos": [
+        "Referencias de trabajos anteriores"
+      ],
+      "busqueda": "cuidador"
+    },
+    {
+      "id": "conserje",
+      "nombre": "Conserje / mantenimiento",
+      "nivel": "operativo",
+      "alias": [
+        "Conserje",
+        "Portero/a",
+        "Auxiliar de mantenimiento"
+      ],
+      "requeridas": [
+        "hab_mantenimiento_basico",
+        "con_seguridad_trabajo",
+        "cua_cumple_protocolos",
+        "cua_honestidad",
+        "cua_puntualidad",
+        "hab_registro_datos",
+        "comp_ambientes_impecables"
+      ],
+      "requisitos_minimos": [
+        "Referencias",
+        "Disponibilidad de horario"
+      ],
+      "busqueda": "conserje"
     }
   ]
 }

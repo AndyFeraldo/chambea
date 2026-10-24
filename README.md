@@ -15,7 +15,7 @@ Chambea ayuda a personas que aprendieron su oficio en la práctica a reconocer l
 | Inicio | Abejas volando, eslogan, los 4 pasos en hexágonos, región, "Empezar", "Lo hago con un asesor" y 2 ejemplos (Rosa y Marleny) |
 | 1 · Cuéntalo | Situación (3 tarjetas con ícono), ocupación (mosaico) y 4 preguntas. Cada pregunta se responde **hablando** (botón de micrófono) o escribiendo |
 | 2 · Arma tu panal | Colmena animada de 4 colores (Sabe / Sabe hacer / Cómo es / Logra). Al tocar una celda: "Lo demuestra: «…»", confirmar o quitar. Hexágono "+" para agregar |
-| 3 · Mira tus rutas | La mejor ruta como mini panal: celdas que ya tienes y celdas oscuras que **faltan**. Demanda, alias de avisos y otras rutas debajo |
+| 3 · Mira tus rutas | Carrusel de hasta 5 rutas. Cada trabajo llega con **su abeja vestida para ese oficio**, que entra volando desde la derecha; con "Siguiente" sale por la izquierda y entra la del siguiente trabajo. Mini panal con lo que tienes y lo que **falta**, demanda, alias y **enlaces a ofertas reales** (Empleos Perú y Computrabajo) |
 | 4 · Da el paso | 3 preguntas, una por pantalla, y **una** recomendación con su porqué, más 2 alternativas |
 | Mi panal | Tarjeta resumen e imagen descargable. "Empezar de nuevo" borra todo |
 
@@ -112,6 +112,26 @@ Si QVAC no responde, o responde algo que no es JSON válido, Chambea **vuelve so
 
 ---
 
+## De tareas a habilidades
+
+Chambea razona como la lámina del workshop "Descubriendo el valor de cada tarea": cada tarea que la persona cuenta revela habilidades transferibles.
+
+| Tarea | Revela |
+|---|---|
+| Limpiar oficinas | organización, atención al detalle y cumplimiento de protocolos |
+| Cobrar en caja | precisión, manejo de dinero y atención al cliente |
+| Cocinar | organización de tiempos, higiene y trabajo bajo presión |
+| Vender en tienda | comunicación, identificación de necesidades y orientación al cliente |
+
+Las 14 tareas están en `data/tareas.json`. En el panal, cada celda deducida así dice "Viene de tu tarea: …". El modo QVAC recibe la misma guía en su prompt.
+
+## Fuentes reales enlazadas
+
+- **Empleos Perú** (MTPE): https://www.empleosperu.gob.pe/
+- **Capacíta-T** (MTPE), plataforma de cursos gratuitos: https://capacitacionlaboral.trabajo.gob.pe/. Es el nombre actual de la oferta de capacitación virtual del Ministerio.
+- **Ofertas por puesto:** búsquedas en vivo en Computrabajo (`https://pe.computrabajo.com/trabajo-de-<puesto>`), armadas con el campo `busqueda` de cada ocupación. Se usan búsquedas y no avisos sueltos porque los avisos caducan en días.
+- Cursos con `"verificado": true` son temas que el MTPE anuncia en Capacíta-T (Ventas, Excel básico, Word básico, Atención al cliente, Seguridad y salud en el trabajo). Los demás dicen "Curso de ejemplo". Las duraciones son aproximadas.
+
 ## Cambiar o agregar datos (sin tocar código)
 
 Todo está en `data/`:
@@ -148,6 +168,8 @@ chambea/
 - Primer paso: con cobertura ≥ 0,85 recomienda postular en Empleos Perú (si la persona está en planilla en riesgo, primero el curso). Entre 0,5 y 0,85 recomienda un curso que cubra lo que falta y respete horas, modalidad y costo. Por debajo de 0,5 recomienda un asesor.
 
 ## Registro de cambios
+
+**24/10/2026 (más rutas y abejas vestidas):** 8 ocupaciones nuevas (13 en total) y hasta 5 rutas por persona. Tareas → habilidades (`data/tareas.json`). Enlaces reales a Empleos Perú, Capacíta-T y ofertas de Computrabajo. Carrusel de rutas con una abeja vestida por oficio. Se corrigió que "productos" sumara siempre la celda de limpieza.
 
 **24/10/2026 (rediseño):** menos información por pantalla, flujo más ilustrativo, micrófono para responder, abejas animadas con estela, colmena que brota, rutas como mini panal (tienes / falta), preguntas del primer paso una por una y hoja inferior para el detalle de cada celda. Se agregó la publicación en GitHub Pages.
 

@@ -10,7 +10,7 @@ const datos = cargarDatos();
 
 function recorrido(casoId: string, horas: '1-3' | '4-6' | '7+' = '1-3') {
   const caso = datos.casos.find((c) => c.id === casoId)!;
-  const comps = extraerPorPalabrasClave(datos.competencias, caso.respuestas);
+  const comps = extraerPorPalabrasClave(datos.competencias, caso.respuestas, datos.tareas);
   const ids = comps.map((c) => c.id);
   const rutas = calcularRutas(datos, {
     competencias_ids: ids,
@@ -59,9 +59,9 @@ test('Marleny: primera ruta reponedor/a 5 de 7, curso de almacén', () => {
   assert.equal(paso.principal.curso?.id, 'c_almacen');
 });
 
-test('Solo rutas operativas, distintas a la actual, máximo 3', () => {
+test('Solo rutas operativas, distintas a la actual, máximo 5', () => {
   const { rutas } = recorrido('rosa');
-  assert.ok(rutas.rutas.length <= 3);
+  assert.ok(rutas.rutas.length <= 5);
   assert.ok(rutas.rutas.every((r) => r.ocupacion_id !== 'cajero'));
 });
 
@@ -88,4 +88,37 @@ test('Cobertura alta y sin empleo: postular en Empleos Perú', () => {
     costo: 'gratis',
   });
   assert.equal(paso.principal.tipo, 'empleos');
+});
+
+// Lámina del workshop "Descubriendo el valor de cada tarea".
+const extraer = (texto: string) =>
+  extraerPorPalabrasClave(datos.competencias, [texto], datos.tareas).map((c) => c.id);
+
+test('Cada tarea revela habilidades transferibles (lámina del workshop)', () => {
+  const casos: [string, string[]][] = [
+    ['Limpio oficinas en San Isidro.', ['cua_orden', 'cua_cumple_protocolos', 'hab_limpieza_tecnica']],
+    ['Cobro en la caja de una farmacia.', ['cua_precision', 'con_manejo_dinero', 'hab_atencion_cliente']],
+    ['Cocino en un restaurante de menú.', ['hab_organizacion_tiempos', 'con_higiene_alimentos', 'cua_trabajo_presion']],
+    ['Vendo en una tienda de ropa.', ['hab_comunicacion', 'hab_identifica_necesidades', 'hab_atencion_cliente']],
+  ];
+  for (const [texto, esperadas] of casos) {
+    const ids = extraer(texto);
+    for (const e of esperadas) assert.ok(ids.includes(e), `${texto} debería revelar ${e}`);
+  }
+});
+
+test('La competencia deducida guarda de qué tarea viene', () => {
+  const c = extraerPorPalabrasClave(datos.competencias, ['Cobro en la caja.'], datos.tareas).find((x) => x.id === 'cua_precision');
+  assert.equal(c?.tarea, 'Cobrar en caja');
+});
+
+test('Oficios distintos llevan a rutas distintas (no siempre limpieza)', () => {
+  const primera = (texto: string, actual: string | null = null) =>
+    calcularRutas(datos, { competencias_ids: extraer(texto), region_id: 'lima-metropolitana', perfil: 'sin_empleo', ocupacion_actual: actual })
+      .rutas.map((r) => r.ocupacion_id);
+  assert.ok(primera('Cocino menú para 50 personas, todo a la hora, con mucha presión. Lavo las verduras con higiene.').includes('ayudante_cocina'));
+  assert.ok(primera('Hago delivery en moto, entrego los pedidos a tiempo y cobro en efectivo.').includes('repartidor'));
+  assert.ok(primera('Cuido a mi abuelita y a niños del barrio, les cocino y soy paciente.').includes('cuidador'));
+  const vendedor = primera('Vendo celulares, le ofrezco al cliente lo que necesita y le explico.');
+  assert.ok(!vendedor.slice(0, 2).includes('limpieza'), `vendedor no debería ir a limpieza: ${vendedor}`);
 });

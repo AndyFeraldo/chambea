@@ -2,7 +2,8 @@ import type { CSSProperties } from 'react';
 import type { Perfil } from '@shared/tipos';
 import { t } from '../i18n';
 import { useApp } from '../estado';
-import { Icono, ICONO_OCUPACION, Pantalla, type NombreIcono } from '../componentes/comunes';
+import { Icono, Pantalla, type NombreIcono } from '../componentes/comunes';
+import { AbejaVestida } from '../componentes/AbejaVestida';
 
 const PERFILES: { id: Perfil; icono: NombreIcono }[] = [
   { id: 'sin_empleo', icono: 'lupa' },
@@ -58,9 +59,7 @@ export function Ocupacion() {
             aria-pressed={estado.ocupacionActual === o.id}
             onClick={() => elegir(o.id)}
           >
-            <span className="mosaico__hex">
-              <Icono nombre={ICONO_OCUPACION[o.id] ?? 'hexagono'} tam={30} />
-            </span>
+            <AbejaVestida ocupacion={o.id} tam={78} />
             <span>{o.nombre}</span>
           </button>
         ))}

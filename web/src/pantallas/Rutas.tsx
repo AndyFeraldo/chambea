@@ -1,8 +1,10 @@
-import { useState, type CSSProperties } from 'react';
-import type { Ruta } from '@shared/tipos';
+import { useRef, useState } from 'react';
+import type { Ocupacion, Ruta } from '@shared/tipos';
+import type { Salud } from '../api';
 import { t } from '../i18n';
 import { useApp } from '../estado';
-import { Icono, ICONO_OCUPACION, NotaIlustrativa, Pantalla } from '../componentes/comunes';
+import { Icono, NotaIlustrativa, Pantalla } from '../componentes/comunes';
+import { AbejaVestida } from '../componentes/AbejaVestida';
 import { Colmena, ordenar, type CeldaVisual } from './Panal';
 
 function celdasDeRuta(r: Ruta, dimension: (id: string) => CeldaVisual['dimension']): CeldaVisual[] {
@@ -13,18 +15,58 @@ function celdasDeRuta(r: Ruta, dimension: (id: string) => CeldaVisual['dimension
   ];
 }
 
-export function Rutas() {
-  const { estado, cambiar, ir, comp } = useApp();
-  const resultado = estado.rutas;
-  const [elegida, setElegida] = useState<string | null>(estado.rutaElegida ?? resultado?.rutas[0]?.ocupacion_id ?? null);
-  if (!resultado) return null;
+function slug(texto: string): string {
+  return texto
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
+}
 
-  const ruta = resultado.rutas.find((r) => r.ocupacion_id === elegida) ?? resultado.rutas[0];
-  const otras = resultado.rutas.filter((r) => r !== ruta);
+/** Enlaces a ofertas reales y vigentes: búsquedas en vivo por puesto. */
+export function enlacesOfertas(o: Ocupacion | undefined, enlaces: Salud['enlaces']) {
+  const lista: { nombre: string; url: string }[] = [];
+  if (enlaces.empleos_peru) lista.push({ nombre: 'Empleos Perú', url: enlaces.empleos_peru });
+  if (o?.busqueda) lista.push({ nombre: 'Computrabajo', url: `https://pe.computrabajo.com/trabajo-de-${slug(o.busqueda)}` });
+  return lista;
+}
+
+type Sentido = 1 | -1;
+
+export function Rutas() {
+  const { datos, salud, estado, cambiar, ir, comp } = useApp();
+  const resultado = estado.rutas;
+  const rutas = resultado?.rutas ?? [];
+  const inicial = Math.max(0, rutas.findIndex((r) => r.ocupacion_id === estado.rutaElegida));
+  const [indice, setIndice] = useState(inicial);
+  const [sentido, setSentido] = useState<Sentido>(1);
+  const [saliente, setSaliente] = useState<{ id: string; sentido: Sentido; n: number } | null>(null);
+  const toque = useRef<number | null>(null);
+  const escena = useRef<HTMLDivElement>(null);
+  const contador = useRef(0);
+
+  if (!resultado) return null;
+  const ruta = rutas[indice];
+
+  const mover = (s: Sentido) => {
+    if (rutas.length < 2) return;
+    contador.current += 1;
+    setSaliente({ id: ruta.ocupacion_id, sentido: s, n: contador.current });
+    setSentido(s);
+    setIndice((indice + s + rutas.length) % rutas.length);
+    // Que se vea a la abeja entrar volando.
+    const arriba = (escena.current?.getBoundingClientRect().top ?? 0) + window.scrollY - 80;
+    if (window.scrollY > arriba) window.scrollTo({ top: Math.max(0, arriba), behavior: 'smooth' });
+  };
+
   const irAlPaso = (id: string | null) => {
     cambiar({ rutaElegida: id, primerPaso: null, horas: null, modalidad: null, costo: null });
     ir('paso', 0);
   };
+
+  const ocupacion = datos.ocupaciones.find((o) => o.id === ruta?.ocupacion_id);
+  const ofertas = enlacesOfertas(ocupacion, salud.enlaces);
 
   return (
     <Pantalla>
@@ -45,8 +87,53 @@ export function Rutas() {
           </button>
         </div>
       ) : (
-        <>
-          <section key={ruta.ocupacion_id} className="ruta-hero entrar">
+        <section
+          className="carrusel"
+          aria-roledescription="carrusel"
+          onPointerDown={(e) => (toque.current = e.clientX)}
+          onPointerUp={(e) => {
+            if (toque.current === null) return;
+            const dx = e.clientX - toque.current;
+            toque.current = null;
+            if (Math.abs(dx) > 50) mover(dx < 0 ? 1 : -1);
+          }}
+        >
+          <div className="escenario" aria-hidden="true" ref={escena}>
+            {saliente && (
+              <div
+                key={`sale-${saliente.n}`}
+                className={`abeja-escena ${saliente.sentido === 1 ? 'sale-izquierda' : 'sale-derecha'}`}
+                onAnimationEnd={() => setSaliente(null)}
+              >
+                <AbejaVestida ocupacion={saliente.id} tam={180} className={saliente.sentido === -1 ? 'mirar-derecha' : ''} />
+              </div>
+            )}
+            <div key={`entra-${ruta.ocupacion_id}-${contador.current}`} className={`abeja-escena ${sentido === 1 ? 'entra-derecha' : 'entra-izquierda'}`}>
+              <div className="abeja-escena__flota">
+                <AbejaVestida ocupacion={ruta.ocupacion_id} tam={180} className="abeja--estela" />
+                <AbejaVestida ocupacion={ruta.ocupacion_id} tam={180} />
+              </div>
+            </div>
+            <span className="escenario__sombra" />
+          </div>
+
+          {rutas.length > 1 && (
+            <div className="carrusel__control">
+              <button type="button" className="carrusel__flecha" onClick={() => mover(-1)} aria-label={t('rutas.anterior')}>
+                <Icono nombre="atras" />
+              </button>
+              <div className="carrusel__puntos" aria-label={t('rutas.cuenta', { n: indice + 1, total: rutas.length })}>
+                {rutas.map((r, i) => (
+                  <span key={r.ocupacion_id} className={`puntos__hex ${i === indice ? 'actual' : ''}`} />
+                ))}
+              </div>
+              <button type="button" className="carrusel__flecha carrusel__flecha--siguiente" onClick={() => mover(1)} aria-label={t('rutas.siguiente')}>
+                {t('rutas.siguiente')} <Icono nombre="adelante" />
+              </button>
+            </div>
+          )}
+
+          <div key={`tarjeta-${ruta.ocupacion_id}`} className={`ruta-hero ${sentido === 1 ? 'desliza-derecha' : 'desliza-izquierda'}`}>
             <p className="ruta-hero__lema">
               {t('rutas.celdasPara', { x: ruta.tiene.length, y: ruta.tiene.length + ruta.faltan.length })}
             </p>
@@ -65,40 +152,24 @@ export function Rutas() {
                 </p>
               )}
             </div>
+            {ofertas.length > 0 && (
+              <div className="ofertas">
+                <span className="ofertas__titulo">{t('rutas.verOfertas')}</span>
+                <div className="ofertas__enlaces">
+                  {ofertas.map((o) => (
+                    <a key={o.nombre} href={o.url} target="_blank" rel="noopener noreferrer" className="ofertas__enlace">
+                      {o.nombre} <Icono nombre="adelante" tam={16} />
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
             <button type="button" className="boton boton--miel boton--grande" onClick={() => irAlPaso(ruta.ocupacion_id)}>
               {t('rutas.elegir')} <Icono nombre="adelante" />
             </button>
-          </section>
+          </div>
 
-          {otras.length > 0 && (
-            <div className="pila">
-              <h3>{t('rutas.otras')}</h3>
-              {otras.map((r, i) => {
-                const total = r.tiene.length + r.faltan.length;
-                return (
-                  <button
-                    key={r.ocupacion_id}
-                    type="button"
-                    className="ruta-fila aparecer"
-                    style={{ '--i': i + 2 } as CSSProperties}
-                    onClick={() => setElegida(r.ocupacion_id)}
-                  >
-                    <span className="ruta-fila__icono">
-                      <Icono nombre={ICONO_OCUPACION[r.ocupacion_id] ?? 'hexagono'} />
-                    </span>
-                    <span className="ruta-fila__texto">
-                      <span className="ruta-fila__nombre">{r.nombre}</span>
-                      <span className="barra" aria-hidden="true">
-                        <span className="barra__lleno" style={{ width: `${(r.tiene.length / total) * 100}%` }} />
-                      </span>
-                    </span>
-                    <span className="ruta-fila__cuenta">{t('rutas.tienes', { x: r.tiene.length, y: total })}</span>
-                  </button>
-                );
-              })}
-            </div>
-          )}
-        </>
+        </section>
       )}
       <NotaIlustrativa />
     </Pantalla>

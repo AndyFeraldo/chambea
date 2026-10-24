@@ -10,7 +10,15 @@
         "vendedor_tienda": "alta",
         "reponedor": "alta",
         "auxiliar_administrativo": "media",
-        "limpieza": "media"
+        "limpieza": "media",
+        "ayudante_cocina": "alta",
+        "mozo": "alta",
+        "almacenero": "alta",
+        "repartidor": "alta",
+        "operario_produccion": "media",
+        "teleoperador": "alta",
+        "cuidador": "media",
+        "conserje": "media"
       }
     },
     {
@@ -21,7 +29,15 @@
         "vendedor_tienda": "media",
         "reponedor": "alta",
         "auxiliar_administrativo": "media",
-        "limpieza": "alta"
+        "limpieza": "alta",
+        "ayudante_cocina": "alta",
+        "mozo": "alta",
+        "almacenero": "media",
+        "repartidor": "media",
+        "operario_produccion": "alta",
+        "teleoperador": "baja",
+        "cuidador": "media",
+        "conserje": "media"
       }
     },
     {
@@ -32,7 +48,15 @@
         "vendedor_tienda": "alta",
         "reponedor": "media",
         "auxiliar_administrativo": "baja",
-        "limpieza": "media"
+        "limpieza": "media",
+        "ayudante_cocina": "media",
+        "mozo": "media",
+        "almacenero": "media",
+        "repartidor": "alta",
+        "operario_produccion": "alta",
+        "teleoperador": "media",
+        "cuidador": "baja",
+        "conserje": "media"
       }
     }
   ]

@@ -17,6 +17,7 @@ import ocupaciones from '@data/ocupaciones.json';
 import regiones from '@data/regiones.json';
 import capacitaciones from '@data/capacitaciones.json';
 import casos from '@data/casos-demo.json';
+import tareas from '@data/tareas.json';
 
 export interface Salud {
   modo: 'servidor' | 'navegador';
@@ -29,13 +30,15 @@ const datosLocales = {
   ocupaciones: ocupaciones.ocupaciones,
   regiones: regiones.regiones,
   capacitaciones: capacitaciones.capacitaciones,
+  tareas: tareas.tareas,
   casos: casos.casos,
   ilustrativo: true,
 } as unknown as Datos;
 
+// Portales oficiales del MTPE (se pueden cambiar con variables VITE_*).
 const enlacesLocales = {
-  empleos_peru: import.meta.env.VITE_EMPLEOS_PERU_URL || null,
-  capacitate_peru: import.meta.env.VITE_CAPACITATE_PERU_URL || null,
+  empleos_peru: import.meta.env.VITE_EMPLEOS_PERU_URL || 'https://www.empleosperu.gob.pe/',
+  capacitate_peru: import.meta.env.VITE_CAPACITATE_PERU_URL || 'https://capacitacionlaboral.trabajo.gob.pe/',
 };
 
 let modo: Salud['modo'] = 'navegador';
@@ -89,7 +92,7 @@ export async function extraer(datos: Datos, respuestas: string[]): Promise<Compe
       // Si el servidor falla, el motor local responde igual.
     }
   }
-  return extraerPorPalabrasClave(datos.competencias, respuestas);
+  return extraerPorPalabrasClave(datos.competencias, respuestas, datos.tareas);
 }
 
 export async function rutas(
