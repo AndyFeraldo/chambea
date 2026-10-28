@@ -28,6 +28,14 @@
       "menciones": [
         "cajero",
         "cajera"
+      ],
+      "sector": "Comercio",
+      "descripcion": "Cobra, da vuelto y cuadra la caja en tiendas y supermercados.",
+      "areas": [
+        "atender"
+      ],
+      "exige": [
+        "de_pie"
       ]
     },
     {
@@ -59,6 +67,15 @@
         "vendedora",
         "asesor de ventas",
         "asesora de ventas"
+      ],
+      "sector": "Comercio",
+      "descripcion": "Atiende, aconseja y vende a los clientes en tienda.",
+      "areas": [
+        "atender",
+        "vender"
+      ],
+      "exige": [
+        "de_pie"
       ]
     },
     {
@@ -90,6 +107,16 @@
         "mercaderista",
         "abastecedor",
         "abastecedora"
+      ],
+      "sector": "Comercio y logística",
+      "descripcion": "Mantiene los estantes llenos, ordenados y con los productos al día.",
+      "areas": [
+        "ordenar",
+        "manos"
+      ],
+      "exige": [
+        "carga",
+        "de_pie"
       ]
     },
     {
@@ -122,6 +149,15 @@
         "asistente administrativa",
         "secretaria",
         "recepcionista"
+      ],
+      "sector": "Administración",
+      "descripcion": "Ordena documentos, registra datos y apoya a la oficina.",
+      "areas": [
+        "ordenar",
+        "oficina"
+      ],
+      "exige": [
+        "computadora"
       ]
     },
     {
@@ -152,6 +188,14 @@
         "trabajadora del hogar",
         "operaria de limpieza",
         "operario de limpieza"
+      ],
+      "sector": "Servicios generales",
+      "descripcion": "Limpia y desinfecta ambientes siguiendo protocolos.",
+      "areas": [
+        "manos"
+      ],
+      "exige": [
+        "de_pie"
       ]
     },
     {
@@ -182,6 +226,16 @@
         "auxiliar de cocina",
         "cocinera",
         "cocinero"
+      ],
+      "sector": "Gastronomía",
+      "descripcion": "Prepara insumos, apoya en la cocina y cuida la higiene.",
+      "areas": [
+        "cocinar",
+        "manos"
+      ],
+      "exige": [
+        "de_pie",
+        "noche"
       ]
     },
     {
@@ -211,6 +265,16 @@
         "moza",
         "mesero",
         "mesera"
+      ],
+      "sector": "Gastronomía",
+      "descripcion": "Atiende mesas, toma pedidos y cobra a los comensales.",
+      "areas": [
+        "atender",
+        "cocinar"
+      ],
+      "exige": [
+        "de_pie",
+        "noche"
       ]
     },
     {
@@ -242,6 +306,16 @@
         "almacenera",
         "almacén",
         "almacen"
+      ],
+      "sector": "Logística",
+      "descripcion": "Recibe, ordena y despacha mercadería con control de inventario.",
+      "areas": [
+        "ordenar",
+        "manos"
+      ],
+      "exige": [
+        "carga",
+        "de_pie"
       ]
     },
     {
@@ -273,6 +347,15 @@
         "repartidora",
         "motorizado",
         "motorizada"
+      ],
+      "sector": "Reparto",
+      "descripcion": "Entrega pedidos a tiempo por la ciudad y cobra al cliente.",
+      "areas": [
+        "moverme",
+        "atender"
+      ],
+      "exige": [
+        "carga"
       ]
     },
     {
@@ -305,6 +388,15 @@
         "operaria de planta",
         "fábrica",
         "fabrica"
+      ],
+      "sector": "Industria",
+      "descripcion": "Opera máquinas y líneas de producción con normas de seguridad.",
+      "areas": [
+        "manos"
+      ],
+      "exige": [
+        "de_pie",
+        "noche"
       ]
     },
     {
@@ -334,6 +426,16 @@
         "call center",
         "teleoperador",
         "teleoperadora"
+      ],
+      "sector": "Atención al cliente",
+      "descripcion": "Atiende llamadas y chats, resuelve dudas y reclamos.",
+      "areas": [
+        "atender",
+        "vender",
+        "oficina"
+      ],
+      "exige": [
+        "computadora"
       ]
     },
     {
@@ -362,7 +464,13 @@
         "cuidadora",
         "cuidador",
         "niñera"
-      ]
+      ],
+      "sector": "Cuidado de personas",
+      "descripcion": "Acompaña y cuida a niños o adultos mayores en casa.",
+      "areas": [
+        "cuidar"
+      ],
+      "exige": []
     },
     {
       "id": "conserje",
@@ -391,6 +499,15 @@
         "conserje",
         "portero",
         "portera"
+      ],
+      "sector": "Servicios generales",
+      "descripcion": "Cuida el edificio, registra visitas y hace mantenimiento básico.",
+      "areas": [
+        "manos",
+        "ordenar"
+      ],
+      "exige": [
+        "noche"
       ]
     }
   ]

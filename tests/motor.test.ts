@@ -4,7 +4,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { cargarDatos } from '../server/src/datos';
 import { completarConOficios, extraerPorPalabrasClave } from '../shared/src/extraccion';
-import { calcularPrimerPaso, calcularRutas } from '../shared/src/motor';
+import { calcularPrimerPaso, calcularRutas, preguntasPuente } from '../shared/src/motor';
 
 const datos = cargarDatos();
 
@@ -150,4 +150,25 @@ test('"Cuento las cajas" (de mercadería) no es cobrar en caja', () => {
   const ids = extraer('Recibo la mercadería y cuento las cajas.');
   assert.ok(!ids.includes('hab_cobro_caja') && !ids.includes('con_manejo_dinero'));
   assert.ok(extraer('Trabajo en la caja del mercado.').includes('hab_cobro_caja'));
+});
+
+test('Intereses suben una ruta; lo que prefiere evitar la baja y se avisa', () => {
+  const ids = extraer('Atiendo a clientes, cobro con Yape y efectivo, y cargo cajas de mercadería del camión. Ordeno el almacén.');
+  const base = { competencias_ids: ids, region_id: 'lima-metropolitana', perfil: 'informal' as const };
+  const sin = calcularRutas(datos, base).rutas.map((r) => r.ocupacion_id);
+  const conInteres = calcularRutas(datos, { ...base, intereses: ['moverme'] }).rutas;
+  const rep = conInteres.find((r) => r.ocupacion_id === 'repartidor');
+  assert.ok(rep?.interes, 'repartidor debería marcarse como interés');
+  assert.ok(conInteres.findIndex((r) => r.ocupacion_id === 'repartidor') <= sin.indexOf('repartidor'));
+  const evitando = calcularRutas(datos, { ...base, evitar: ['carga'] }).rutas;
+  const alm = evitando.find((r) => r.ocupacion_id === 'almacenero');
+  if (alm) assert.deepEqual(alm.conflictos, ['carga']);
+});
+
+test('Preguntas puente: pregunta lo que más acerca a las mejores rutas', () => {
+  const { ids, rutas } = recorrido('rosa');
+  const puente = preguntasPuente(datos, ids, rutas.rutas);
+  assert.ok(puente.length > 0 && puente.length <= 5);
+  assert.ok(puente.includes('hab_tecnicas_venta'), `debería preguntar técnicas de venta: ${puente}`);
+  assert.ok(puente.every((id) => !ids.includes(id)));
 });

@@ -29,6 +29,36 @@ export interface Ocupacion {
   busqueda?: string;
   /** Cómo lo dice la persona: "soy almacenero", "trabajé de mesera". */
   menciones?: string[];
+  /** Sector y qué hace, para la ficha de la profesión. */
+  sector?: string;
+  descripcion?: string;
+  /** Áreas de interés que coinciden con este trabajo (ver data/entrevista.json). */
+  areas?: string[];
+  /** Condiciones que suele pedir: cargar peso, de pie, noche, computadora. */
+  exige?: string[];
+}
+
+export interface PreguntaEntrevista {
+  id?: string;
+  apunta?: string;
+  texto: string;
+  ejemplo: string;
+  pista?: string;
+}
+
+export interface OpcionEntrevista {
+  id: string;
+  texto: string;
+  icono: string;
+}
+
+/** Guía de entrevista: preguntas generales, por oficio, intereses y límites. */
+export interface Entrevista {
+  preguntas: PreguntaEntrevista[];
+  general: PreguntaEntrevista;
+  por_oficio: Record<string, PreguntaEntrevista>;
+  intereses: OpcionEntrevista[];
+  evitar: OpcionEntrevista[];
 }
 
 /** Una tarea del día a día y las habilidades transferibles que revela. */
@@ -67,6 +97,8 @@ export interface CasoDemo {
   perfil: Perfil;
   ocupacion_actual: string;
   respuestas: string[];
+  intereses?: string[];
+  evitar?: string[];
 }
 
 export interface Datos {
@@ -75,6 +107,7 @@ export interface Datos {
   regiones: Region[];
   capacitaciones: Capacitacion[];
   tareas: Tarea[];
+  entrevista: Entrevista;
   casos: CasoDemo[];
   ilustrativo: boolean;
 }
@@ -99,6 +132,10 @@ export interface Ruta {
   tiene: string[];
   faltan: string[];
   demanda: NivelDemanda | null;
+  /** Coincide con lo que a la persona le interesa hacer. */
+  interes?: boolean;
+  /** Condiciones que la persona prefiere evitar y este trabajo suele pedir. */
+  conflictos?: string[];
 }
 
 export interface ResultadoRutas {

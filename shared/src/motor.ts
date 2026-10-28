@@ -29,6 +29,9 @@ export const MAX_RUTAS = 5;
 export const UMBRAL_POSTULAR = 0.85;
 export const UMBRAL_CURSO = 0.5;
 export const UMBRAL_SIN_EMPLEO = 0.8;
+/** Ajustes de orden (no cambian la cobertura que ve la persona). */
+export const BONO_INTERES = 0.1;
+export const CASTIGO_EVITAR = 0.2;
 
 function indice(datos: Datos): Map<string, Competencia> {
   return new Map(datos.competencias.map((c) => [c.id, c]));
@@ -54,9 +57,15 @@ export function calcularRutas(
     region_id: string;
     perfil: Perfil;
     ocupacion_actual?: string | null;
+    /** Áreas que le interesan (data/entrevista.json → intereses). */
+    intereses?: string[];
+    /** Condiciones que prefiere evitar (data/entrevista.json → evitar). */
+    evitar?: string[];
   },
 ): ResultadoRutas {
   const tiene = new Set(entrada.competencias_ids);
+  const intereses = new Set(entrada.intereses ?? []);
+  const evitar = new Set(entrada.evitar ?? []);
   const region = datos.regiones.find((r) => r.id === entrada.region_id) ?? null;
   const actual = entrada.ocupacion_actual ?? null;
 
@@ -72,17 +81,22 @@ export function calcularRutas(
       tiene: o.requeridas.filter((id) => tiene.has(id)),
       faltan: o.requeridas.filter((id) => !tiene.has(id)),
       demanda: region?.demanda[o.id] ?? null,
+      interes: (o.areas ?? []).some((a) => intereses.has(a)),
+      conflictos: (o.exige ?? []).filter((e) => evitar.has(e)),
     }))
     .filter((r) => r.tiene.length > 0);
 
   const dem = (r: Ruta) => (r.demanda ? ORDEN_DEMANDA[r.demanda] : 0);
+  // Puntaje para ordenar: cobertura + interés − lo que prefiere evitar.
+  const puntaje = (r: Ruta) =>
+    r.cobertura + (r.interes ? BONO_INTERES : 0) - ((r.conflictos?.length ?? 0) > 0 ? CASTIGO_EVITAR : 0);
   rutas.sort((a, b) => {
     if (entrada.perfil === 'sin_empleo') {
       // Sin empleo: primero lo que ya puede ejercer.
       const ya = Number(b.cobertura >= UMBRAL_SIN_EMPLEO) - Number(a.cobertura >= UMBRAL_SIN_EMPLEO);
       if (ya !== 0) return ya;
     }
-    return b.cobertura - a.cobertura || dem(b) - dem(a);
+    return puntaje(b) - puntaje(a) || dem(b) - dem(a);
   });
 
   let aviso_demanda: ResultadoRutas['aviso_demanda'] = null;
@@ -233,4 +247,31 @@ export function calcularPrimerPaso(
   );
 
   return { principal, porque, alternativas: alternativas.slice(0, 2) };
+}
+
+// ---------- Preguntas puente ----------
+
+/**
+ * Habilidades que conviene preguntar porque acercan a la persona a sus mejores rutas:
+ * las que más faltan en las rutas con más cobertura, pesadas por su importancia.
+ */
+export function preguntasPuente(
+  datos: Datos,
+  competencias_ids: string[],
+  rutas: Ruta[],
+  max = 5,
+): string[] {
+  const cat = indice(datos);
+  const tiene = new Set(competencias_ids);
+  const puntos = new Map<string, number>();
+  for (const r of rutas.slice(0, 3)) {
+    for (const id of r.faltan) {
+      if (tiene.has(id)) continue;
+      puntos.set(id, (puntos.get(id) ?? 0) + peso(cat, id) * (1 + r.cobertura));
+    }
+  }
+  return [...puntos.entries()]
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, max)
+    .map(([id]) => id);
 }

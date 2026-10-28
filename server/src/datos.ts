@@ -16,6 +16,7 @@ export function cargarDatos(): Datos {
   const regiones = leer<{ ilustrativo?: boolean; regiones: Datos['regiones'] }>('regiones.json');
   const capacitaciones = leer<{ ilustrativo?: boolean; capacitaciones: Datos['capacitaciones'] }>('capacitaciones.json');
   const tareas = leer<{ tareas: Datos['tareas'] }>('tareas.json', { tareas: [] });
+  const entrevista = leer<Datos['entrevista']>('entrevista.json');
   const casos = leer<{ casos: Datos['casos'] }>('casos-demo.json');
   return {
     competencias: competencias.competencias,
@@ -23,6 +24,7 @@ export function cargarDatos(): Datos {
     regiones: regiones.regiones,
     capacitaciones: capacitaciones.capacitaciones,
     tareas: tareas.tareas,
+    entrevista,
     casos: casos.casos,
     ilustrativo: [competencias, ocupaciones, regiones, capacitaciones].some((d) => d.ilustrativo !== false),
   };

@@ -19,11 +19,14 @@ export type Pantalla =
   | 'situacion'
   | 'ocupacion'
   | 'pregunta'
+  | 'intereses'
   | 'armando'
+  | 'puente'
   | 'panal'
   | 'rutas'
   | 'paso'
-  | 'resumen';
+  | 'resumen'
+  | 'compartido';
 
 export interface Celda {
   id: string;
@@ -31,6 +34,8 @@ export interface Celda {
   evidencia: string | null;
   tarea?: string | null;
   oficio?: string | null;
+  /** Lo confirmó en las preguntas puente. */
+  puente?: boolean;
   confirmada: boolean;
 }
 
@@ -55,6 +60,25 @@ export interface Estado {
   modalidad: Modalidad | null;
   costo: Costo | null;
   primerPaso: ResultadoPrimerPaso | null;
+  /** Áreas que le interesan y condiciones que prefiere evitar. */
+  intereses: string[];
+  evitar: string[];
+  /** Habilidades para las preguntas puente. */
+  puente: string[];
+  /** La persona aceptó guardar su progreso en este celular. */
+  guardar: boolean;
+  /** Pasos del plan que ya marcó como hechos. */
+  plan: Record<string, boolean>;
+  /** Panal que alguien compartió por enlace (solo lectura). */
+  compartido: PanalCompartido | null;
+}
+
+export interface PanalCompartido {
+  region: string;
+  celdas: { id: string; dimension: Dimension }[];
+  frases: string[];
+  ruta: string | null;
+  paso: { titulo: string; detalle: string } | null;
 }
 
 export const NUM_PREGUNTAS = 4;
@@ -76,7 +100,70 @@ export function estadoInicial(regionId: string): Estado {
     modalidad: null,
     costo: null,
     primerPaso: null,
+    intereses: [],
+    evitar: [],
+    puente: [],
+    guardar: false,
+    plan: {},
+    compartido: null,
   };
+}
+
+// ---------- Guardar en este celular (solo si la persona acepta) ----------
+
+const CLAVE = 'chambea:progreso:v1';
+
+export function leerProgreso(): Estado | null {
+  try {
+    const crudo = localStorage.getItem(CLAVE);
+    if (!crudo) return null;
+    const e = JSON.parse(crudo) as Estado;
+    return e && e.guardar ? e : null;
+  } catch {
+    return null;
+  }
+}
+
+export function escribirProgreso(e: Estado): void {
+  try {
+    if (e.guardar && !e.compartido) localStorage.setItem(CLAVE, JSON.stringify(e));
+    else localStorage.removeItem(CLAVE);
+  } catch {
+    // Sin almacenamiento (modo privado): la app sigue igual, solo no guarda.
+  }
+}
+
+// ---------- Compartir el panal por enlace (los datos viajan en el enlace, no en un servidor) ----------
+
+function aBase64Url(texto: string): string {
+  const bytes = new TextEncoder().encode(texto);
+  let bin = '';
+  bytes.forEach((b) => (bin += String.fromCharCode(b)));
+  return btoa(bin).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+}
+
+function deBase64Url(b64: string): string {
+  const bin = atob(b64.replace(/-/g, '+').replace(/_/g, '/'));
+  return new TextDecoder().decode(Uint8Array.from(bin, (c) => c.charCodeAt(0)));
+}
+
+export function urlPublica(): string {
+  return import.meta.env.VITE_URL_PUBLICA || location.origin + location.pathname;
+}
+
+export function enlaceCompartir(p: PanalCompartido): string {
+  return `${urlPublica()}#panal=${aBase64Url(JSON.stringify(p))}`;
+}
+
+export function leerCompartido(hash: string): PanalCompartido | null {
+  const m = hash.match(/^#panal=([A-Za-z0-9_-]+)$/);
+  if (!m) return null;
+  try {
+    const p = JSON.parse(deBase64Url(m[1])) as PanalCompartido;
+    return Array.isArray(p.celdas) ? p : null;
+  } catch {
+    return null;
+  }
 }
 
 /** Paso del flyer (1 a 4) al que pertenece cada pantalla; 5 = resumen. */
@@ -85,7 +172,9 @@ export function pasoDe(p: Pantalla): number {
     case 'situacion':
     case 'ocupacion':
     case 'pregunta':
+    case 'intereses':
     case 'armando':
+    case 'puente':
       return 1;
     case 'panal':
       return 2;

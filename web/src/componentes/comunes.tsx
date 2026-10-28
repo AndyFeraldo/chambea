@@ -1,4 +1,4 @@
-import { useEffect, type CSSProperties, type ReactNode } from 'react';
+import { useEffect, useState, type CSSProperties, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { t } from '../i18n';
 import { pasoDe, useApp } from '../estado';
@@ -183,6 +183,44 @@ const iconos = {
       <path d="M12 9v12M3 13h18M12 9c-2-4-6-4-6-1.5S10 9 12 9zm0 0c2-4 6-4 6-1.5S14 9 12 9z" />
     </>
   ),
+  casa: <path d="M3 11l9-7 9 7M5 9.5V20h5v-6h4v6h5V9.5" />,
+  menu: <path d="M4 7h16M4 12h16M4 17h16" />,
+  compartir: (
+    <>
+      <circle cx="18" cy="5" r="2.5" />
+      <circle cx="6" cy="12" r="2.5" />
+      <circle cx="18" cy="19" r="2.5" />
+      <path d="M8.2 10.8l7.6-4.4M8.2 13.2l7.6 4.4" />
+    </>
+  ),
+  qr: (
+    <>
+      <rect x="3" y="3" width="7" height="7" />
+      <rect x="14" y="3" width="7" height="7" />
+      <rect x="3" y="14" width="7" height="7" />
+      <path d="M14 14h3v3h-3zM20 14v.01M14 20h.01M17 20h4M20 17v.01" />
+    </>
+  ),
+  altavoz: <path d="M4 9v6h4l5 4V5L8 9H4zm12-1a5 5 0 010 8m2.5-10.5a8.5 8.5 0 010 13" />,
+  luna: <path d="M20 14.5A8 8 0 019.5 4a8 8 0 1010.5 10.5z" />,
+  moto: (
+    <>
+      <circle cx="5.5" cy="17" r="3" />
+      <circle cx="18.5" cy="17" r="3" />
+      <path d="M8.5 17h6l3-6h-4l-2-3H9M14 8h3" />
+    </>
+  ),
+  olla: <path d="M4 10h16v7a3 3 0 01-3 3H7a3 3 0 01-3-3v-7zm-2 0h20M9 6c0-1 1-2 3-2s3 1 3 2" />,
+  corazon: <path d="M12 20s-7-4.4-7-10a4 4 0 017-2.6A4 4 0 0119 10c0 5.6-7 10-7 10z" />,
+  llave: <path d="M14.7 6.3a4 4 0 00-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 005.4-5.4l-2.5 2.5-2.5-.5-.5-2.5 2.5-2.5z" />,
+  copiar: (
+    <>
+      <rect x="8" y="8" width="12" height="12" rx="2" />
+      <path d="M16 8V5a1 1 0 00-1-1H5a1 1 0 00-1 1v10a1 1 0 001 1h3" />
+    </>
+  ),
+  guardar: <path d="M5 3h11l3 3v15H5V3zm3 0v5h7V3M8 21v-7h8v7" />,
+  basura: <path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13" />,
 };
 
 export type NombreIcono = keyof typeof iconos;
@@ -217,17 +255,25 @@ export const ICONO_OCUPACION: Record<string, NombreIcono> = {
 
 /** Encabezado con "Atrás", logo y progreso de 4 hexágonos. */
 export function Encabezado() {
-  const { estado, atras } = useApp();
+  const { estado, atras, ir } = useApp();
+  const [menu, setMenu] = useState(false);
   const paso = pasoDe(estado.lugar.pantalla);
   return (
     <header className="encabezado">
       <div className="contenedor">
         <div className="encabezado__fila">
           <button type="button" className="encabezado__atras" onClick={atras}>
-            <Icono nombre="atras" /> {t('comun.atras')}
+            <Icono nombre="atras" /> <span className="encabezado__texto">{t('comun.atras')}</span>
           </button>
-          <Logo tam={18} />
-          <span className="encabezado__paso">{paso <= 4 ? t('comun.paso', { n: paso }) : t('comun.listo')}</span>
+          <button type="button" className="encabezado__logo" onClick={() => ir('inicio')} aria-label={t('menu.inicio')}>
+            <Logo tam={18} />
+          </button>
+          <div className="encabezado__derecha">
+            <span className="encabezado__paso">{paso <= 4 ? t('comun.paso', { n: paso }) : t('comun.listo')}</span>
+            <button type="button" className="encabezado__menu" onClick={() => setMenu(true)} aria-label={t('menu.abrir')}>
+              <Icono nombre="menu" />
+            </button>
+          </div>
         </div>
         <div className="progreso" role="progressbar" aria-valuemin={1} aria-valuemax={4} aria-valuenow={Math.min(paso, 4)}>
           {[1, 2, 3, 4].map((n) => (
@@ -237,7 +283,97 @@ export function Encabezado() {
           ))}
         </div>
       </div>
+      <Menu abierto={menu} alCerrar={() => setMenu(false)} />
     </header>
+  );
+}
+
+/** Menú: inicio, guardar en este celular, ver mi panal, registrarse en Empleos Perú, borrar todo. */
+export function Menu({ abierto, alCerrar }: { abierto: boolean; alCerrar: () => void }) {
+  const { estado, salud, cambiar, ir, reiniciar } = useApp();
+  const [borrando, setBorrando] = useState(false);
+  const cerrar = () => {
+    setBorrando(false);
+    alCerrar();
+  };
+  const accion = (f: () => void) => () => {
+    f();
+    cerrar();
+  };
+  return (
+    <Hoja abierta={abierto} alCerrar={cerrar} titulo={t('menu.titulo')}>
+      <h2>{t('menu.titulo')}</h2>
+      <nav className="menu">
+        <button type="button" className="menu__item" onClick={accion(() => ir('inicio'))}>
+          <Icono nombre="casa" /> {t('menu.inicio')}
+        </button>
+        {estado.celdas.length > 0 && (
+          <button type="button" className="menu__item" onClick={accion(() => ir('panal'))}>
+            <Icono nombre="hexagono" /> {t('menu.miPanal')}
+          </button>
+        )}
+        {estado.primerPaso && (
+          <button type="button" className="menu__item" onClick={accion(() => ir('resumen'))}>
+            <Icono nombre="check" /> {t('menu.resumen')}
+          </button>
+        )}
+        <label className="menu__item menu__interruptor">
+          <Icono nombre="guardar" />
+          <span className="menu__textos">
+            <b>{t('menu.guardar')}</b>
+            <small>{t('menu.guardarAyuda')}</small>
+          </span>
+          <input type="checkbox" checked={estado.guardar} onChange={(e) => cambiar({ guardar: e.target.checked })} />
+        </label>
+        {salud.enlaces.empleos_peru && (
+          <a className="menu__item" href={salud.enlaces.empleos_peru} target="_blank" rel="noopener noreferrer">
+            <Icono nombre="persona" />
+            <span className="menu__textos">
+              <b>{t('menu.registrarse')}</b>
+              <small>{t('menu.registrarseAyuda')}</small>
+            </span>
+          </a>
+        )}
+        {borrando ? (
+          <div className="confirmar">
+            <p>{t('resumen.reiniciarSeguro')}</p>
+            <div className="fila-botones">
+              <button type="button" className="boton boton--secundario" onClick={() => setBorrando(false)}>
+                {t('resumen.reiniciarNo')}
+              </button>
+              <button type="button" className="boton boton--primario" onClick={accion(reiniciar)}>
+                {t('resumen.reiniciarSi')}
+              </button>
+            </div>
+          </div>
+        ) : (
+          <button type="button" className="menu__item menu__item--peligro" onClick={() => setBorrando(true)}>
+            <Icono nombre="basura" /> {t('menu.borrar')}
+          </button>
+        )}
+      </nav>
+    </Hoja>
+  );
+}
+
+/** Lee el texto en voz alta con la voz del propio teléfono (para quien prefiere escuchar). */
+export function BotonEscuchar({ texto }: { texto: string }) {
+  if (typeof window === 'undefined' || !('speechSynthesis' in window)) return null;
+  const hablar = () => {
+    try {
+      window.speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(texto);
+      u.lang = 'es-PE';
+      u.rate = 0.95;
+      window.speechSynthesis.speak(u);
+    } catch {
+      // Sin voz disponible: no pasa nada.
+    }
+  };
+  return (
+    <button type="button" className="escuchar" onClick={hablar} aria-label={t('preguntas.escuchar')}>
+      <Icono nombre="altavoz" tam={20} />
+    </button>
   );
 }
 

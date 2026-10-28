@@ -6,10 +6,13 @@ import { Enjambre, Icono, Logo, type NombreIcono } from '../componentes/comunes'
 const ICONO_PASO: NombreIcono[] = ['micro', 'hexagono', 'adelante', 'check'];
 
 export function Inicio() {
-  const { datos, salud, estado, cambiar, ir } = useApp();
+  const { datos, salud, estado, cambiar, ir, atras } = useApp();
+  const hayProgreso =
+    estado.historial.length > 0 && (estado.celdas.length > 0 || estado.respuestas.some(Boolean) || estado.perfil !== null);
 
   const empezar = (asesor: boolean) => {
-    cambiar({ asesor });
+    // Empezar de cero (si había un recorrido, se reemplaza; se respeta si quiere guardar).
+    cambiar({ ...estadoInicial(estado.regionId), guardar: estado.guardar, asesor, lugar: estado.lugar });
     ir('situacion');
   };
 
@@ -24,6 +27,8 @@ export function Inicio() {
       perfil: caso.perfil,
       ocupacionActual: caso.ocupacion_actual,
       respuestas,
+      intereses: caso.intereses ?? [],
+      evitar: caso.evitar ?? [],
     });
     ir('situacion');
   };
@@ -66,8 +71,13 @@ export function Inicio() {
           </select>
         </label>
 
+        {hayProgreso && (
+          <button type="button" className="boton boton--primario boton--grande" onClick={atras}>
+            <Icono nombre="guardar" /> {t('inicio.continuar')}
+          </button>
+        )}
         <button type="button" className="boton boton--miel boton--grande" onClick={() => empezar(false)}>
-          {t('inicio.empezar')} <Icono nombre="adelante" />
+          {hayProgreso ? t('inicio.empezarNuevo') : t('inicio.empezar')} <Icono nombre="adelante" />
         </button>
         <button type="button" className="boton boton--fantasma" onClick={() => empezar(true)}>
           <Icono nombre="persona" tam={20} /> {t('inicio.conAsesor')}
@@ -83,6 +93,22 @@ export function Inicio() {
             ))}
           </div>
         )}
+
+        <section className="para-quien" aria-labelledby="para-quien">
+          <h2 id="para-quien">{t('inicio.paraQuien')}</h2>
+          <p className="ayuda">{t('inicio.paraQuienTexto')}</p>
+          <div className="para-quien__perfiles">
+            {(['sin_empleo', 'informal', 'planilla_riesgo'] as const).map((p, i) => (
+              <span key={p} className="para-quien__perfil">
+                <span className="num-hex">{i + 1}</span>
+                {t(`inicio.perfiles.${p}`)}
+              </span>
+            ))}
+          </div>
+          <p className="para-quien__oficios">
+            <b>{t('inicio.empezamosCon')}</b> {t('inicio.oficiosPriorizados')}
+          </p>
+        </section>
 
         <p className="pie-privacidad">
           <Icono nombre="candado" tam={16} /> {t('inicio.privacidad')}

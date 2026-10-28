@@ -59,8 +59,11 @@ export function Ocupacion() {
             aria-pressed={estado.ocupacionActual === o.id}
             onClick={() => elegir(o.id)}
           >
-            <AbejaVestida ocupacion={o.id} tam={78} />
-            <span>{o.nombre}</span>
+            <span className="insignia">
+              <AbejaVestida ocupacion={o.id} tam={66} />
+            </span>
+            <span className="mosaico__nombre">{o.nombre}</span>
+            {o.sector && <small className="mosaico__sector">{o.sector}</small>}
           </button>
         ))}
         <button

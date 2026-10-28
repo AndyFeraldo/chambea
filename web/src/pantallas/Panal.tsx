@@ -128,6 +128,8 @@ export function Panal() {
       region_id: estado.regionId,
       perfil: estado.perfil ?? 'sin_empleo',
       ocupacion_actual: estado.ocupacionActual,
+      intereses: estado.intereses,
+      evitar: estado.evitar,
     });
     setCargando(false);
     cambiar({ celdas: confirmadas, rutas: r });
@@ -178,6 +180,11 @@ export function Panal() {
             {celda.oficio && (
               <p className="viene-de">
                 <Icono nombre="maletin" tam={18} /> {t('panal.deTuOficio')} <b>{celda.oficio}</b>
+              </p>
+            )}
+            {celda.puente && (
+              <p className="viene-de">
+                <Icono nombre="check" tam={18} /> {t('panal.dePuente')}
               </p>
             )}
             {celda.evidencia && (

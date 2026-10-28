@@ -368,7 +368,7 @@ button.hex:active { filter: brightness(0.94); }
 .hex--agregar { background: transparent; color: var(--verde-oscuro); gap: 2px; }
 .hex--agregar::before {
   content: ''; position: absolute; inset: 0; background: var(--borde);
-  clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%, 4% 50%, 27% 4%, 73% 4%, 96% 50%, 73% 96%, 27% 96%, 4% 50%, 0 50%);
+  clip-path: polygon(evenodd, 25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%, 4% 50%, 27% 4%, 73% 4%, 96% 50%, 73% 96%, 27% 96%, 4% 50%, 0 50%);
 }
 .hex__check {
   display: grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; margin-bottom: 2px;
@@ -576,3 +576,117 @@ button.hex:active { filter: brightness(0.94); }
 .viene-de { display: block; }
 .viene-de .icono { display: inline-block; vertical-align: -3px; margin-right: 4px; }
 .hoja__panel > h2, .detalle-celda h2 { padding-right: 44px; }
+
+/* ---------- Encabezado: inicio y menú ---------- */
+.encabezado__logo { background: none; border: 0; padding: 4px; min-height: 48px; cursor: pointer; }
+.encabezado__derecha { display: flex; align-items: center; gap: 2px; }
+.encabezado__paso { min-width: 0; }
+.encabezado__menu {
+  display: grid; place-items: center; width: 48px; height: 48px; border: 0; background: none; color: var(--negro); cursor: pointer;
+}
+@media (max-width: 380px) {
+  .encabezado__texto, .encabezado__paso { display: none; }
+}
+.menu { display: flex; flex-direction: column; gap: 8px; }
+.menu__item {
+  display: flex; align-items: center; gap: 12px; min-height: 56px; padding: 10px 14px; width: 100%;
+  border: 2px solid var(--borde); border-radius: 14px; background: var(--blanco); color: var(--negro);
+  font-weight: 700; text-align: left; text-decoration: none; cursor: pointer;
+}
+.menu__item .icono { color: var(--verde-oscuro); flex: none; }
+.menu__item--peligro { color: var(--alerta-texto); }
+.menu__item--peligro .icono { color: var(--alerta-texto); }
+.menu__textos { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.menu__textos small { font-weight: 500; color: var(--texto-suave); font-size: 0.85rem; }
+.menu__interruptor input { width: 26px; height: 26px; accent-color: var(--verde-oscuro); flex: none; }
+
+/* ---------- Preguntas: escuchar, pista, tema ---------- */
+.burbuja { display: flex; align-items: flex-start; gap: 8px; }
+.burbuja p { flex: 1; min-width: 0; }
+.escuchar {
+  flex: none; display: grid; place-items: center; width: 44px; height: 44px; margin: -6px -8px 0 0;
+  border: 0; border-radius: 50%; background: var(--dim-sabe); color: var(--verde-oscuro); cursor: pointer;
+}
+.pista { font-size: 0.92rem; color: var(--texto-suave); margin-top: -10px; }
+.puntos { align-items: center; flex-wrap: wrap; }
+.puntos__tema { margin-left: 8px; font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: var(--verde-oscuro); }
+
+/* Intereses y "evitar" */
+.mosaico--chips .mosaico__item--chico { min-height: 104px; font-size: 0.95rem; }
+.mosaico__item--chico .mosaico__hex { width: 52px; height: 46px; background: var(--crema); color: var(--verde-oscuro); }
+.mosaico__item--chico[aria-pressed='true'] .mosaico__hex { background: var(--verde-oscuro); color: var(--blanco); }
+
+/* Preguntas puente */
+.puente {
+  display: grid; grid-template-columns: auto 1fr; gap: 6px 12px; align-items: center;
+  padding: 12px 14px; background: var(--blanco); border: 2px solid var(--borde); border-radius: 16px;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+.puente--si { border-color: var(--verde-oscuro); background: var(--dim-sabe); }
+.puente--no { opacity: 0.6; }
+.puente__textos { display: flex; flex-direction: column; min-width: 0; }
+.puente__textos small { color: var(--texto-suave); font-size: 0.88rem; }
+.puente__botones { grid-column: 1 / -1; display: flex; gap: 8px; }
+.puente__botones .chip { flex: 1; }
+
+/* ---------- Insignia de profesión (más sobria) ---------- */
+.insignia {
+  position: relative; display: inline-grid; place-items: center;
+  width: 86px; height: 77px; clip-path: var(--hex);
+  background: linear-gradient(160deg, #ffffff 0%, #eaf2ee 100%);
+}
+.insignia::after {
+  content: ''; position: absolute; inset: 0; background: var(--verde-oscuro);
+  clip-path: polygon(evenodd, 25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%, 3.5% 50%, 26.5% 4%, 73.5% 4%, 96.5% 50%, 73.5% 96%, 26.5% 96%, 3.5% 50%, 0 50%);
+}
+.insignia .abeja-vestida { position: relative; z-index: 1; }
+.insignia--grande { width: 172px; height: 154px; }
+.insignia .abeja--estela { position: absolute; inset: 0; margin: auto; z-index: 0; }
+.mosaico__item .insignia .abeja-vestida { animation: none; }
+.mosaico__nombre { font-weight: 800; }
+.mosaico__sector { font-size: 0.75rem; font-weight: 700; color: var(--verde-oscuro); text-transform: uppercase; letter-spacing: 0.05em; }
+
+.ruta-hero__sector {
+  align-self: flex-start; font-size: 0.75rem; font-weight: 800; letter-spacing: 0.07em; text-transform: uppercase;
+  color: var(--negro); background: var(--dim-sabe); padding: 4px 10px; border-radius: 999px;
+}
+.ruta-hero__descripcion { color: #c5d3cf; margin-top: -4px; }
+.ruta-hero__marcas { display: flex; flex-wrap: wrap; gap: 6px; }
+.marca { display: inline-flex; align-items: center; gap: 4px; font-size: 0.82rem; font-weight: 700; padding: 4px 10px; border-radius: 999px; }
+.marca--si { background: rgba(245, 184, 46, 0.18); color: var(--miel); }
+.marca--aviso { background: var(--alerta); color: var(--alerta-texto); }
+
+/* ¿Por qué esta ruta? */
+.por-que {
+  display: inline-flex; align-items: center; gap: 6px; align-self: flex-start; min-height: 44px; padding: 0;
+  background: none; border: 0; color: var(--miel); font-weight: 800; text-decoration: underline; cursor: pointer;
+}
+.por-que__detalle { background: rgba(255, 255, 255, 0.07); border-radius: 14px; padding: 12px; display: flex; flex-direction: column; gap: 8px; font-size: 0.88rem; color: #dbe5e1; }
+.por-que__tabla { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.por-que__tabla td { padding: 4px 4px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+.por-que__tabla td.num { text-align: right; font-weight: 800; }
+.por-que__tabla tr.falta { color: #9fb1ab; }
+.por-que__formula { font-weight: 800; color: var(--blanco); }
+.por-que__nota { font-size: 0.8rem; color: #aebfba; }
+
+/* ---------- Inicio: ¿para quién? ---------- */
+.para-quien { display: flex; flex-direction: column; gap: 8px; padding-top: 8px; border-top: 1px solid var(--borde); }
+.para-quien h2 { font-size: 1.25rem; }
+.para-quien .ayuda { font-size: 0.92rem; }
+.para-quien__perfiles { display: flex; flex-direction: column; gap: 6px; }
+.para-quien__perfil { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 0.95rem; }
+.para-quien__perfil .num-hex { width: 28px; height: 25px; font-size: 0.85rem; }
+.para-quien__oficios { font-size: 0.88rem; color: var(--texto-suave); }
+
+/* ---------- Mi panal: bloques ---------- */
+.bloque { display: flex; flex-direction: column; gap: 10px; background: var(--blanco); border: 1px solid var(--borde); border-radius: 20px; padding: 16px; }
+.bloque h2 { font-size: 1.3rem; }
+.bloque__cabeza { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+.plan { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.plan__item { display: flex; align-items: center; gap: 8px; border-radius: 12px; padding: 6px 4px; }
+.plan__item label { flex: 1; display: flex; align-items: flex-start; gap: 10px; cursor: pointer; min-height: 44px; padding-top: 8px; }
+.plan__item input { width: 24px; height: 24px; flex: none; margin: 0; accent-color: var(--verde-oscuro); }
+.plan__item--hecho span { text-decoration: line-through; color: var(--texto-suave); }
+.plan__enlace { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; background: var(--dim-sabe); color: var(--verde-oscuro); flex: none; }
+.carta { background: var(--crema); border-radius: 14px; padding: 12px 14px; font-size: 0.98rem; user-select: text; }
+.qr { align-self: center; border-radius: 12px; border: 1px solid var(--borde); background: var(--blanco); max-width: 100%; height: auto; }

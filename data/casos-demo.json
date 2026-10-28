@@ -9,10 +9,10 @@
       "perfil": "planilla_riesgo",
       "ocupacion_actual": "cajero",
       "respuestas": [
-        "Aprendí mirando a mi compañera, en la caja del supermercado. Ya van 8 años.",
-        "Cobro, cuadro caja, atiendo a la gente y veo qué falta en los estantes para que repongan. Cobro con Yape, tarjeta y efectivo.",
+        "Cobro, cuadro caja, atiendo a la gente y veo qué falta en los estantes para que repongan.",
+        "Cobro con Yape, tarjeta y efectivo. Uso el POS y la caja registradora.",
         "Me dejan cerrar la caja sola, nunca me falta plata. Cuando un cliente está molesto me lo pasan a mí y lo resuelvo.",
-        "Les diría que pregunten a mi supervisora: nunca falto y soy puntual. Tengo paciencia con la gente."
+        "Mantengo la calma porque tengo paciencia con la gente. Pregunten a mi supervisora: nunca falto y soy puntual."
       ],
       "competencias_esperadas": [
         "hab_cobro_caja",
@@ -36,7 +36,12 @@
         ],
         "primer_paso": "Capacitarse: curso c_ventas (perfil en planilla en riesgo prioriza capacitación)",
         "aviso_demanda": "Cajero/a: demanda baja en Lima Metropolitana"
-      }
+      },
+      "intereses": [
+        "atender",
+        "vender"
+      ],
+      "evitar": []
     },
     {
       "id": "marleny",
@@ -45,10 +50,10 @@
       "perfil": "informal",
       "ocupacion_actual": "limpieza",
       "respuestas": [
-        "Aprendí sola, limpiando casas desde joven.",
-        "Limpio casas y oficinas, los baños, desinfecto todo. Sé qué productos no se mezclan. También ordeno la despensa y repongo lo que falta, y aviso qué falta. Sé dónde va cada cosa.",
+        "Limpio casas y oficinas, los baños, desinfecto todo. También ordeno la despensa, repongo lo que falta y aviso qué falta.",
+        "Sé qué productos no se mezclan: lejía, desinfectante, detergente. Sé dónde va cada cosa.",
         "Las señoras me dejan las llaves. Dejo todo impecable y a tiempo, por eso me vuelven a llamar.",
-        "Soy puntual, nunca falto. Aguanto todo el día de pie y soy ordenada."
+        "Aprendí sola desde joven. Soy puntual, nunca falto. Aguanto todo el día de pie y soy ordenada."
       ],
       "competencias_esperadas": [
         "hab_limpieza_tecnica",
@@ -68,7 +73,14 @@
         "tiene": "5 de 7 en ambas",
         "nota": "Al sumar las habilidades típicas de su oficio (limpieza: seguridad en el trabajo), Conserje queda primero; Reponedor/a sigue con 5 de 7.",
         "primer_paso_reponedor": "Capacitarse: curso c_almacen (corto, desde el celular, perfil informal)"
-      }
+      },
+      "intereses": [
+        "ordenar",
+        "manos"
+      ],
+      "evitar": [
+        "computadora"
+      ]
     }
   ]
 }

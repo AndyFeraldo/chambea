@@ -18,6 +18,7 @@ import regiones from '@data/regiones.json';
 import capacitaciones from '@data/capacitaciones.json';
 import casos from '@data/casos-demo.json';
 import tareas from '@data/tareas.json';
+import entrevista from '@data/entrevista.json';
 
 export interface Salud {
   modo: 'servidor' | 'navegador';
@@ -31,6 +32,7 @@ const datosLocales = {
   regiones: regiones.regiones,
   capacitaciones: capacitaciones.capacitaciones,
   tareas: tareas.tareas,
+  entrevista,
   casos: casos.casos,
   ilustrativo: true,
 } as unknown as Datos;
@@ -97,7 +99,14 @@ export async function extraer(datos: Datos, respuestas: string[]): Promise<Compe
 
 export async function rutas(
   datos: Datos,
-  e: { competencias_ids: string[]; region_id: string; perfil: Perfil; ocupacion_actual: string | null },
+  e: {
+    competencias_ids: string[];
+    region_id: string;
+    perfil: Perfil;
+    ocupacion_actual: string | null;
+    intereses?: string[];
+    evitar?: string[];
+  },
 ): Promise<ResultadoRutas> {
   if (modo === 'servidor') {
     try {

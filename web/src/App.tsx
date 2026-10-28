@@ -1,15 +1,34 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import type { Datos } from '@shared/tipos';
 import { iniciar, type Salud } from './api';
-import { Ctx, estadoInicial, type Contexto, type Estado, type Pantalla } from './estado';
+import {
+  Ctx,
+  escribirProgreso,
+  estadoInicial,
+  leerCompartido,
+  leerProgreso,
+  type Contexto,
+  type Estado,
+  type Pantalla,
+} from './estado';
 import { Encabezado } from './componentes/comunes';
 import { Inicio } from './pantallas/Inicio';
 import { Situacion, Ocupacion } from './pantallas/Situacion';
-import { Pregunta, Armando } from './pantallas/Preguntas';
+import { Pregunta, Armando, Intereses, Puente } from './pantallas/Preguntas';
 import { Panal } from './pantallas/Panal';
 import { Rutas } from './pantallas/Rutas';
 import { Paso } from './pantallas/Paso';
-import { Resumen } from './pantallas/Resumen';
+import { Resumen, Compartido } from './pantallas/Resumen';
+
+function estadoAlAbrir(regionId: string): Estado {
+  // 1) Alguien abrió un panal compartido por enlace.
+  const compartido = leerCompartido(location.hash);
+  if (compartido) return { ...estadoInicial(regionId), compartido, lugar: { pantalla: 'compartido', pregunta: 0 } };
+  // 2) La persona guardó su progreso en este celular: vuelve al inicio con "Continuar".
+  const guardado = leerProgreso();
+  if (guardado) return { ...guardado, historial: [...guardado.historial, guardado.lugar], lugar: { pantalla: 'inicio', pregunta: 0 } };
+  return estadoInicial(regionId);
+}
 
 export function App() {
   const [base, setBase] = useState<{ datos: Datos; salud: Salud } | null>(null);
@@ -18,13 +37,18 @@ export function App() {
   useEffect(() => {
     iniciar().then((b) => {
       setBase(b);
-      setEstado(estadoInicial(b.datos.regiones[0]?.id ?? ''));
+      setEstado(estadoAlAbrir(b.datos.regiones[0]?.id ?? ''));
     });
   }, []);
 
   useEffect(() => {
     window.scrollTo({ top: 0 });
   }, [estado?.lugar.pantalla, estado?.lugar.pregunta]);
+
+  // Solo se guarda si la persona lo pidió, y solo en este celular.
+  useEffect(() => {
+    if (estado) escribirProgreso(estado);
+  }, [estado]);
 
   const cambiar = useCallback((parcial: Partial<Estado>) => setEstado((e) => (e ? { ...e, ...parcial } : e)), []);
 
@@ -39,7 +63,7 @@ export function App() {
       setEstado((e) => {
         if (!e || e.historial.length === 0) return e;
         // "Armando…" es una pantalla de paso: al volver, la saltamos.
-        let historial = [...e.historial];
+        const historial = [...e.historial];
         let lugar = historial.pop()!;
         while (lugar.pantalla === 'armando' && historial.length) lugar = historial.pop()!;
         return { ...e, historial, lugar };
@@ -47,10 +71,10 @@ export function App() {
     [],
   );
 
-  const reiniciar = useCallback(
-    () => setEstado((e) => (e ? estadoInicial(e.regionId) : e)),
-    [],
-  );
+  const reiniciar = useCallback(() => {
+    if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+    setEstado((e) => (e ? estadoInicial(e.regionId) : e));
+  }, []);
 
   const ctx = useMemo<Contexto | null>(() => {
     if (!base || !estado) return null;
@@ -70,16 +94,19 @@ export function App() {
   return (
     <Ctx.Provider value={ctx}>
       <div className="app">
-        {p !== 'inicio' && <Encabezado />}
+        {p !== 'inicio' && p !== 'compartido' && <Encabezado />}
         {p === 'inicio' && <Inicio />}
         {p === 'situacion' && <Situacion />}
         {p === 'ocupacion' && <Ocupacion />}
         {p === 'pregunta' && <Pregunta key={ctx.estado.lugar.pregunta} />}
+        {p === 'intereses' && <Intereses key={ctx.estado.lugar.pregunta} />}
         {p === 'armando' && <Armando />}
+        {p === 'puente' && <Puente />}
         {p === 'panal' && <Panal />}
         {p === 'rutas' && <Rutas />}
         {p === 'paso' && <Paso />}
         {p === 'resumen' && <Resumen />}
+        {p === 'compartido' && <Compartido />}
       </div>
     </Ctx.Provider>
   );

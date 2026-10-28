@@ -1,0 +1,152 @@
+{
+  "ilustrativo": true,
+  "nota": "Guía de entrevista. Cada pregunta apunta a una dimensión del perfil (tareas, herramientas, confianza/logros) y la última se adapta al oficio. Validar con las entrevistas reales.",
+  "preguntas": [
+    {
+      "id": "tareas",
+      "apunta": "Habilidades (lo que sabes hacer)",
+      "texto": "Cuéntame un día normal: ¿qué tareas haces de principio a fin?",
+      "ejemplo": "Abro a las 7, recibo la mercadería, atiendo y al final cuadro la caja…",
+      "pista": "Di por lo menos 3 cosas que haces."
+    },
+    {
+      "id": "herramientas",
+      "apunta": "Conocimientos (lo que sabes)",
+      "texto": "¿Qué herramientas, máquinas, productos o sistemas sabes usar?",
+      "ejemplo": "El POS, Yape, la balanza, el cuaderno de inventario, productos de limpieza…",
+      "pista": "Todo cuenta: el celular, un cuaderno, una máquina."
+    },
+    {
+      "id": "confianza",
+      "apunta": "Logros y cualidades",
+      "texto": "¿Qué te encargan a ti porque confían en ti? Cuéntame algo que hayas logrado.",
+      "ejemplo": "Me dejan cerrar la tienda sola y nunca me falta plata…",
+      "pista": "Piensa en lo que te piden a ti y no a otros."
+    }
+  ],
+  "general": {
+    "id": "personas",
+    "apunta": "Trato con personas",
+    "texto": "¿Con quién tratas en tu trabajo y qué problemas resuelves?",
+    "ejemplo": "Atiendo a clientes y proveedores; si alguien se queja, lo calmo…",
+    "pista": "Clientes, jefes, compañeros, proveedores."
+  },
+  "por_oficio": {
+    "cajero": {
+      "texto": "¿Qué haces si un cliente se molesta o si la caja no cuadra?",
+      "ejemplo": "Mantengo la calma, reviso los vouchers y hago el cuadre…"
+    },
+    "vendedor_tienda": {
+      "texto": "¿Cómo convences a un cliente que no está seguro de comprar?",
+      "ejemplo": "Le pregunto qué necesita, le muestro opciones y le explico…"
+    },
+    "reponedor": {
+      "texto": "¿Cómo sabes qué reponer primero y qué productos vencen?",
+      "ejemplo": "Reviso las fechas, pongo adelante lo que vence primero…"
+    },
+    "auxiliar_administrativo": {
+      "texto": "¿Qué documentos o registros manejas y cómo los mantienes al día?",
+      "ejemplo": "Archivo facturas, anoto los pagos a proveedores en Excel…"
+    },
+    "limpieza": {
+      "texto": "¿Qué lugares limpias y cómo te organizas para terminar a tiempo?",
+      "ejemplo": "Empiezo por los baños, uso productos distintos para cada zona…"
+    },
+    "ayudante_cocina": {
+      "texto": "¿Qué preparas en la cocina y cómo cuidas la higiene de los alimentos?",
+      "ejemplo": "Pico verduras, preparo el menú, lavo todo antes de usarlo…"
+    },
+    "mozo": {
+      "texto": "¿Cómo atiendes cuando el restaurante está lleno?",
+      "ejemplo": "Tomo varios pedidos a la vez, no me olvido de ninguno…"
+    },
+    "almacenero": {
+      "texto": "¿Cómo controlas lo que entra y sale del almacén?",
+      "ejemplo": "Cuento las cajas, anoto en el cuaderno o en el sistema…"
+    },
+    "repartidor": {
+      "texto": "¿Cómo organizas tus rutas para llegar a tiempo?",
+      "ejemplo": "Uso el mapa del celular, agrupo los pedidos por zona…"
+    },
+    "operario_produccion": {
+      "texto": "¿Qué máquinas usas y qué normas de seguridad sigues?",
+      "ejemplo": "Manejo la selladora, uso guantes y lentes…"
+    },
+    "teleoperador": {
+      "texto": "¿Cómo resuelves un reclamo por teléfono o por chat?",
+      "ejemplo": "Escucho, anoto el caso y le doy una solución…"
+    },
+    "cuidador": {
+      "texto": "¿A quién cuidas y qué haces en un día con esa persona?",
+      "ejemplo": "Cuido a una señora mayor, le doy sus pastillas y le cocino…"
+    },
+    "conserje": {
+      "texto": "¿Qué arreglas o revisas en el edificio y cómo registras las visitas?",
+      "ejemplo": "Cambio focos, reviso las bombas, anoto quién entra…"
+    }
+  },
+  "intereses": [
+    {
+      "id": "atender",
+      "texto": "Atender y ayudar a la gente",
+      "icono": "persona"
+    },
+    {
+      "id": "vender",
+      "texto": "Vender y convencer",
+      "icono": "etiqueta"
+    },
+    {
+      "id": "ordenar",
+      "texto": "Ordenar y organizar",
+      "icono": "cajas"
+    },
+    {
+      "id": "manos",
+      "texto": "Trabajar con mis manos o máquinas",
+      "icono": "llave"
+    },
+    {
+      "id": "cocinar",
+      "texto": "Cocinar y preparar alimentos",
+      "icono": "olla"
+    },
+    {
+      "id": "moverme",
+      "texto": "Moverme por la ciudad",
+      "icono": "moto"
+    },
+    {
+      "id": "cuidar",
+      "texto": "Cuidar a otras personas",
+      "icono": "corazon"
+    },
+    {
+      "id": "oficina",
+      "texto": "Papeles y computadora",
+      "icono": "carpeta"
+    }
+  ],
+  "evitar": [
+    {
+      "id": "carga",
+      "texto": "Cargar peso",
+      "icono": "cajas"
+    },
+    {
+      "id": "de_pie",
+      "texto": "Estar de pie todo el día",
+      "icono": "persona"
+    },
+    {
+      "id": "noche",
+      "texto": "Turnos de noche",
+      "icono": "luna"
+    },
+    {
+      "id": "computadora",
+      "texto": "Usar computadora",
+      "icono": "teclado"
+    }
+  ]
+}

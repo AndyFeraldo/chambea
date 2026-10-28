@@ -34,7 +34,18 @@
       "Tu paso"
     ],
     "privacidad": "Sin nombre, sin correo, sin CV. No guardamos nada.",
-    "demo": "Ver un ejemplo:"
+    "demo": "Ver un ejemplo:",
+    "continuar": "Continuar donde lo dejé",
+    "empezarNuevo": "Empezar de nuevo",
+    "paraQuien": "¿Para quién es Chambea?",
+    "paraQuienTexto": "Para quien aprendió su oficio en la práctica, sin certificados. Tengas o no contrato, si tu trabajo está en riesgo, Chambea te orienta.",
+    "perfiles": {
+      "sin_empleo": "Busco trabajo",
+      "informal": "Trabajo, pero es inestable",
+      "planilla_riesgo": "En planilla, pero en riesgo"
+    },
+    "empezamosCon": "Empezamos con:",
+    "oficiosPriorizados": "limpieza, auxiliares administrativos, reponedores, cajeros y vendedores de tienda."
   },
   "situacion": {
     "titulo": "¿Cómo estás hoy con tu trabajo?",
@@ -76,7 +87,9 @@
     "errorRed": "La voz necesita internet. Puedes escribir tu respuesta.",
     "errorNada": "No te escuchamos. Toca el micro e inténtalo otra vez.",
     "errorOtro": "La voz no está disponible aquí. Escribe tu respuesta.",
-    "armando": "Armando tu panal…"
+    "armando": "Armando tu panal…",
+    "escuchar": "Escuchar la pregunta",
+    "deTuOficio": "Sobre tu oficio"
   },
   "panal": {
     "titulo": "Tus habilidades",
@@ -107,7 +120,14 @@
     "acercarte": "¿A qué trabajo te quieres acercar?",
     "paraSer": "Para {ocupacion} piden esto. Toca lo que ya sabes hacer:",
     "yaTodo": "Ya tienes todo lo que piden para {ocupacion}.",
-    "todas": "Todas las habilidades"
+    "todas": "Todas las habilidades",
+    "dePuente": "Lo confirmaste en las preguntas rápidas.",
+    "dimensionCorta": {
+      "conocimiento": "Conocimiento",
+      "habilidad": "Habilidad",
+      "cualidad": "Cualidad",
+      "competencia": "Logro"
+    }
   },
   "rutas": {
     "titulo": "Mira tus rutas",
@@ -133,7 +153,13 @@
     "tocaFalta": "¿Ya sabes algo de lo que falta? Tócalo y agrégalo.",
     "saberTitulo": "¿Ya sabes hacer esto?",
     "saberSi": "Sí, agrégalo a mi panal",
-    "saberNo": "Todavía no"
+    "saberNo": "Todavía no",
+    "teInteresa": "Va con lo que te gusta",
+    "sueleExigir": "Suele pedir: {cosa}",
+    "porQue": "¿Por qué esta ruta?",
+    "porQueIntro": "Este trabajo pide estas 7 habilidades. Cada una pesa según su tipo:",
+    "porQueFormula": "Cobertura = lo que tienes ÷ lo que pide (con pesos) = {pct} %",
+    "porQueOrden": "Pesos: logro 3 · habilidad 2 · conocimiento 2 · cualidad 1. Para ordenar las rutas también se suma +{bono} % si va con tus intereses, se resta {castigo} % si pide algo que prefieres evitar, y luego se mira la demanda en tu región."
   },
   "paso": {
     "preguntas": [
@@ -198,6 +224,74 @@
     "reiniciar": "Empezar de nuevo",
     "reiniciarSeguro": "¿Borramos todo lo que contaste?",
     "reiniciarSi": "Sí, borrar todo",
-    "reiniciarNo": "No, volver"
+    "reiniciarNo": "No, volver",
+    "copiar": "Copiar",
+    "copiado": "¡Copiado!",
+    "guardarCelular": "Guardar mi progreso en este celular",
+    "guardado": "Tu progreso se guarda solo en este celular.",
+    "plan": {
+      "titulo": "Tu plan",
+      "abrir": "Abrir enlace",
+      "guardar": "Descarga o guarda tu panal.",
+      "curso": "Inscríbete gratis en «{curso}» en Capacíta-T.",
+      "asesor": "Visita un Centro de Empleo y muestra tu panal al asesor.",
+      "cuenta": "Crea tu cuenta en Empleos Perú.",
+      "cul": "Saca gratis tu Certificado Único Laboral (CUL) en Empleos Perú.",
+      "postular": "Postula a ofertas de {ruta}.",
+      "certificar": "Cuando estés lista o listo, pregunta por la certificación de competencias del MTPE."
+    },
+    "carta": {
+      "titulo": "Cómo presentarte",
+      "ayuda": "Un texto corto para mandar por WhatsApp o decir en una entrevista. Puedes cambiarlo.",
+      "hola": "Hola, tengo experiencia como {oficio}.",
+      "oficioGenerico": "trabajador o trabajadora con oficio aprendido en la práctica",
+      "fuertes": "Lo que mejor sé hacer: {lista}.",
+      "prueba": "Por ejemplo: «{frase}».",
+      "meta": "Busco trabajo como {ruta}: ya tengo {x} de las {y} habilidades que suelen pedir.",
+      "curso": "Estoy reforzando lo que me falta con el curso «{curso}».",
+      "cierre": "Puedo empezar pronto. ¡Gracias!"
+    },
+    "asesor": {
+      "titulo": "Llévalo a un asesor",
+      "ayuda": "Muestra este código QR en un Centro de Empleo o envía el enlace. El asesor verá tu panal sin que tengas que registrarte.",
+      "mostrarQr": "Mostrar mi código QR",
+      "qrAlt": "Código QR con tu panal",
+      "copiarEnlace": "Copiar enlace de mi panal",
+      "privacidad": "Tu panal viaja dentro del enlace: no se guarda en ningún servidor."
+    }
+  },
+  "menu": {
+    "titulo": "Menú",
+    "abrir": "Abrir menú",
+    "inicio": "Ir al inicio",
+    "miPanal": "Ver mi panal",
+    "resumen": "Mi resumen y plan",
+    "guardar": "Guardar mi progreso en este celular",
+    "guardarAyuda": "Se guarda solo en este teléfono. Nadie más lo ve. Puedes borrarlo cuando quieras.",
+    "registrarse": "Crear mi cuenta en Empleos Perú",
+    "registrarseAyuda": "Portal oficial del MTPE para postular a vacantes.",
+    "borrar": "Borrar todo y empezar de nuevo"
+  },
+  "intereses": {
+    "titulo": {
+      "intereses": "¿Qué te gustaría hacer más?",
+      "evitar": "¿Hay algo que prefieras evitar?"
+    },
+    "ayuda": {
+      "intereses": "Elige todo lo que te guste. Así te mostramos trabajos que van contigo.",
+      "evitar": "Si algo no puedes o no quieres hacer, márcalo. Te avisaremos qué trabajos lo suelen pedir."
+    }
+  },
+  "puente": {
+    "titulo": "Unas preguntas rápidas: ¿también sabes hacer esto?",
+    "ayuda": "Te preguntamos lo que más te acerca a otros trabajos. Responde solo lo que de verdad haces.",
+    "si": "Sí, lo hago",
+    "no": "No",
+    "saltar": "Seguir",
+    "verPanal": "Ver mi panal"
+  },
+  "compartido": {
+    "aviso": "Panal compartido por una persona (solo lectura)",
+    "hacerElMio": "Hacer mi propio panal"
   }
 }

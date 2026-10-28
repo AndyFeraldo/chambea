@@ -13,11 +13,12 @@ Chambea ayuda a personas que aprendieron su oficio en la práctica a reconocer l
 | Pantalla | Qué hace |
 |---|---|
 | Inicio | Abejas volando, eslogan, los 4 pasos en hexágonos, región, "Empezar", "Lo hago con un asesor" y 2 ejemplos (Rosa y Marleny) |
-| 1 · Cuéntalo | Situación (3 tarjetas con ícono), ocupación (mosaico) y 4 preguntas. Cada pregunta se responde **hablando** (botón de micrófono) o escribiendo |
+| 1 · Cuéntalo | Situación, ocupación y **entrevista guiada**: 3 preguntas por dimensión (tareas, herramientas, confianza/logros) + 1 que **se adapta al oficio** (`data/entrevista.json`). Se responde hablando o escribiendo, y la pregunta se puede escuchar. Luego, **intereses** y **lo que prefiere evitar**, y **preguntas puente**: "¿también sabes hacer esto?", con lo que más la acerca a otras profesiones |
 | 2 · Tus habilidades | Colmena animada donde cada celda es una **habilidad con nombre claro** ("Organización y orden", "Control de inventario"…), en 4 colores: conocimientos, habilidades, cualidades y logros. Al tocar una celda: de dónde sale (tu relato, tu tarea o tu oficio), confirmar o quitar. "Agregar más habilidades": eliges a qué trabajo te quieres acercar y agregas lo que ya sabes |
 | 3 · Mira tus rutas | Carrusel de hasta 5 rutas. Cada trabajo llega con **su abeja vestida para ese oficio**, que entra volando desde la derecha; con "Siguiente" sale por la izquierda y entra la del siguiente trabajo. Mini panal con lo que tienes y lo que **falta**, demanda, alias y **enlaces a ofertas reales** (Empleos Perú y Computrabajo) |
 | 4 · Da el paso | 3 preguntas, una por pantalla, y **una** recomendación con su porqué, más 2 alternativas |
-| Mi panal | Tarjeta resumen e imagen descargable. "Empezar de nuevo" borra todo |
+| Mi panal | Tarjeta resumen, imagen descargable, **plan de acción** con checklist (Capacíta-T, CUL, postular, certificación), **texto para presentarse** (copiar o WhatsApp) y **QR/enlace para el asesor**: el panal viaja dentro del enlace, sin servidor |
+| Siempre | Menú con **Ir al inicio**, **Guardar mi progreso en este celular** (opcional, solo en el teléfono), **Crear cuenta en Empleos Perú** y **Borrar todo** |
 
 **Diseño:** una idea por pantalla, poco texto, íconos grandes y movimiento de marca: abejas con estela, celdas que brotan y transiciones suaves. Si el teléfono tiene activado "reducir movimiento", las animaciones se apagan.
 
@@ -174,6 +175,8 @@ chambea/
 - Primer paso: con cobertura ≥ 0,85 recomienda postular en Empleos Perú (si la persona está en planilla en riesgo, primero el curso). Entre 0,5 y 0,85 recomienda un curso que cubra lo que falta y respete horas, modalidad y costo. Por debajo de 0,5 recomienda un asesor.
 
 ## Registro de cambios
+
+**28/10/2026 (entrevista inteligente y plataforma):** entrevista guiada por dimensiones con pregunta por oficio, intereses y límites que reordenan las rutas (+10 % / −20 %), preguntas puente, fichas de profesión con sector y descripción, insignias, "¿Por qué esta ruta?" con la fórmula, menú con inicio y guardado opcional en el celular, plan de acción, texto para presentarse, QR/enlace para el asesor, "¿Para quién es Chambea?" en el inicio y botón para escuchar las preguntas. Ver `docs/06-valor-y-hoja-de-ruta.md`.
 
 **24/10/2026 (habilidades claras):** cada celda muestra el nombre de la habilidad. Se suman las habilidades típicas del oficio elegido o mencionado. "Agregar más habilidades" permite acercarse a otro trabajo, y en Rutas se pueden agregar las celdas que faltan. Marleny ahora ve primero Conserje (5 de 7) y luego Reponedor/a (5 de 7). Se corrigió que "cuento las cajas" contara como cobrar en caja.
 

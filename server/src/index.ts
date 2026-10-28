@@ -41,6 +41,8 @@ app.post('/api/rutas', (req, res) => {
       region_id: String(b.region_id ?? ''),
       perfil: perfil(b.perfil),
       ocupacion_actual: typeof b.ocupacion_actual === 'string' ? b.ocupacion_actual : null,
+      intereses: ids(b.intereses),
+      evitar: ids(b.evitar),
     }),
   );
 });
