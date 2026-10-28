@@ -2,6 +2,7 @@ import type { CSSProperties } from 'react';
 import { t, textos } from '../i18n';
 import { estadoInicial, NUM_PREGUNTAS, useApp } from '../estado';
 import { Enjambre, Icono, Logo, type NombreIcono } from '../componentes/comunes';
+import { BarraWeb } from '../componentes/Plataforma';
 
 const ICONO_PASO: NombreIcono[] = ['micro', 'hexagono', 'adelante', 'check'];
 
@@ -39,6 +40,7 @@ export function Inicio() {
 
   return (
     <div className="inicio entrar">
+      <BarraWeb />
       <section className="portada">
         <Enjambre cantidad={3} />
         <div className="contenedor portada__contenido">

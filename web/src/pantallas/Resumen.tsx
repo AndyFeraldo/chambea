@@ -5,7 +5,8 @@ import { nombreHabilidad } from '@shared/motor';
 import { t } from '../i18n';
 import { enlaceCompartir, useApp, type PanalCompartido } from '../estado';
 import { generarImagen } from '../imagenPanal';
-import { AvisoCertificacion, Enjambre, Icono, Logo, Pantalla } from '../componentes/comunes';
+import { AvisoCertificacion, Enjambre, Icono, Logo } from '../componentes/comunes';
+import { Plataforma, TarjetaPerfil } from '../componentes/Plataforma';
 import { Colmena, Leyenda, ordenar } from './Panal';
 import { enlacesOfertas } from './Rutas';
 
@@ -112,9 +113,121 @@ export function Resumen() {
     a.click();
   };
 
+  const izquierda = (
+    <>
+      <TarjetaPerfil />
+      <nav className="nav-lateral" aria-label={t('web.secciones')}>
+        {(
+          [
+            ['mi-panal', 'hexagono', t('web.seccion.panal')],
+            ['plan', 'check', t('web.seccion.plan')],
+            ['presentate', 'compartir', t('web.seccion.presentate')],
+            ['asesor', 'qr', t('web.seccion.asesor')],
+          ] as const
+        ).map(([id, icono, texto]) => (
+          <a key={id} href={`#${id}`} className="nav-lateral__item" onClick={(e) => (e.preventDefault(), document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' }))}>
+            <Icono nombre={icono} tam={20} /> {texto}
+          </a>
+        ))}
+        <button type="button" className="nav-lateral__item" onClick={() => ir('rutas')}>
+          <Icono nombre="adelante" tam={20} /> {t('web.seccion.rutas')}
+        </button>
+        <button type="button" className="nav-lateral__item" onClick={() => ir('banco')}>
+          <Icono nombre="persona" tam={20} /> {t('web.banco')}
+        </button>
+      </nav>
+      <section className="privacidad-lateral">
+        <span className="etiqueta">{t('web.privacidad')}</span>
+        <label className="consentimiento">
+          <input id="lat-guardar" type="checkbox" checked={estado.guardar} onChange={(e) => cambiar({ guardar: e.target.checked })} />
+          <span>
+            <b>{t('menu.guardar')}</b>
+          </span>
+        </label>
+        {estado.cuenta && (
+          <label className="consentimiento">
+            <input
+              id="lat-visible"
+              type="checkbox"
+              checked={estado.cuenta.visible}
+              onChange={(e) => cambiar({ cuenta: { ...estado.cuenta!, visible: e.target.checked } })}
+            />
+            <span>
+              <b>{t('cuenta.visible')}</b>
+            </span>
+          </label>
+        )}
+      </section>
+    </>
+  );
+
+  const derecha = (
+    <>
+      {/* Plan de acción */}
+      <section className="bloque" aria-labelledby="plan-titulo" id="plan">
+        <div className="bloque__cabeza">
+          <h2 id="plan-titulo">{t('resumen.plan.titulo')}</h2>
+          <span className="contador-celdas">
+            {hechos}/{plan.length}
+          </span>
+        </div>
+        <ol className="plan">
+          {plan.map((p) => (
+            <li key={p.id} className={estado.plan[p.id] ? 'plan__item plan__item--hecho' : 'plan__item'}>
+              <label>
+                <input
+                  type="checkbox"
+                  checked={!!estado.plan[p.id]}
+                  onChange={(e) => cambiar({ plan: { ...estado.plan, [p.id]: e.target.checked } })}
+                />
+                <span>{p.texto}</span>
+              </label>
+              {p.url && (
+                <a href={p.url} target="_blank" rel="noopener noreferrer" className="plan__enlace" aria-label={t('resumen.plan.abrir')}>
+                  <Icono nombre="adelante" tam={18} />
+                </a>
+              )}
+            </li>
+          ))}
+        </ol>
+        {!estado.guardar && (
+          <button type="button" className="enlace" onClick={() => cambiar({ guardar: true })}>
+            <Icono nombre="guardar" tam={20} /> {t('resumen.guardarCelular')}
+          </button>
+        )}
+        {estado.guardar && <p className="nota">{t('resumen.guardado')}</p>}
+      </section>
+
+      {ofertas.length > 0 && ruta && (
+        <section className="bloque">
+          <h2>{t('web.ofertasPara', { ruta: ruta.nombre })}</h2>
+          <div className="pila-chica">
+            {ofertas.map((o) => (
+              <a key={o.nombre} className="menu__item" href={o.url} target="_blank" rel="noopener noreferrer">
+                <Icono nombre="maletin" /> {o.nombre}
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
+      <section className="bloque bloque--banco">
+        <h2>{t('web.bancoTitulo')}</h2>
+        <p className="ayuda">{estado.cuenta?.visible ? t('web.bancoVisible') : t('web.bancoInvita')}</p>
+        <button type="button" className="boton boton--miel boton--compacto" onClick={() => ir(estado.cuenta ? 'banco' : 'cuenta', 0)}>
+          {estado.cuenta ? t('web.verBanco') : t('web.registrarme')}
+        </button>
+      </section>
+      {salud.enlaces.empleos_peru && (
+        <a className="boton boton--secundario" href={salud.enlaces.empleos_peru} target="_blank" rel="noopener noreferrer">
+          <Icono nombre="persona" tam={20} /> {t('menu.registrarse')}
+        </a>
+      )}
+    </>
+  );
+
   return (
-    <Pantalla>
-      <article className="tarjeta-panal revelar">
+    <Plataforma activo="resumen" izquierda={izquierda} derecha={derecha}>
+      <article className="tarjeta-panal revelar" id="mi-panal">
         <div className="tarjeta-panal__cabeza">
           <Enjambre cantidad={2} />
           <Logo oscuro tam={20} />
@@ -159,44 +272,9 @@ export function Resumen() {
         </div>
       )}
 
-      {/* Plan de acción */}
-      <section className="bloque" aria-labelledby="plan">
-        <div className="bloque__cabeza">
-          <h2 id="plan">{t('resumen.plan.titulo')}</h2>
-          <span className="contador-celdas">
-            {hechos}/{plan.length}
-          </span>
-        </div>
-        <ol className="plan">
-          {plan.map((p) => (
-            <li key={p.id} className={estado.plan[p.id] ? 'plan__item plan__item--hecho' : 'plan__item'}>
-              <label>
-                <input
-                  type="checkbox"
-                  checked={!!estado.plan[p.id]}
-                  onChange={(e) => cambiar({ plan: { ...estado.plan, [p.id]: e.target.checked } })}
-                />
-                <span>{p.texto}</span>
-              </label>
-              {p.url && (
-                <a href={p.url} target="_blank" rel="noopener noreferrer" className="plan__enlace" aria-label={t('resumen.plan.abrir')}>
-                  <Icono nombre="adelante" tam={18} />
-                </a>
-              )}
-            </li>
-          ))}
-        </ol>
-        {!estado.guardar && (
-          <button type="button" className="enlace" onClick={() => cambiar({ guardar: true })}>
-            <Icono nombre="guardar" tam={20} /> {t('resumen.guardarCelular')}
-          </button>
-        )}
-        {estado.guardar && <p className="nota">{t('resumen.guardado')}</p>}
-      </section>
-
       {/* Texto para presentarse */}
-      <section className="bloque" aria-labelledby="presentate">
-        <h2 id="presentate">{t('resumen.carta.titulo')}</h2>
+      <section className="bloque" aria-labelledby="presentate-titulo" id="presentate">
+        <h2 id="presentate-titulo">{t('resumen.carta.titulo')}</h2>
         <p className="ayuda">{t('resumen.carta.ayuda')}</p>
         <p className="carta" id="texto-carta">
           {presentacion}
@@ -216,8 +294,8 @@ export function Resumen() {
       </section>
 
       {/* Compartir con un asesor */}
-      <section className="bloque" aria-labelledby="asesor">
-        <h2 id="asesor">{t('resumen.asesor.titulo')}</h2>
+      <section className="bloque" aria-labelledby="asesor-titulo" id="asesor">
+        <h2 id="asesor-titulo">{t('resumen.asesor.titulo')}</h2>
         <p className="ayuda">{t('resumen.asesor.ayuda')}</p>
         {qr ? (
           <img className="qr" src={qr} alt={t('resumen.asesor.qrAlt')} width={220} height={220} />
@@ -232,11 +310,6 @@ export function Resumen() {
         <p className="nota">{t('resumen.asesor.privacidad')}</p>
       </section>
 
-      {salud.enlaces.empleos_peru && (
-        <a className="boton boton--secundario" href={salud.enlaces.empleos_peru} target="_blank" rel="noopener noreferrer">
-          <Icono nombre="persona" tam={20} /> {t('menu.registrarse')}
-        </a>
-      )}
       <AvisoCertificacion />
 
       <div className="fila-botones">
@@ -262,7 +335,7 @@ export function Resumen() {
           </div>
         </div>
       )}
-    </Pantalla>
+    </Plataforma>
   );
 }
 

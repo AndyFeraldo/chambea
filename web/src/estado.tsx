@@ -13,6 +13,7 @@ import type {
   ResultadoRutas,
 } from '@shared/tipos';
 import type { Salud } from './api';
+import type { Cuenta } from './cuenta';
 
 export type Pantalla =
   | 'inicio'
@@ -26,7 +27,9 @@ export type Pantalla =
   | 'rutas'
   | 'paso'
   | 'resumen'
-  | 'compartido';
+  | 'compartido'
+  | 'cuenta'
+  | 'banco';
 
 export interface Celda {
   id: string;
@@ -71,6 +74,8 @@ export interface Estado {
   plan: Record<string, boolean>;
   /** Panal que alguien compartió por enlace (solo lectura). */
   compartido: PanalCompartido | null;
+  /** Cuenta con la que ingresó (demo: guardada solo en este navegador). */
+  cuenta: Cuenta | null;
 }
 
 export interface PanalCompartido {
@@ -106,6 +111,7 @@ export function estadoInicial(regionId: string): Estado {
     guardar: false,
     plan: {},
     compartido: null,
+    cuenta: null,
   };
 }
 
@@ -183,6 +189,8 @@ export function pasoDe(p: Pantalla): number {
     case 'paso':
       return 4;
     case 'resumen':
+    case 'cuenta':
+    case 'banco':
       return 5;
     default:
       return 0;

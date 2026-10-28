@@ -317,6 +317,18 @@ export function Menu({ abierto, alCerrar }: { abierto: boolean; alCerrar: () => 
             <Icono nombre="check" /> {t('menu.resumen')}
           </button>
         )}
+        <button type="button" className="menu__item" onClick={accion(() => ir('banco'))}>
+          <Icono nombre="persona" /> {t('menu.banco')}
+        </button>
+        {estado.cuenta ? (
+          <button type="button" className="menu__item" onClick={accion(() => cambiar({ cuenta: null }))}>
+            <Icono nombre="atras" /> {t('menu.salir')}
+          </button>
+        ) : (
+          <button type="button" className="menu__item" onClick={accion(() => ir('cuenta', 0))}>
+            <Icono nombre="guardar" /> {t('menu.cuenta')}
+          </button>
+        )}
         <label className="menu__item menu__interruptor">
           <Icono nombre="guardar" />
           <span className="menu__textos">

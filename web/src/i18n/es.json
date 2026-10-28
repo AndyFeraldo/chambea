@@ -289,7 +289,10 @@
     "guardarAyuda": "Se guarda solo en este teléfono. Nadie más lo ve. Puedes borrarlo cuando quieras.",
     "registrarse": "Crear mi cuenta en Empleos Perú",
     "registrarseAyuda": "Portal oficial del MTPE para postular a vacantes.",
-    "borrar": "Borrar todo y empezar de nuevo"
+    "borrar": "Borrar todo y empezar de nuevo",
+    "banco": "Banco de talento",
+    "cuenta": "Ingresar o registrarme",
+    "salir": "Salir de mi cuenta"
   },
   "intereses": {
     "titulo": {
@@ -312,5 +315,120 @@
   "compartido": {
     "aviso": "Panal compartido por una persona (solo lectura)",
     "hacerElMio": "Hacer mi propio panal"
+  },
+  "web": {
+    "inicio": "Inicio",
+    "miPanal": "Mi panal",
+    "banco": "Banco de talento",
+    "navegacion": "Navegación principal",
+    "ingresar": "Ingresar",
+    "registrarme": "Registrarme",
+    "salir": "Salir",
+    "invitado": "Invitada o invitado",
+    "perfilCompleto": "Perfil {pct} % completo",
+    "siguiente": "Siguiente: {cosa}",
+    "crearCuenta": "Crear mi cuenta",
+    "completo": {
+      "panal": "arma tu panal",
+      "ruta": "elige una ruta",
+      "paso": "elige tu primer paso",
+      "cuenta": "crea tu cuenta",
+      "banco": "únete al banco de talento"
+    },
+    "secciones": "Secciones de mi panal",
+    "seccion": {
+      "panal": "Mi panal",
+      "plan": "Mi plan",
+      "presentate": "Cómo presentarme",
+      "asesor": "Llevarlo a un asesor",
+      "rutas": "Ver mis rutas"
+    },
+    "privacidad": "Privacidad",
+    "ofertasPara": "Ofertas para {ruta}",
+    "bancoTitulo": "Banco de talento",
+    "bancoInvita": "Crea tu cuenta y elige si quieres que empresas y Centros de Empleo te encuentren por lo que sabes hacer.",
+    "bancoVisible": "Estás en el banco de talento. Te pueden encontrar por tus habilidades, no solo por tu puesto.",
+    "verBanco": "Ver el banco"
+  },
+  "cuenta": {
+    "tituloRegistro": "Crea tu cuenta",
+    "tituloIngreso": "Ingresa a tu cuenta",
+    "ayudaRegistro": "Sin correo y sin CV. Solo tu celular y un PIN de 4 números.",
+    "ayudaIngreso": "Con tu celular y tu PIN.",
+    "nombre": "¿Cómo te llamas?",
+    "nombreEjemplo": "Por ejemplo: Rosa",
+    "celular": "Celular",
+    "pin": "PIN de 4 números",
+    "pinAyuda": "Lo usarás para volver a entrar.",
+    "region": "Tu región",
+    "visible": "Quiero aparecer en el Banco de talento",
+    "visibleAyuda": "Empresas y Centros de Empleo verán tus habilidades, no tu celular. Puedes quitarlo cuando quieras.",
+    "contacto": "Acepto que un Centro de Empleo me contacte",
+    "contactoAyuda": "Solo si una empresa se interesa en tu perfil. Tú decides si aceptas.",
+    "crear": "Crear mi cuenta",
+    "demo": "Demo: tu cuenta se guarda solo en este navegador. En la versión real, el registro sería con tu cuenta de Empleos Perú (MTPE) y tus datos se protegen según la Ley N.° 29733 de Protección de Datos Personales.",
+    "porQueTitulo": "¿Para qué crear tu cuenta?",
+    "beneficios": {
+      "guardar": "Guardas tu panal y tu plan, y sigues desde cualquier día.",
+      "banco": "Si quieres, apareces en el Banco de talento por lo que sabes hacer.",
+      "asesor": "El Centro de Empleo te contacta cuando una empresa se interesa.",
+      "privado": "Tú decides qué se muestra. Tu celular nunca se publica."
+    },
+    "errores": {
+      "datos": "Revisa: tu nombre, un celular de 9 números que empiece con 9 y un PIN de 4 números.",
+      "existe": "Ya hay una cuenta con ese celular. Usa «Ingresar».",
+      "noExiste": "No encontramos una cuenta con ese celular en este navegador.",
+      "pin": "El PIN no coincide.",
+      "almacenamiento": "Este navegador no permite guardar datos (¿modo privado?)."
+    }
+  },
+  "banco": {
+    "etiqueta": "Para empresas y Centros de Empleo",
+    "titulo": "Banco de talento",
+    "subtitulo": "Personas con oficio que eligieron ser encontradas. Busca por lo que saben hacer, no solo por el nombre de su puesto.",
+    "filtros": "Filtros",
+    "sector": "Sector",
+    "todos": "Todos",
+    "profesion": "Profesión que buscas",
+    "cualquiera": "Cualquier profesión",
+    "region": "Región",
+    "todoPeru": "Todas las regiones",
+    "listos": "Solo listos para postular",
+    "listosAyuda": "85 % o más de lo que pide la profesión.",
+    "comoTitulo": "¿Cómo funciona?",
+    "como": {
+      "uno": "La persona arma su panal y elige aparecer en el banco.",
+      "dos": "Empresas y Centros de Empleo buscan por sector y profesión.",
+      "tres": "El contacto pasa por el Centro de Empleo, y la persona decide."
+    },
+    "privacidad": "Nunca se muestran el celular ni el nombre completo. La persona puede salir del banco cuando quiera.",
+    "porSector": "Perfiles por sector",
+    "ejemplos": "Perfiles de ejemplo para el prototipo.",
+    "uneteTitulo": "¿Tienes oficio? Únete al banco",
+    "uneteTexto": "Te pueden encontrar por lo que sabes hacer, aunque nunca hayas tenido ese puesto.",
+    "hacermeVisible": "Aparecer en el banco",
+    "encontrados": "{n} perfiles",
+    "desdeOtro": "{n} vienen de otro oficio y podrían hacer el trabajo de {profesion}",
+    "vacio": "No hay perfiles con esos filtros. Prueba otra región o profesión.",
+    "otroOficio": "Otro oficio",
+    "tuPerfil": "Tu perfil",
+    "hoy": "Hoy: {oficio}",
+    "anios": "{n} años",
+    "para": "Para {profesion}",
+    "recolocacion": "Viene de otro oficio",
+    "selloPanal": "Panal confirmado",
+    "selloCurso": "Llevando un curso",
+    "selloEjemplo": "Ejemplo",
+    "contactar": "Solicitar contacto",
+    "solicitado": "Solicitud enviada",
+    "contactoTitulo": "¿Cómo se contacta a esta persona?",
+    "contactoEtiqueta": "Contacto con intermediación",
+    "contactoPasos": {
+      "uno": "Tu solicitud llega al Centro de Empleo de la región.",
+      "dos": "El asesor llama a la persona y le cuenta de tu oferta.",
+      "tres": "Si la persona acepta, el asesor los pone en contacto."
+    },
+    "contactoDemo": "Demo: no se envía nada. En la versión real, la solicitud llegaría al Centro de Empleo.",
+    "solicitar": "Solicitar contacto"
   }
 }

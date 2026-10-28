@@ -19,6 +19,9 @@ import { Panal } from './pantallas/Panal';
 import { Rutas } from './pantallas/Rutas';
 import { Paso } from './pantallas/Paso';
 import { Resumen, Compartido } from './pantallas/Resumen';
+import { CuentaPantalla } from './pantallas/Cuenta';
+import { Banco } from './pantallas/Banco';
+import { actualizarCuenta } from './cuenta';
 
 function estadoAlAbrir(regionId: string): Estado {
   // 1) Alguien abrió un panal compartido por enlace.
@@ -48,6 +51,8 @@ export function App() {
   // Solo se guarda si la persona lo pidió, y solo en este celular.
   useEffect(() => {
     if (estado) escribirProgreso(estado);
+    // Con cuenta, el avance también se guarda dentro de ella.
+    if (estado?.cuenta) actualizarCuenta(estado.cuenta, estado);
   }, [estado]);
 
   const cambiar = useCallback((parcial: Partial<Estado>) => setEstado((e) => (e ? { ...e, ...parcial } : e)), []);
@@ -94,7 +99,7 @@ export function App() {
   return (
     <Ctx.Provider value={ctx}>
       <div className="app">
-        {p !== 'inicio' && p !== 'compartido' && <Encabezado />}
+        {!['inicio', 'compartido', 'resumen', 'cuenta', 'banco'].includes(p) && <Encabezado />}
         {p === 'inicio' && <Inicio />}
         {p === 'situacion' && <Situacion />}
         {p === 'ocupacion' && <Ocupacion />}
@@ -107,6 +112,8 @@ export function App() {
         {p === 'paso' && <Paso />}
         {p === 'resumen' && <Resumen />}
         {p === 'compartido' && <Compartido />}
+        {p === 'cuenta' && <CuentaPantalla key={ctx.estado.lugar.pregunta} />}
+        {p === 'banco' && <Banco />}
       </div>
     </Ctx.Provider>
   );

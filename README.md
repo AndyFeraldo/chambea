@@ -18,6 +18,8 @@ Chambea ayuda a personas que aprendieron su oficio en la práctica a reconocer l
 | 3 · Mira tus rutas | Carrusel de hasta 5 rutas. Cada trabajo llega con **su abeja vestida para ese oficio**, que entra volando desde la derecha; con "Siguiente" sale por la izquierda y entra la del siguiente trabajo. Mini panal con lo que tienes y lo que **falta**, demanda, alias y **enlaces a ofertas reales** (Empleos Perú y Computrabajo) |
 | 4 · Da el paso | **Una sola pantalla visual**: muestra lo que falta para la ruta elegida, pregunta tiempo libre (con su equivalencia diaria) y dónde aprender (pre-marcado según la situación), y una **vista previa en vivo** del curso y de cómo pasarías de 6 de 7 a 7 de 7. Luego, **una** recomendación con su porqué, **línea de tiempo** (hoy → semanas del curso → postular → certificación) y 2 alternativas. Ya no se pregunta el costo: todos los cursos recomendados son gratuitos |
 | Mi panal | Tarjeta resumen, imagen descargable, **plan de acción** con checklist (Capacíta-T, CUL, postular, certificación), **texto para presentarse** (copiar o WhatsApp) y **QR/enlace para el asesor**: el panal viaja dentro del enlace, sin servidor |
+| Banco de talento | Personas que **eligieron** aparecer, filtradas por **sector, profesión y región**. Se busca por lo que saben hacer: al buscar una profesión aparecen también personas de otros oficios con alta coincidencia. Contacto con intermediación del Centro de Empleo. Ver `docs/07-banco-de-talento.md` |
+| Cuenta (demo) | Registro e ingreso con nombre, celular y PIN de 4 números, guardados solo en el navegador. Guarda el panal y el plan, y permite aparecer en el banco |
 | Siempre | Menú con **Ir al inicio**, **Guardar mi progreso en este celular** (opcional, solo en el teléfono), **Crear cuenta en Empleos Perú** y **Borrar todo** |
 
 **Diseño:** una idea por pantalla, poco texto, íconos grandes y movimiento de marca: abejas con estela, celdas que brotan y transiciones suaves. Si el teléfono tiene activado "reducir movimiento", las animaciones se apagan.
@@ -175,6 +177,8 @@ chambea/
 - Primer paso: con cobertura ≥ 0,85 recomienda postular en Empleos Perú (si la persona está en planilla en riesgo, primero el curso). Entre 0,5 y 0,85 recomienda un curso que cubra lo que falta y respete horas, modalidad y costo. Por debajo de 0,5 recomienda un asesor.
 
 ## Registro de cambios
+
+**28/10/2026 (plataforma web y banco de talento):** barra superior con Inicio, Mi panal, Banco de talento, Ingresar y Registrarme; Mi panal en 3 columnas (perfil y navegación, panal, plan y ofertas); cuenta demo con PIN; Banco de talento con filtros por sector, profesión y región, perfiles de ejemplo y contacto con intermediación.
 
 **28/10/2026 (paso 4 rediseñado):** las 3 preguntas sueltas pasan a una pantalla visual con el porqué, equivalencias de tiempo, opciones sugeridas según la situación, vista previa en vivo del curso y del avance, y línea de tiempo en el resultado. Se quita la pregunta de costo.
 
