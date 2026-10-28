@@ -1,9 +1,10 @@
 // Página principal: portada con un panal vivo, cómo funciona, para quién, a dónde te conecta y aliados.
-import type { CSSProperties } from 'react';
+import { useEffect, useState, type CSSProperties } from 'react';
+import QRCode from 'qrcode';
 import type { Perfil } from '@shared/tipos';
 import { t, textos } from '../i18n';
-import { estadoInicial, etiquetaHex, NUM_PREGUNTAS, useApp } from '../estado';
-import { Enjambre, Icono, Logo, type NombreIcono } from '../componentes/comunes';
+import { estadoInicial, etiquetaHex, NUM_PREGUNTAS, urlPublica, useApp } from '../estado';
+import { Enjambre, Icono, IconoAbeja, Logo, type NombreIcono } from '../componentes/comunes';
 import { AbejaVestida } from '../componentes/AbejaVestida';
 import { BarraWeb } from '../componentes/Plataforma';
 import { Aliados } from '../componentes/Aliados';
@@ -88,6 +89,42 @@ function PanalVivo() {
         </span>
       </div>
     </div>
+  );
+}
+
+/** QR para abrir Chambea en el celular o la tablet (solo se muestra en pantallas grandes). */
+function QrCelular() {
+  const [qr, setQr] = useState<string | null>(null);
+  const url = urlPublica();
+  useEffect(() => {
+    let vivo = true;
+    // Corrección alta: el QR se sigue leyendo con la abeja en el centro.
+    QRCode.toDataURL(url, { margin: 0, width: 264, errorCorrectionLevel: 'H', color: { dark: '#0E1A17', light: '#FFFFFF' } })
+      .then((u) => vivo && setQr(u))
+      .catch(() => vivo && setQr(null));
+    return () => {
+      vivo = false;
+    };
+  }, [url]);
+  if (!qr) return null;
+  return (
+    <aside className="hero__qr" aria-label={t('landing.qr.titulo')}>
+      <span className="hero__qr-codigo">
+        <img src={qr} alt={t('landing.qr.alt')} width={116} height={116} />
+        <span className="hero__qr-abeja" aria-hidden="true">
+          <IconoAbeja tam={26} />
+        </span>
+        <i className="hero__qr-escaneo" aria-hidden="true" />
+      </span>
+      <span className="hero__qr-texto">
+        <span className="etiqueta etiqueta--miel">
+          <Icono nombre="celular" tam={14} /> {t('landing.qr.etiqueta')}
+        </span>
+        <b>{t('landing.qr.titulo')}</b>
+        <span>{t('landing.qr.texto')}</span>
+        <small>{url.replace(/^https?:\/\//, '').replace(/\/$/, '')}</small>
+      </span>
+    </aside>
   );
 }
 
@@ -187,6 +224,8 @@ export function Inicio() {
                 </li>
               ))}
             </ul>
+
+            <QrCelular />
           </div>
           <PanalVivo />
         </div>

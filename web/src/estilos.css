@@ -1227,7 +1227,7 @@ fieldset.pref { border: 0; margin: 0; padding: 0; min-width: 0; }
 @media (min-width: 1000px) {
   .landing__interior { padding-inline: 40px; }
   .landing__seccion { padding-block: 84px; }
-  .hero__interior { grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); align-items: center; padding: 64px 40px 48px; min-height: 560px; }
+  .hero__interior { grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); align-items: center; padding: 40px 40px 36px; min-height: 560px; }
   .hero__lead { font-size: 1.24rem; }
   .panal-vivo { height: 520px; --c: 150px; }
   .panal-vivo__hex { font-size: 0.95rem; }
@@ -1348,3 +1348,22 @@ details.filtros > summary::-webkit-details-marker { display: none; }
 details.filtros[open] .filtros__abrir { display: none; }
 @media (min-width: 1000px) { details.filtros > summary { pointer-events: none; } .filtros__abrir { display: none; } }
 .enlace-texto { background: none; border: 0; padding: 0 4px; min-height: 44px; color: var(--verde-oscuro); font-weight: 700; text-decoration: underline; cursor: pointer; }
+
+/* QR de la portada: para abrir Chambea en el celular desde una pantalla grande */
+@keyframes escanear { 0% { top: 4%; opacity: 0; } 4% { opacity: 1; } 26% { top: 94%; opacity: 1; } 30%, 100% { top: 94%; opacity: 0; } }
+.hero__qr { display: none; }
+@media (min-width: 1000px) and (hover: hover) {
+  .hero__qr {
+    display: flex; align-items: center; gap: 18px; margin-top: 22px; padding: 12px 20px 12px 12px; max-width: 470px;
+    border-radius: 22px; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.14);
+    animation: fundido 0.6s ease-out both 0.9s;
+  }
+  .hero__qr-codigo { position: relative; flex: none; display: grid; place-items: center; padding: 10px; border-radius: 16px; background: var(--blanco); box-shadow: 0 0 0 4px rgba(245, 184, 46, 0.35), 0 14px 30px rgba(0, 0, 0, 0.35); overflow: hidden; }
+  .hero__qr-codigo img { display: block; width: 116px; height: 116px; image-rendering: pixelated; }
+  .hero__qr-abeja { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: grid; place-items: center; width: 34px; height: 34px; border-radius: 9px; background: var(--blanco); }
+  .hero__qr-escaneo { position: absolute; left: 6%; right: 6%; height: 2px; border-radius: 2px; background: var(--miel); box-shadow: 0 0 10px 2px rgba(245, 184, 46, 0.7); animation: escanear 5s ease-in-out infinite 1.5s; opacity: 0; }
+  .hero__qr-texto { display: flex; flex-direction: column; gap: 4px; color: #cfdcd7; font-size: 0.92rem; }
+  .hero__qr-texto .etiqueta { display: inline-flex; align-items: center; gap: 6px; }
+  .hero__qr-texto b { color: var(--blanco); font-family: var(--f-titulo); font-size: 1.25rem; line-height: 1.15; }
+  .hero__qr-texto small { color: var(--miel); font-weight: 700; font-size: 0.82rem; margin-top: 2px; }
+}

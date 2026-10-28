@@ -626,6 +626,12 @@
     },
     "pie": {
       "privacidad": "Sin CV. Lo que cuentas se queda en tu navegador y solo se guarda si tú lo pides."
+    },
+    "qr": {
+      "etiqueta": "Desde tu celular o tablet",
+      "titulo": "Escanea y pruébalo ahora",
+      "texto": "Apunta la cámara al código: Chambea se abre al instante, sin instalar nada.",
+      "alt": "Código QR para abrir Chambea en el celular"
     }
   },
   "aliados": {
