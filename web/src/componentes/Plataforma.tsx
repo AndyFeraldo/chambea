@@ -72,17 +72,20 @@ export function Plataforma({
   activo,
   izquierda,
   derecha,
+  centroPrimero = false,
   children,
 }: {
   activo?: Seccion;
   izquierda?: ReactNode;
   derecha?: ReactNode;
+  /** En celular, mostrar primero el centro (y después los costados). */
+  centroPrimero?: boolean;
   children: ReactNode;
 }) {
   return (
     <div className="plataforma">
       <BarraWeb activo={activo} />
-      <div className={`plataforma__cuerpo ${izquierda ? 'con-izq' : ''} ${derecha ? 'con-der' : ''}`}>
+      <div className={`plataforma__cuerpo ${izquierda ? 'con-izq' : ''} ${derecha ? 'con-der' : ''} ${centroPrimero ? 'centro-primero' : ''}`}>
         {izquierda && <aside className="plataforma__izq">{izquierda}</aside>}
         <main className="plataforma__centro entrar">{children}</main>
         {derecha && <aside className="plataforma__der">{derecha}</aside>}

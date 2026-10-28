@@ -11,7 +11,7 @@ import {
   type Estado,
   type Pantalla,
 } from './estado';
-import { Encabezado } from './componentes/comunes';
+import { Recorrido } from './componentes/Recorrido';
 import { Inicio } from './pantallas/Inicio';
 import { Situacion, Ocupacion } from './pantallas/Situacion';
 import { Pregunta, Armando, Intereses, Puente } from './pantallas/Preguntas';
@@ -99,17 +99,20 @@ export function App() {
   return (
     <Ctx.Provider value={ctx}>
       <div className="app">
-        {!['inicio', 'compartido', 'resumen', 'cuenta', 'banco'].includes(p) && <Encabezado />}
         {p === 'inicio' && <Inicio />}
-        {p === 'situacion' && <Situacion />}
-        {p === 'ocupacion' && <Ocupacion />}
-        {p === 'pregunta' && <Pregunta key={ctx.estado.lugar.pregunta} />}
-        {p === 'intereses' && <Intereses key={ctx.estado.lugar.pregunta} />}
-        {p === 'armando' && <Armando />}
-        {p === 'puente' && <Puente />}
-        {p === 'panal' && <Panal />}
-        {p === 'rutas' && <Rutas />}
-        {p === 'paso' && <Paso />}
+        {['situacion', 'ocupacion', 'pregunta', 'intereses', 'armando', 'puente', 'panal', 'rutas', 'paso'].includes(p) && (
+          <Recorrido>
+            {p === 'situacion' && <Situacion />}
+            {p === 'ocupacion' && <Ocupacion />}
+            {p === 'pregunta' && <Pregunta key={ctx.estado.lugar.pregunta} />}
+            {p === 'intereses' && <Intereses key={ctx.estado.lugar.pregunta} />}
+            {p === 'armando' && <Armando />}
+            {p === 'puente' && <Puente />}
+            {p === 'panal' && <Panal />}
+            {p === 'rutas' && <Rutas />}
+            {p === 'paso' && <Paso />}
+          </Recorrido>
+        )}
         {p === 'resumen' && <Resumen />}
         {p === 'compartido' && <Compartido />}
         {p === 'cuenta' && <CuentaPantalla key={ctx.estado.lugar.pregunta} />}

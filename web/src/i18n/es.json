@@ -276,8 +276,11 @@
       "mostrarQr": "Mostrar mi código QR",
       "qrAlt": "Código QR con tu panal",
       "copiarEnlace": "Copiar enlace de mi panal",
-      "privacidad": "Tu panal viaja dentro del enlace: no se guarda en ningún servidor."
-    }
+      "privacidad": "Tu panal viaja dentro del enlace: no se guarda en ningún servidor.",
+      "ayudaCorta": "Muéstralo en un Centro de Empleo. El asesor verá tu panal sin que te registres."
+    },
+    "verTodo": "Ver todo el texto",
+    "verMenos": "Ver menos"
   },
   "menu": {
     "titulo": "Menú",
@@ -430,5 +433,15 @@
     },
     "contactoDemo": "Demo: no se envía nada. En la versión real, la solicitud llegaría al Centro de Empleo.",
     "solicitar": "Solicitar contacto"
+  },
+  "recorrido": {
+    "pasos": "Pasos del recorrido",
+    "privacidad": "No guardamos lo que cuentas, salvo que tú lo pidas.",
+    "descripcion": {
+      "1": "Cuenta lo que haces, con tu voz",
+      "2": "Tus habilidades, celda por celda",
+      "3": "Trabajos a los que puedes llegar",
+      "4": "Un plan que sí puedes cumplir"
+    }
   }
 }

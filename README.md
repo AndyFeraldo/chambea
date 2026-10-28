@@ -178,6 +178,8 @@ chambea/
 
 ## Registro de cambios
 
+**28/10/2026 (adaptable a computadora):** en pantallas anchas, el recorrido se ve como plataforma web: barra superior, panel lateral con los 4 pasos y contenido a lo ancho (situación en 3 tarjetas, ocupaciones en 4 columnas, pregunta y micrófono lado a lado, colmena de 5 columnas, rutas con la abeja a la izquierda y la ficha a la derecha, paso 4 con vista previa al costado, inicio en pantalla dividida). Mi panal final: panal y Descargar al centro; Tu plan y Cómo presentarte a la izquierda; asesor (QR visible), perfil y banco a la derecha. En celular todo sigue en una columna.
+
 **28/10/2026 (plataforma web y banco de talento):** barra superior con Inicio, Mi panal, Banco de talento, Ingresar y Registrarme; Mi panal en 3 columnas (perfil y navegación, panal, plan y ofertas); cuenta demo con PIN; Banco de talento con filtros por sector, profesión y región, perfiles de ejemplo y contacto con intermediación.
 
 **28/10/2026 (paso 4 rediseñado):** las 3 preguntas sueltas pasan a una pantalla visual con el porqué, equivalencias de tiempo, opciones sugeridas según la situación, vista previa en vivo del curso y del avance, y línea de tiempo en el resultado. Se quita la pregunta de costo.

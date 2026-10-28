@@ -53,85 +53,88 @@ export function Pregunta() {
 
   return (
     <Pantalla clase="pantalla--pregunta">
-      <div className="puntos" aria-label={`${n + 1} / ${NUM_PREGUNTAS}`}>
-        {Array.from({ length: NUM_PREGUNTAS }, (_, i) => (
-          <span key={i} className={`puntos__hex ${i < n ? 'hecho' : ''} ${i === n ? 'actual' : ''}`} />
-        ))}
-        {pregunta.apunta && <span className="puntos__tema">{pregunta.apunta}</span>}
-      </div>
-
-      <div className="charla">
-        <Abeja tam={52} className="abeja--flota" />
-        <div className="burbuja">
-          <p id={`pregunta-${n}`}>{pregunta.texto}</p>
-          <BotonEscuchar texto={pregunta.texto} />
+      <div className="pregunta__izq">
+        <div className="puntos" aria-label={`${n + 1} / ${NUM_PREGUNTAS}`}>
+          {Array.from({ length: NUM_PREGUNTAS }, (_, i) => (
+            <span key={i} className={`puntos__hex ${i < n ? 'hecho' : ''} ${i === n ? 'actual' : ''}`} />
+          ))}
+          {pregunta.apunta && <span className="puntos__tema">{pregunta.apunta}</span>}
         </div>
-      </div>
-      {pregunta.pista && <p className="pista">💡 {pregunta.pista}</p>}
 
-      {voz.disponible && !teclado ? (
-        <div className="micro">
-          <button
-            type="button"
-            className={`micro__boton ${voz.escuchando ? 'micro__boton--activo' : ''}`}
-            aria-pressed={voz.escuchando}
-            aria-label={voz.escuchando ? t('preguntas.escuchando') : t('preguntas.tocaYHabla')}
-            onClick={alternarMicro}
-          >
-            <span className="micro__onda" />
-            <span className="micro__onda micro__onda--2" />
-            <Icono nombre={voz.escuchando ? 'detener' : 'micro'} tam={36} />
-          </button>
-          <p className="micro__estado" aria-live="polite">
-            {voz.escuchando ? t('preguntas.escuchando') : t('preguntas.tocaYHabla')}
-          </p>
-          {valor && (
-            <p className="respuesta-viva" aria-live="polite">
-              {valor}
-            </p>
-          )}
-          {!valor && !voz.escuchando && <p className="ejemplo">«{pregunta.ejemplo}»</p>}
-          {voz.error && <p className="error-voz">{t(MENSAJE_ERROR[voz.error])}</p>}
-          <button
-            type="button"
-            className="enlace"
-            onClick={() => {
-              voz.detener();
-              setTeclado(true);
-              setTimeout(() => caja.current?.focus(), 50);
-            }}
-          >
-            <Icono nombre="teclado" tam={20} /> {t('preguntas.escribir')}
-          </button>
+        <div className="charla">
+          <Abeja tam={52} className="abeja--flota" />
+          <div className="burbuja">
+            <p id={`pregunta-${n}`}>{pregunta.texto}</p>
+            <BotonEscuchar texto={pregunta.texto} />
+          </div>
         </div>
-      ) : (
-        <div className="pila">
-          <textarea
-            ref={caja}
-            id={`respuesta-${n}`}
-            className="caja-texto"
-            placeholder={pregunta.ejemplo}
-            value={valor}
-            onChange={(e) => escribir(e.target.value)}
-            aria-labelledby={`pregunta-${n}`}
-          />
-          {voz.error && <p className="error-voz">{t(MENSAJE_ERROR[voz.error])}</p>}
-          {voz.disponible && (
-            <button type="button" className="enlace" onClick={() => setTeclado(false)}>
-              <Icono nombre="micro" tam={20} /> {t('preguntas.hablar')}
+        {pregunta.pista && <p className="pista">💡 {pregunta.pista}</p>}
+      </div>
+      <div className="pregunta__der">
+        {voz.disponible && !teclado ? (
+          <div className="micro">
+            <button
+              type="button"
+              className={`micro__boton ${voz.escuchando ? 'micro__boton--activo' : ''}`}
+              aria-pressed={voz.escuchando}
+              aria-label={voz.escuchando ? t('preguntas.escuchando') : t('preguntas.tocaYHabla')}
+              onClick={alternarMicro}
+            >
+              <span className="micro__onda" />
+              <span className="micro__onda micro__onda--2" />
+              <Icono nombre={voz.escuchando ? 'detener' : 'micro'} tam={36} />
             </button>
-          )}
-        </div>
-      )}
+            <p className="micro__estado" aria-live="polite">
+              {voz.escuchando ? t('preguntas.escuchando') : t('preguntas.tocaYHabla')}
+            </p>
+            {valor && (
+              <p className="respuesta-viva" aria-live="polite">
+                {valor}
+              </p>
+            )}
+            {!valor && !voz.escuchando && <p className="ejemplo">«{pregunta.ejemplo}»</p>}
+            {voz.error && <p className="error-voz">{t(MENSAJE_ERROR[voz.error])}</p>}
+            <button
+              type="button"
+              className="enlace"
+              onClick={() => {
+                voz.detener();
+                setTeclado(true);
+                setTimeout(() => caja.current?.focus(), 50);
+              }}
+            >
+              <Icono nombre="teclado" tam={20} /> {t('preguntas.escribir')}
+            </button>
+          </div>
+        ) : (
+          <div className="pila">
+            <textarea
+              ref={caja}
+              id={`respuesta-${n}`}
+              className="caja-texto"
+              placeholder={pregunta.ejemplo}
+              value={valor}
+              onChange={(e) => escribir(e.target.value)}
+              aria-labelledby={`pregunta-${n}`}
+            />
+            {voz.error && <p className="error-voz">{t(MENSAJE_ERROR[voz.error])}</p>}
+            {voz.disponible && (
+              <button type="button" className="enlace" onClick={() => setTeclado(false)}>
+                <Icono nombre="micro" tam={20} /> {t('preguntas.hablar')}
+              </button>
+            )}
+          </div>
+        )}
 
-      <div className="empuje" />
-      <div className="fila-botones">
-        <button type="button" className="boton boton--fantasma" onClick={() => (escribir(''), seguir())}>
-          {t('comun.saltar')}
-        </button>
-        <button type="button" className="boton boton--primario" onClick={seguir} disabled={!valor.trim()}>
-          {t('comun.siguiente')} <Icono nombre="adelante" />
-        </button>
+        <div className="empuje" />
+        <div className="fila-botones">
+          <button type="button" className="boton boton--fantasma" onClick={() => (escribir(''), seguir())}>
+            {t('comun.saltar')}
+          </button>
+          <button type="button" className="boton boton--primario" onClick={seguir} disabled={!valor.trim()}>
+            {t('comun.siguiente')} <Icono nombre="adelante" />
+          </button>
+        </div>
       </div>
     </Pantalla>
   );
@@ -264,7 +267,11 @@ export function Puente() {
           if (!c) return null;
           const r = respuestas[id];
           return (
-            <article key={id} className={`puente aparecer ${r === true ? 'puente--si' : r === false ? 'puente--no' : ''}`} style={{ '--i': i } as CSSProperties}>
+            <article
+              key={id}
+              className={`puente aparecer ${r === true ? 'puente--si' : r === false ? 'puente--no' : ''}`}
+              style={{ '--i': i } as CSSProperties}
+            >
               <span className="catalogo__marca" style={{ background: COLOR_DIM[c.dimension] }} />
               <div className="puente__textos">
                 <b>{c.nombre_corto ?? c.nombre_simple}</b>

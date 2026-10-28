@@ -97,112 +97,116 @@ function Preferencias() {
   };
 
   return (
-    <Pantalla>
-      <div className="pila-chica">
+    <Pantalla clase="pantalla--pref">
+      <div className="pila-chica pref__cabeza">
         <span className="etiqueta">{t('paso.etiqueta')}</span>
         <h1>{t('paso.prefTitulo')}</h1>
         <p className="ayuda">{t('paso.prefPorque')}</p>
       </div>
 
-      {ruta && (
-        <section className="meta-ruta">
-          <p className="meta-ruta__titulo">
-            {ruta.faltan.length ? t('paso.teFaltaPara', { ruta: ruta.nombre }) : t('paso.yaTienesTodo', { ruta: ruta.nombre })}
-          </p>
-          {ruta.faltan.length > 0 && (
-            <div className="meta-ruta__chips">
-              {ruta.faltan.map((id) => (
-                <span key={id} className="chip-falta">
-                  <span className="mini-hex" /> {comp(id)?.nombre_corto ?? id}
-                </span>
+      <div className="pref__columnas">
+        <div className="pref__izq">
+          {ruta && (
+            <section className="meta-ruta">
+              <p className="meta-ruta__titulo">
+                {ruta.faltan.length ? t('paso.teFaltaPara', { ruta: ruta.nombre }) : t('paso.yaTienesTodo', { ruta: ruta.nombre })}
+              </p>
+              {ruta.faltan.length > 0 && (
+                <div className="meta-ruta__chips">
+                  {ruta.faltan.map((id) => (
+                    <span key={id} className="chip-falta">
+                      <span className="mini-hex" /> {comp(id)?.nombre_corto ?? id}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </section>
+          )}
+
+          <fieldset className="pref">
+            <legend className="pref__titulo">
+              <Icono nombre="reloj" tam={22} /> {t('paso.tiempoTitulo')}
+            </legend>
+            <div className="pref__opciones pref__opciones--3">
+              {HORAS.map((h) => (
+                <button
+                  key={h.valor}
+                  type="button"
+                  className="pref__opcion"
+                  aria-pressed={horas === h.valor}
+                  onClick={() => cambiar({ horas: h.valor, primerPaso: null })}
+                >
+                  <span className="medidor" aria-hidden="true">
+                    {[1, 2, 3].map((n) => (
+                      <span key={n} className={`medidor__hex ${n <= h.nivel ? 'lleno' : ''}`} />
+                    ))}
+                  </span>
+                  <b>{t(`paso.horasOp.${h.valor}`)}</b>
+                  <small>{t(`paso.horasEquivale.${h.valor}`)}</small>
+                </button>
               ))}
             </div>
-          )}
-        </section>
-      )}
+          </fieldset>
 
-      <fieldset className="pref">
-        <legend className="pref__titulo">
-          <Icono nombre="reloj" tam={22} /> {t('paso.tiempoTitulo')}
-        </legend>
-        <div className="pref__opciones pref__opciones--3">
-          {HORAS.map((h) => (
-            <button
-              key={h.valor}
-              type="button"
-              className="pref__opcion"
-              aria-pressed={horas === h.valor}
-              onClick={() => cambiar({ horas: h.valor, primerPaso: null })}
-            >
-              <span className="medidor" aria-hidden="true">
-                {[1, 2, 3].map((n) => (
-                  <span key={n} className={`medidor__hex ${n <= h.nivel ? 'lleno' : ''}`} />
-                ))}
-              </span>
-              <b>{t(`paso.horasOp.${h.valor}`)}</b>
-              <small>{t(`paso.horasEquivale.${h.valor}`)}</small>
-            </button>
-          ))}
-        </div>
-      </fieldset>
-
-      <fieldset className="pref">
-        <legend className="pref__titulo">
-          <Icono nombre="libro" tam={22} /> {t('paso.lugarTitulo')}
-        </legend>
-        <div className="pref__opciones pref__opciones--3">
-          {MODALIDADES.map((m) => (
-            <button
-              key={m.valor}
-              type="button"
-              className="pref__opcion"
-              aria-pressed={modalidad === m.valor}
-              onClick={() => cambiar({ modalidad: m.valor, primerPaso: null })}
-            >
-              <span className="pref__icono">
-                <Icono nombre={m.icono} tam={26} />
-              </span>
-              <b>{t(`paso.modalidadOp.${m.valor}`)}</b>
-              <small>{t(`paso.modalidadAyuda.${m.valor}`)}</small>
-            </button>
-          ))}
-        </div>
-      </fieldset>
-
-      <p className="pref__gratis">
-        <Icono nombre="regalo" tam={20} /> {t('paso.todoGratis')}
-      </p>
-      {!estado.horas && !estado.modalidad && <p className="nota">{t('paso.sugeridoNota')}</p>}
-
-      {p && ruta && (
-        <section className="vista-previa" aria-live="polite">
-          <span className="etiqueta">{t('paso.vistaPrevia')}</span>
-          <div className="vista-previa__fila">
-            <span className="vista-previa__icono">
-              <Icono nombre={ICONO[p.tipo]} tam={24} />
-            </span>
-            <div className="vista-previa__textos">
-              <b>{p.tipo === 'capacitate' ? p.detalle : p.titulo}</b>
-              <small>
-                {p.curso
-                  ? t('paso.cursoCorto', {
-                      semanas: p.curso.duracion_semanas,
-                      horas: p.curso.horas_semana,
-                      modalidad: t(`paso.cursoModalidad.${p.curso.modalidad}`),
-                    })
-                  : p.detalle}
-              </small>
+          <fieldset className="pref">
+            <legend className="pref__titulo">
+              <Icono nombre="libro" tam={22} /> {t('paso.lugarTitulo')}
+            </legend>
+            <div className="pref__opciones pref__opciones--3">
+              {MODALIDADES.map((m) => (
+                <button
+                  key={m.valor}
+                  type="button"
+                  className="pref__opcion"
+                  aria-pressed={modalidad === m.valor}
+                  onClick={() => cambiar({ modalidad: m.valor, primerPaso: null })}
+                >
+                  <span className="pref__icono">
+                    <Icono nombre={m.icono} tam={26} />
+                  </span>
+                  <b>{t(`paso.modalidadOp.${m.valor}`)}</b>
+                  <small>{t(`paso.modalidadAyuda.${m.valor}`)}</small>
+                </button>
+              ))}
             </div>
-          </div>
-          {p.curso_ajustado && <p className="vista-previa__aviso">{t('paso.cursoAjustado')}</p>}
-          <Progreso ruta={ruta} cubre={p.curso?.cubre ?? []} />
-        </section>
-      )}
+          </fieldset>
 
-      <div className="empuje" />
-      <button type="button" className="boton boton--primario boton--grande" onClick={seguir}>
-        {t('paso.ver')} <Icono nombre="adelante" />
-      </button>
+          <p className="pref__gratis">
+            <Icono nombre="regalo" tam={20} /> {t('paso.todoGratis')}
+          </p>
+          {!estado.horas && !estado.modalidad && <p className="nota">{t('paso.sugeridoNota')}</p>}
+        </div>
+        <div className="pref__der">
+          {p && ruta && (
+            <section className="vista-previa" aria-live="polite">
+              <span className="etiqueta">{t('paso.vistaPrevia')}</span>
+              <div className="vista-previa__fila">
+                <span className="vista-previa__icono">
+                  <Icono nombre={ICONO[p.tipo]} tam={24} />
+                </span>
+                <div className="vista-previa__textos">
+                  <b>{p.tipo === 'capacitate' ? p.detalle : p.titulo}</b>
+                  <small>
+                    {p.curso
+                      ? t('paso.cursoCorto', {
+                          semanas: p.curso.duracion_semanas,
+                          horas: p.curso.horas_semana,
+                          modalidad: t(`paso.cursoModalidad.${p.curso.modalidad}`),
+                        })
+                      : p.detalle}
+                  </small>
+                </div>
+              </div>
+              {p.curso_ajustado && <p className="vista-previa__aviso">{t('paso.cursoAjustado')}</p>}
+              <Progreso ruta={ruta} cubre={p.curso?.cubre ?? []} />
+            </section>
+          )}
+
+          <button type="button" className="boton boton--primario boton--grande" onClick={seguir}>
+            {t('paso.ver')} <Icono nombre="adelante" />
+          </button>
+        </div>
+      </div>
     </Pantalla>
   );
 }
@@ -264,52 +268,54 @@ function Resultado() {
         {ruta && <p className="etiqueta">{t('paso.ruta', { ocupacion: ruta.nombre })}</p>}
       </div>
 
-      <section className="recomendacion revelar">
-        <Enjambre cantidad={2} />
-        <span className="recomendacion__icono">
-          <Icono nombre={ICONO[p.tipo]} tam={34} />
-        </span>
-        <h2 className="recomendacion__titulo">{p.titulo}</h2>
-        <p className="recomendacion__detalle">{p.detalle}</p>
-        {p.curso && (
-          <p className="recomendacion__meta">
-            {t('paso.cursoCorto', {
-              semanas: p.curso.duracion_semanas,
-              horas: p.curso.horas_semana,
-              modalidad: t(`paso.cursoModalidad.${p.curso.modalidad}`),
-            })}{' '}
-            · {t('paso.gratis')}
-          </p>
-        )}
-        <p className="recomendacion__porque">{resultado.porque}</p>
-        {ruta && <Progreso ruta={ruta} cubre={p.curso?.cubre ?? []} />}
-        {p.curso && (
-          <p className="recomendacion__meta">
-            {p.curso.verificado ? t('paso.cursoReal') : t('paso.cursoEjemplo')} {t('paso.cursoAprox')}
-          </p>
-        )}
-        {p.curso_ajustado && <p className="recomendacion__meta">{t('paso.cursoAjustado')}</p>}
-        {url && p.tipo !== 'asesor' && (
-          <a className="boton boton--miel" href={url} target="_blank" rel="noopener noreferrer">
-            {t(`paso.ir.${p.tipo}`)}
-          </a>
-        )}
-      </section>
+      <div className="resultado__columnas">
+        <section className="recomendacion revelar">
+          <Enjambre cantidad={2} />
+          <span className="recomendacion__icono">
+            <Icono nombre={ICONO[p.tipo]} tam={34} />
+          </span>
+          <h2 className="recomendacion__titulo">{p.titulo}</h2>
+          <p className="recomendacion__detalle">{p.detalle}</p>
+          {p.curso && (
+            <p className="recomendacion__meta">
+              {t('paso.cursoCorto', {
+                semanas: p.curso.duracion_semanas,
+                horas: p.curso.horas_semana,
+                modalidad: t(`paso.cursoModalidad.${p.curso.modalidad}`),
+              })}{' '}
+              · {t('paso.gratis')}
+            </p>
+          )}
+          <p className="recomendacion__porque">{resultado.porque}</p>
+          {ruta && <Progreso ruta={ruta} cubre={p.curso?.cubre ?? []} />}
+          {p.curso && (
+            <p className="recomendacion__meta">
+              {p.curso.verificado ? t('paso.cursoReal') : t('paso.cursoEjemplo')} {t('paso.cursoAprox')}
+            </p>
+          )}
+          {p.curso_ajustado && <p className="recomendacion__meta">{t('paso.cursoAjustado')}</p>}
+          {url && p.tipo !== 'asesor' && (
+            <a className="boton boton--miel" href={url} target="_blank" rel="noopener noreferrer">
+              {t(`paso.ir.${p.tipo}`)}
+            </a>
+          )}
+        </section>
 
-      <section className="linea" aria-labelledby="linea">
-        <h2 id="linea">{t('paso.linea.titulo')}</h2>
-        <ol className="linea__lista">
-          {etapas.map((e, i) => (
-            <li key={i} className="linea__etapa aparecer" style={{ '--i': i } as CSSProperties}>
-              <span className="linea__marca">{i + 1}</span>
-              <div>
-                <span className="linea__cuando">{e.cuando}</span>
-                <p>{e.que}</p>
-              </div>
-            </li>
-          ))}
-        </ol>
-      </section>
+        <section className="linea" aria-labelledby="linea">
+          <h2 id="linea">{t('paso.linea.titulo')}</h2>
+          <ol className="linea__lista">
+            {etapas.map((e, i) => (
+              <li key={i} className="linea__etapa aparecer" style={{ '--i': i } as CSSProperties}>
+                <span className="linea__marca">{i + 1}</span>
+                <div>
+                  <span className="linea__cuando">{e.cuando}</span>
+                  <p>{e.que}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </section>
+      </div>
 
       <div className="pila-chica">
         <span className="etiqueta">{t('paso.otrasOpciones')}</span>
