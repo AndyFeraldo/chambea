@@ -95,23 +95,28 @@ La demo se publica como sitio estático: el motor corre en el navegador y no nec
 
 Por defecto Chambea usa el modo **mock**: busca palabras clave del catálogo, sin modelo y sin internet. Para usar un modelo real con QVAC, la IA local de Tether:
 
-1. Instala el CLI oficial de QVAC (paquete oficial `@qvac/cli` en npm):
+0. **Revisa tu versión de Node.js:** `node -v`. QVAC pide **22.21 o más nueva (línea 22)** o **24.9 o más nueva**. Si tienes una más antigua, instala la LTS actual desde https://nodejs.org.
+1. Instala el CLI oficial de QVAC (paquete oficial `@qvac/cli` en npm) y revisa tu computadora:
    ```
    npm i -g @qvac/cli
    qvac doctor
    ```
-   `qvac doctor` revisa si tu computadora puede correr QVAC.
-2. En la carpeta del proyecto ya está `qvac.config.json`, que registra un modelo con el nombre `chambea-llm`. Levanta el servidor QVAC compatible con OpenAI:
+   `qvac doctor` dice si tu computadora puede correr QVAC (memoria, disco, tarjeta gráfica).
+2. En la carpeta del proyecto ya está `qvac.config.json`, que registra un modelo con el nombre `chambea-llm`. Levanta el servidor QVAC compatible con OpenAI **desde la carpeta del proyecto**:
    ```
    qvac serve --openai
    ```
-   Queda escuchando en `http://127.0.0.1:11434`. La primera vez descarga el modelo, así que puede tardar.
-3. En `.env` cambia `AI_PROVIDER=mock` por `AI_PROVIDER=qvac` y reinicia `npm run dev`.
+   Queda escuchando en `http://127.0.0.1:11434`. La primera vez descarga el modelo, así que puede tardar. Deja esa terminal abierta.
+3. En `.env` cambia `AI_PROVIDER=mock` por `AI_PROVIDER=qvac` y, en otra terminal, levanta Chambea con `npm run dev`.
 4. Comprueba que funcione en http://localhost:3001/api/salud. Debe decir `"proveedor":"qvac","conectado":true`.
 
 Si QVAC no responde, o responde algo que no es JSON válido, Chambea **vuelve sola al modo mock** y el recorrido sigue funcionando. Además, cada competencia que propone el modelo se valida contra el catálogo. Si el modelo no puede citar una frase que la persona realmente dijo, la competencia se descarta.
 
-> Los comandos salen del README oficial de `@qvac/cli` 0.16.0. El modelo `QWEN3_600M_INST_Q4` es el ejemplo de esa documentación y es pequeño. Para mejores resultados, prueben un modelo más grande del catálogo (`GET http://127.0.0.1:11434/v1/models/catalog?role=chat`). Confírmenlo en https://docs.qvac.tether.io y con el equipo de Tether.
+**Elegir el modelo:** `qvac.config.json` trae `QWEN3_600M_INST_Q4`, el ejemplo de la documentación oficial: es pequeño y rápido, pero entiende peor el español. Modelos del SDK de QVAC que pueden probar (de más liviano a más pesado): `QWEN3_600M_INST_Q4`, `QWEN3_1_7B_INST_Q4`, `QWEN3_4B_INST_Q4_K_M`. Para ver todos: `curl "http://127.0.0.1:11434/v1/models/catalog?role=chat"`. Cambien el nombre en `qvac.config.json`, reinicien `qvac serve --openai` y prueben el caso de Rosa.
+
+**Importante para la demo:** el enlace de GitHub Pages y la versión de un solo archivo funcionan **solo en el navegador, con el modo mock**. QVAC solo se usa cuando Chambea corre desde una computadora con `npm run dev` y `AI_PROVIDER=qvac`. Para mostrar QVAC al jurado, la demo se hace desde esa computadora.
+
+> Comandos confirmados en el README oficial de `@qvac/cli` 0.17.0 (npm) y su guía `docs/serve`. Confírmenlos también en https://docs.qvac.tether.io y con el equipo de Tether.
 
 ---
 
