@@ -7,7 +7,7 @@ import { enlaceCompartir, useApp, type PanalCompartido } from '../estado';
 import { generarImagen } from '../imagenPanal';
 import { AvisoCertificacion, Enjambre, Icono, Logo } from '../componentes/comunes';
 import { completitud, Plataforma } from '../componentes/Plataforma';
-import { iniciales } from '../cuenta';
+import { iniciales, nombreCompleto } from '../cuenta';
 import { Colmena, Leyenda, ordenar } from './Panal';
 import { enlacesOfertas } from './Rutas';
 
@@ -218,8 +218,8 @@ export function Resumen() {
 
       <section className="lado lado--perfil">
         <div className="lado__cabeza">
-          <span className="avatar">{estado.cuenta ? iniciales(estado.cuenta.nombre) : <Icono nombre="persona" tam={18} />}</span>
-          <h2>{estado.cuenta?.nombre ?? t('web.invitado')}</h2>
+          <span className="avatar">{estado.cuenta ? iniciales(estado.cuenta) : <Icono nombre="persona" tam={18} />}</span>
+          <h2>{estado.cuenta ? nombreCompleto(estado.cuenta) : t('web.invitado')}</h2>
         </div>
         <span className="lado__completo">{t('web.perfilCompleto', { pct })}</span>
         <span className="barra" aria-hidden="true">
@@ -230,15 +230,15 @@ export function Resumen() {
           <span>{t('menu.guardar')}</span>
         </label>
         {estado.cuenta ? (
-          <label className="consentimiento">
-            <input
-              id="lat-visible"
-              type="checkbox"
-              checked={estado.cuenta.visible}
-              onChange={(e) => cambiar({ cuenta: { ...estado.cuenta!, visible: e.target.checked } })}
-            />
-            <span>{t('cuenta.visible')}</span>
-          </label>
+          estado.cuenta.visible ? (
+            <p className="lado__ok">
+              <Icono nombre="check" tam={18} /> {t('web.bancoVisibleCorto')}
+            </p>
+          ) : (
+            <button type="button" className="boton boton--miel boton--compacto" onClick={() => ir('unirse')}>
+              {t('unirse.cta')}
+            </button>
+          )
         ) : (
           <button type="button" className="boton boton--miel boton--compacto" onClick={() => ir('cuenta', 0)}>
             {t('web.crearCuenta')}
@@ -249,8 +249,8 @@ export function Resumen() {
       <section className="lado lado--oscuro">
         <h2>{t('web.bancoTitulo')}</h2>
         <p>{estado.cuenta?.visible ? t('web.bancoVisible') : t('web.bancoInvita')}</p>
-        <button type="button" className="boton boton--miel boton--compacto" onClick={() => ir('banco')}>
-          {t('web.verBanco')} <Icono nombre="adelante" tam={18} />
+        <button type="button" className="boton boton--miel boton--compacto" onClick={() => ir(estado.cuenta?.visible ? 'banco' : estado.cuenta ? 'unirse' : 'cuenta', estado.cuenta ? 0 : 2)}>
+          {estado.cuenta?.visible ? t('web.verBanco') : t('unirse.cta')} <Icono nombre="adelante" tam={18} />
         </button>
       </section>
 
@@ -276,7 +276,7 @@ export function Resumen() {
           <Enjambre cantidad={2} />
           <Logo oscuro tam={20} />
           <h1>{t('resumen.titulo')}</h1>
-          <span className="tarjeta-panal__region">{estado.cuenta?.nombre ? `${estado.cuenta.nombre} · ${region}` : region}</span>
+          <span className="tarjeta-panal__region">{estado.cuenta ? `${nombreCompleto(estado.cuenta)} · ${region}` : region}</span>
         </div>
         <div className="tarjeta-panal__cuerpo">
           <div className="tarjeta-panal__colmena">

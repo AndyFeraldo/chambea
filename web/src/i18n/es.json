@@ -351,7 +351,8 @@
     "bancoTitulo": "Banco de talento",
     "bancoInvita": "Crea tu cuenta y elige si quieres que empresas y Centros de Empleo te encuentren por lo que sabes hacer.",
     "bancoVisible": "Estás en el banco de talento. Te pueden encontrar por tus habilidades, no solo por tu puesto.",
-    "verBanco": "Ver el banco"
+    "verBanco": "Ver el banco",
+    "bancoVisibleCorto": "Estás en el Banco de talento."
   },
   "cuenta": {
     "tituloRegistro": "Crea tu cuenta",
@@ -382,7 +383,79 @@
       "existe": "Ya hay una cuenta con ese celular. Usa «Ingresar».",
       "noExiste": "No encontramos una cuenta con ese celular en este navegador.",
       "pin": "El PIN no coincide.",
-      "almacenamiento": "Este navegador no permite guardar datos (¿modo privado?)."
+      "almacenamiento": "Este navegador no permite guardar datos (¿modo privado?).",
+      "nombres": "Escribe tu nombre.",
+      "apellidos": "Escribe tus apellidos.",
+      "documento": "Revisa tu documento: el DNI tiene 8 números.",
+      "nacimiento": "Revisa tu fecha de nacimiento.",
+      "menor": "Chambea es para personas de 18 años o más.",
+      "celular": "Revisa tu celular: 9 números y empieza con 9.",
+      "correo": "Revisa tu correo o déjalo vacío.",
+      "distrito": "Escribe tu distrito.",
+      "pinFormato": "El PIN tiene 4 números.",
+      "pinIgual": "Los dos PIN no coinciden.",
+      "terminos": "Para crear tu cuenta, acepta el tratamiento de tus datos."
+    },
+    "opcional": "(opcional)",
+    "nombres": "Nombres",
+    "nombresEjemplo": "Rosa María",
+    "apellidos": "Apellidos",
+    "apellidosEjemplo": "Quispe Huamán",
+    "documento": "Documento de identidad",
+    "tipoDocumento": "Tipo de documento",
+    "numeroDocumento": "Número de documento",
+    "tiposDocumento": {
+      "dni": "DNI",
+      "ce": "Carné de extranjería",
+      "ptp": "PTP / CPP"
+    },
+    "documentoAyuda": "En la versión real se valida con RENIEC o Migraciones. En esta demo solo guardamos los últimos 3 números.",
+    "nacimiento": "Fecha de nacimiento",
+    "educacion": "¿Hasta dónde estudiaste?",
+    "elegir": "Elegir…",
+    "niveles": {
+      "primaria": "Primaria",
+      "secundaria_incompleta": "Secundaria incompleta",
+      "secundaria": "Secundaria completa",
+      "tecnica": "Técnica",
+      "superior_incompleta": "Superior incompleta",
+      "superior": "Superior completa"
+    },
+    "celularAyuda": "Será tu usuario. Nunca se publica.",
+    "correo": "Correo",
+    "distrito": "Distrito donde vives",
+    "distritoEjemplo": "Por ejemplo: San Juan de Lurigancho",
+    "discapacidad": "Tengo alguna discapacidad",
+    "discapacidadAyuda": "Solo para mostrarte también ofertas de empleo inclusivo. No se publica.",
+    "pin2": "Repite tu PIN",
+    "terminos": "Acepto el tratamiento de mis datos",
+    "terminosAyuda": "Solo para orientarme y guardar mi avance, según la Ley N.° 29733. Puedo borrar mi cuenta cuando quiera.",
+    "bancoSiguiente": "Quiero unirme al Banco de talento",
+    "bancoSiguienteAyuda": "Siguiente paso: completas tu perfil laboral (2 minutos) y decides si lo publicas.",
+    "seguir": "Seguir",
+    "pasosEtiqueta": "Pasos del registro",
+    "pasos": {
+      "datos": "Tus datos",
+      "contacto": "Contacto",
+      "acceso": "Acceso"
+    },
+    "titulos": {
+      "datos": "Crea tu cuenta",
+      "contacto": "¿Dónde te encontramos?",
+      "acceso": "Tu acceso y tus permisos"
+    },
+    "ayudas": {
+      "datos": "Como en Empleos Perú: tus datos básicos. Sin CV.",
+      "contacto": "Para que un asesor te ubique y te muestre trabajos cerca.",
+      "acceso": "Entras con tu celular y un PIN de 4 números. Tú decides qué se comparte."
+    },
+    "asiTeVen": "Así te verán en el banco",
+    "asiTeVenAyuda": "Como en Yape: tu primer nombre y la inicial de tu apellido.",
+    "nunca": {
+      "apellido": "Tu apellido completo",
+      "documento": "Tu documento",
+      "celular": "Tu celular",
+      "correo": "Tu correo"
     }
   },
   "banco": {
@@ -390,6 +463,7 @@
     "titulo": "Banco de talento",
     "subtitulo": "Personas con oficio que eligieron ser encontradas. Busca por lo que saben hacer, no solo por el nombre de su puesto.",
     "filtros": "Filtros",
+    "verFiltros": "Filtrar por sector, profesión y región",
     "sector": "Sector",
     "todos": "Todos",
     "profesion": "Profesión que buscas",
@@ -400,14 +474,14 @@
     "listosAyuda": "85 % o más de lo que pide la profesión.",
     "comoTitulo": "¿Cómo funciona?",
     "como": {
-      "uno": "La persona arma su panal y elige aparecer en el banco.",
-      "dos": "Empresas y Centros de Empleo buscan por sector y profesión.",
+      "uno": "La persona arma su panal, crea su cuenta y completa su perfil laboral.",
+      "dos": "Empresas y Centros de Empleo buscan por sector, profesión, jornada y región.",
       "tres": "El contacto pasa por el Centro de Empleo, y la persona decide."
     },
-    "privacidad": "Nunca se muestran el celular ni el nombre completo. La persona puede salir del banco cuando quiera.",
+    "privacidad": "Solo se muestran el primer nombre y la inicial del apellido, como en Yape. Nunca el celular ni el documento. La persona puede salir del banco cuando quiera.",
     "porSector": "Perfiles por sector",
     "ejemplos": "Perfiles de ejemplo para el prototipo.",
-    "uneteTitulo": "¿Tienes oficio? Únete al banco",
+    "uneteTitulo": "¿Tienes oficio? Únete al banco en 4 pasos",
     "uneteTexto": "Te pueden encontrar por lo que sabes hacer, aunque nunca hayas tenido ese puesto.",
     "hacermeVisible": "Aparecer en el banco",
     "encontrados": "{n} perfiles",
@@ -424,7 +498,7 @@
     "selloEjemplo": "Ejemplo",
     "contactar": "Solicitar contacto",
     "solicitado": "Solicitud enviada",
-    "contactoTitulo": "¿Cómo se contacta a esta persona?",
+    "contactoTitulo": "Contactar a {nombre}",
     "contactoEtiqueta": "Contacto con intermediación",
     "contactoPasos": {
       "uno": "Tu solicitud llega al Centro de Empleo de la región.",
@@ -432,7 +506,20 @@
       "tres": "Si la persona acepta, el asesor los pone en contacto."
     },
     "contactoDemo": "Demo: no se envía nada. En la versión real, la solicitud llegaría al Centro de Empleo.",
-    "solicitar": "Solicitar contacto"
+    "solicitar": "Enviar solicitud al Centro de Empleo",
+    "tu": "Tú",
+    "selloDocs": "Documentos al día: {n}",
+    "jornada": "Jornada",
+    "todas": "Todas",
+    "yaMismo": "Pueden empezar ya",
+    "yaMismoAyuda": "Personas disponibles de inmediato.",
+    "estasDentro": "Estás en el Banco de talento",
+    "estasDentroTexto": "Tu tarjeta aparece primero, resaltada. Así te ven las empresas.",
+    "editar": "Editar mi perfil",
+    "salirBanco": "Salir del banco",
+    "empresa": "Nombre de tu empresa",
+    "empresaEjemplo": "Por ejemplo: Minimarket San Juan",
+    "puesto": "Puesto que ofreces"
   },
   "recorrido": {
     "pasos": "Pasos del recorrido",
@@ -443,5 +530,245 @@
       "3": "Trabajos a los que puedes llegar",
       "4": "Un plan que sí puedes cumplir"
     }
+  },
+  "landing": {
+    "hero": {
+      "sobre": "Reto del Ministerio de Trabajo · Innovathon Ulima x Tether 2026",
+      "titulo1": "Tu chamba",
+      "titulo2": "cuenta.",
+      "lead": "Aprendiste tu oficio trabajando. Chambea te ayuda a ponerle nombre a lo que ya sabes hacer, ver a qué otros trabajos con demanda puedes pasar en tu región y dar tu primer paso con los servicios gratuitos del Estado.",
+      "empezar": "Empezar gratis",
+      "garantias": [
+        "Gratis",
+        "Sin CV ni correo",
+        "5 minutos",
+        "Hablas o escribes"
+      ],
+      "loDemuestra": "Lo demuestra",
+      "cita": "Atiendo a los clientes y les recomiendo lo que buscan",
+      "tuRuta": "Tu mejor ruta",
+      "tienes": "Tienes {x} de {y}",
+      "seBusca": "Se busca en tu región",
+      "primerPaso": "Tu primer paso",
+      "curso": "Curso gratis en Capacíta-T"
+    },
+    "cifras": {
+      "informal": "trabajadores en el Perú aprendieron su oficio en la práctica, sin un certificado que lo respalde. (Bases del reto, MTPE)",
+      "oficios": "oficios con demanda para empezar",
+      "habilidades": "habilidades que Chambea sabe reconocer",
+      "regiones": "regiones de ejemplo; se agregan solo con datos"
+    },
+    "como": {
+      "etiqueta": "Así funciona",
+      "titulo": "De lo que haces hoy a tu siguiente trabajo, en 4 pasos",
+      "pasos": [
+        {
+          "momento": "Antes",
+          "titulo": "Cuéntalo",
+          "texto": "Respondes 4 preguntas sobre tu trabajo, hablando o escribiendo. Sin CV."
+        },
+        {
+          "momento": "Hoy",
+          "titulo": "Arma tu panal",
+          "texto": "Vemos lo que ya sabes hacer y lo pones en celdas: lo que sabes, lo que sabes hacer, cómo eres y lo que logras."
+        },
+        {
+          "momento": "Después",
+          "titulo": "Mira tus rutas",
+          "texto": "Trabajos de nivel parecido con demanda en tu región, y cuánto ya tienes de cada uno."
+        },
+        {
+          "momento": "Ya",
+          "titulo": "Da el paso",
+          "texto": "Una sola recomendación según tu tiempo: postular, un curso gratis o hablar con un asesor."
+        }
+      ]
+    },
+    "quien": {
+      "etiqueta": "Para ti",
+      "sin_empleo": "Te decimos a qué trabajos ya puedes postular con lo que sabes.",
+      "informal": "Cursos cortos, gratis y por celular para pasar a un trabajo más estable.",
+      "planilla_riesgo": "Prepárate antes: mira lo que te falta para cambiar sin empezar de cero.",
+      "empezar": "Empezar por aquí",
+      "oficios": "Oficios con los que empezamos"
+    },
+    "conecta": {
+      "etiqueta": "A dónde te lleva",
+      "titulo": "No reemplazamos al Estado: te conectamos con lo que ya ofrece",
+      "texto": "Chambea es una puerta de entrada fácil. El siguiente paso siempre es un servicio público y gratuito.",
+      "gobpe": "Pensado para integrarse al portal de empleo de gob.pe.",
+      "qvac": "La IA corre con QVAC (Tether) en un servidor propio: lo que cuentas no sale del ecosistema persona–Ministerio de Trabajo.",
+      "servicios": {
+        "empleos": {
+          "nombre": "Empleos Perú",
+          "texto": "Postulas a ofertas reales."
+        },
+        "capacitat": {
+          "nombre": "Capacíta-T",
+          "texto": "Cursos gratis para lo que te falta."
+        },
+        "centros": {
+          "nombre": "Centros de Empleo",
+          "texto": "Un asesor te acompaña en persona."
+        },
+        "certificacion": {
+          "nombre": "Certificación de competencias",
+          "texto": "Después, el MTPE puede certificar lo que sabes."
+        }
+      }
+    },
+    "empresas": {
+      "etiqueta": "Para empresas y Centros de Empleo",
+      "titulo": "Encuentra talento por lo que sabe hacer, no por su último puesto",
+      "texto": "En el Banco de talento aparecen solo las personas que lo eligen, con su panal. Ves quién viene de otro oficio y ya tiene casi todo lo que pides.",
+      "ver": "Ver el Banco de talento",
+      "unirme": "Tengo oficio: quiero aparecer"
+    },
+    "pie": {
+      "privacidad": "Sin CV. Lo que cuentas se queda en tu navegador y solo se guarda si tú lo pides."
+    }
+  },
+  "aliados": {
+    "titulo": "Aliados",
+    "etiqueta": "Aliados",
+    "tituloSeccion": "Quiénes están detrás",
+    "roles": {
+      "reto": "Un reto del",
+      "organiza": "Organizan",
+      "conecta": "Te conecta con",
+      "tecnologia": "IA local con"
+    },
+    "rolesSeccion": {
+      "reto": "Brinda el reto",
+      "organiza": "Organizan",
+      "conecta": "Se conecta con",
+      "tecnologia": "Tecnología"
+    },
+    "aviso": "Prototipo estudiantil de la Innovathon Ulima x Tether 2026. No es un sitio oficial del Estado peruano; cada marca pertenece a su dueño."
+  },
+  "unirse": {
+    "cta": "Unirme al Banco de talento",
+    "etiqueta": "Banco de talento",
+    "titulo": "Únete al Banco de talento",
+    "camino": {
+      "panal": "Arma tu panal",
+      "cuenta": "Crea tu cuenta",
+      "perfil": "Completa tu perfil laboral",
+      "publicar": "Publica"
+    },
+    "falta": {
+      "panal": "Primero arma tu panal: así las empresas te encuentran por lo que sabes hacer. Toma unos 5 minutos.",
+      "cuenta": "Crea tu cuenta para guardar tu panal y decidir qué se muestra."
+    },
+    "faltaBoton": {
+      "panal": "Armar mi panal",
+      "cuenta": "Crear mi cuenta"
+    },
+    "listoTitulo": "¡Ya estás en el Banco de talento!",
+    "listoTexto": "Las empresas y los Centros de Empleo te pueden encontrar. Cuando alguien se interese, el Centro de Empleo te contacta y tú decides.",
+    "verBanco": "Ver el banco",
+    "volverPanal": "Volver a mi panal",
+    "vistaPrevia": "Así te verán",
+    "tambienPara": "También te encontrarán para: {lista}",
+    "pasos": {
+      "experiencia": "Experiencia",
+      "disponibilidad": "Disponibilidad",
+      "respaldo": "Respaldo",
+      "publicar": "Publicar"
+    },
+    "titulos": {
+      "experiencia": "Tu experiencia",
+      "disponibilidad": "¿Cuándo y dónde puedes trabajar?",
+      "respaldo": "Lo que te respalda",
+      "publicar": "Así te verán las empresas"
+    },
+    "ayudas": {
+      "experiencia": "Tu panal ya muestra lo que sabes hacer. Aquí sumas los años y una frase tuya.",
+      "disponibilidad": "Las empresas filtran por esto. Sé realista: mejor pocas horas seguras.",
+      "respaldo": "Lo que suelen pedir en los trabajos de tus rutas. Marca lo que ya tienes.",
+      "publicar": "Revisa tu tarjeta. Puedes salir del banco cuando quieras."
+    },
+    "preguntas": {
+      "experiencia": "¿Cuántos años tienes en tu oficio?",
+      "oficio": "Tu oficio y tu panal",
+      "oficioAyuda": "Esto sale de tu recorrido. Si falta algo, edítalo.",
+      "presentacion": "En una frase, ¿qué quieres que sepan de ti?",
+      "presentacionAyuda": "Opcional. Se muestra en tu tarjeta.",
+      "presentacionEjemplo": "Por ejemplo: Soy puntual y aprendo rápido",
+      "jornada": "¿Qué jornada buscas?",
+      "horarios": "¿En qué horarios puedes?",
+      "variosAyuda": "Puedes marcar varios.",
+      "inicio": "¿Cuándo puedes empezar?",
+      "zonas": "¿En qué distritos puedes trabajar?",
+      "zonasAyuda": "Separa con comas. Se muestra para que te ofrezcan trabajos cerca.",
+      "documentos": "¿Qué documentos tienes al día?",
+      "documentosAyuda": "No subes nada: solo marcas. El asesor los revisa contigo.",
+      "referencia": "Alguien que pueda hablar de tu trabajo",
+      "referenciaAyuda": "Opcional. Nombre y relación. Solo la ve el asesor, nunca se publica.",
+      "referenciaEjemplo": "Por ejemplo: Sra. Carmen, dueña del puesto donde trabajé",
+      "contacto": "¿Cómo prefieres que te avisen?",
+      "contactoAyuda": "Siempre pasa primero por el Centro de Empleo."
+    },
+    "experiencia": {
+      "menos1": "Menos de 1 año",
+      "1a2": "1 a 2 años",
+      "3a5": "3 a 5 años",
+      "6a10": "6 a 10 años",
+      "mas10": "Más de 10 años"
+    },
+    "jornadas": {
+      "completo": "Tiempo completo",
+      "medio": "Medio tiempo",
+      "horas": "Por horas",
+      "fines": "Fines de semana"
+    },
+    "horarios": {
+      "manana": "Mañana",
+      "tarde": "Tarde",
+      "noche": "Noche"
+    },
+    "inicios": {
+      "ya": "Puede empezar ya",
+      "dos_semanas": "En 2 semanas",
+      "mes": "En 1 mes"
+    },
+    "contactos": {
+      "llamada": "Llamada",
+      "whatsapp": "WhatsApp",
+      "centro": "Solo por el Centro de Empleo"
+    },
+    "documentos": {
+      "identidad": "DNI o carné vigente",
+      "antecedentes": "Certificado de antecedentes",
+      "sanidad": "Carné de sanidad",
+      "brevete": "Brevete (licencia de conducir)",
+      "secundaria": "Certificado de secundaria",
+      "curso": "Constancia de algún curso"
+    },
+    "loPiden": "Lo piden en: {lista}",
+    "habilidades": "{n} habilidades en tu panal",
+    "editarPanal": "Editar mi panal",
+    "seVe": "Se muestra",
+    "noSeVe": "Nunca se muestra",
+    "seVeLista": {
+      "nombre": "Tu primer nombre y la inicial de tu apellido",
+      "habilidades": "Las habilidades de tu panal",
+      "rutas": "Los trabajos para los que calzas",
+      "disponibilidad": "Tu jornada y cuándo puedes empezar",
+      "zonas": "Los distritos donde puedes trabajar",
+      "documentos": "Cuántos documentos tienes al día"
+    },
+    "noSeVeLista": {
+      "apellido": "Tu apellido completo",
+      "documento": "Tu número de documento",
+      "celular": "Tu celular",
+      "correo": "Tu correo",
+      "referencia": "Tu referencia (solo la ve el asesor)"
+    },
+    "acepto": "Acepto aparecer en el Banco de talento",
+    "aceptoAyuda": "Puedo editar mi perfil o salir del banco cuando quiera.",
+    "publicar": "Publicar mi perfil",
+    "actualizar": "Guardar cambios",
+    "demo": "Demo: tu perfil se guarda solo en este navegador. En la versión real, el banco estaría en Empleos Perú y el contacto pasaría por el Centro de Empleo."
   }
 }

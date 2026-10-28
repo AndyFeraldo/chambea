@@ -21,7 +21,8 @@ import { Paso } from './pantallas/Paso';
 import { Resumen, Compartido } from './pantallas/Resumen';
 import { CuentaPantalla } from './pantallas/Cuenta';
 import { Banco } from './pantallas/Banco';
-import { actualizarCuenta } from './cuenta';
+import { actualizarCuenta, normalizarCuenta } from './cuenta';
+import { UnirseBanco } from './pantallas/Unirse';
 
 function estadoAlAbrir(regionId: string): Estado {
   // 1) Alguien abrió un panal compartido por enlace.
@@ -29,7 +30,7 @@ function estadoAlAbrir(regionId: string): Estado {
   if (compartido) return { ...estadoInicial(regionId), compartido, lugar: { pantalla: 'compartido', pregunta: 0 } };
   // 2) La persona guardó su progreso en este celular: vuelve al inicio con "Continuar".
   const guardado = leerProgreso();
-  if (guardado) return { ...guardado, historial: [...guardado.historial, guardado.lugar], lugar: { pantalla: 'inicio', pregunta: 0 } };
+  if (guardado) return { ...guardado, cuenta: guardado.cuenta && normalizarCuenta(guardado.cuenta), historial: [...guardado.historial, guardado.lugar], lugar: { pantalla: 'inicio', pregunta: 0 } };
   return estadoInicial(regionId);
 }
 
@@ -117,6 +118,7 @@ export function App() {
         {p === 'compartido' && <Compartido />}
         {p === 'cuenta' && <CuentaPantalla key={ctx.estado.lugar.pregunta} />}
         {p === 'banco' && <Banco />}
+        {p === 'unirse' && <UnirseBanco />}
       </div>
     </Ctx.Provider>
   );

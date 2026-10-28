@@ -29,7 +29,8 @@ export type Pantalla =
   | 'resumen'
   | 'compartido'
   | 'cuenta'
-  | 'banco';
+  | 'banco'
+  | 'unirse';
 
 export interface Celda {
   id: string;
@@ -191,6 +192,7 @@ export function pasoDe(p: Pantalla): number {
     case 'resumen':
     case 'cuenta':
     case 'banco':
+    case 'unirse':
       return 5;
     default:
       return 0;

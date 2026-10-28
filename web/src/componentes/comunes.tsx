@@ -221,6 +221,22 @@ const iconos = {
   ),
   guardar: <path d="M5 3h11l3 3v15H5V3zm3 0v5h7V3M8 21v-7h8v7" />,
   basura: <path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13" />,
+  ubicacion: (
+    <>
+      <path d="M12 21s-7-6.2-7-11.5A7 7 0 0119 9.5C19 14.8 12 21 12 21z" />
+      <circle cx="12" cy="9.5" r="2.5" />
+    </>
+  ),
+  calendario: <path d="M4 6h16v14H4zM4 10h16M8 3v5M16 3v5" />,
+  documento: <path d="M6 3h8l4 4v14H6zM14 3v4h4M9 12h6M9 16h6" />,
+  ojo: (
+    <>
+      <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z" />
+      <circle cx="12" cy="12" r="3" />
+    </>
+  ),
+  ojo_no: <path d="M3 3l18 18M10.6 5.1A10 10 0 0112 5c6.4 0 10 7 10 7a17 17 0 01-3.2 4M6.6 6.6C3.7 8.4 2 12 2 12s3.6 7 10 7a10 10 0 005.4-1.6M9.9 9.9a3 3 0 004.2 4.2" />,
+  chat: <path d="M4 5h16v11H9l-5 4z" />,
 };
 
 export type NombreIcono = keyof typeof iconos;

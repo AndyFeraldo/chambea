@@ -3,8 +3,9 @@
 import { useState, type ReactNode } from 'react';
 import { t } from '../i18n';
 import { useApp, type Pantalla } from '../estado';
-import { iniciales } from '../cuenta';
+import { iniciales, nombreCompleto, nombreVisible } from '../cuenta';
 import { Icono, IconoAbeja, Logo, Menu } from './comunes';
+import { PieWeb } from './Aliados';
 
 type Seccion = 'resumen' | 'banco' | 'cuenta';
 
@@ -41,9 +42,9 @@ export function BarraWeb({ activo }: { activo?: Seccion }) {
           {estado.cuenta ? (
             <>
               <span className="avatar" aria-hidden="true">
-                {iniciales(estado.cuenta.nombre)}
+                {iniciales(estado.cuenta)}
               </span>
-              <span className="barra-web__nombre">{estado.cuenta.nombre.split(' ')[0]}</span>
+              <span className="barra-web__nombre">{nombreVisible(estado.cuenta.nombres, estado.cuenta.apellidos)}</span>
               <button type="button" className="barra-web__salir" onClick={() => cambiar({ cuenta: null })}>
                 {t('web.salir')}
               </button>
@@ -90,6 +91,7 @@ export function Plataforma({
         <main className="plataforma__centro entrar">{children}</main>
         {derecha && <aside className="plataforma__der">{derecha}</aside>}
       </div>
+      <PieWeb />
     </div>
   );
 }
@@ -116,10 +118,10 @@ export function TarjetaPerfil() {
   return (
     <section className="perfil-lateral">
       <span className="perfil-lateral__avatar">
-        {estado.cuenta ? iniciales(estado.cuenta.nombre) : <IconoAbeja tam={40} />}
+        {estado.cuenta ? iniciales(estado.cuenta) : <IconoAbeja tam={40} />}
       </span>
       <div className="perfil-lateral__datos">
-        <b>{estado.cuenta?.nombre ?? t('web.invitado')}</b>
+        <b>{estado.cuenta ? nombreCompleto(estado.cuenta) : t('web.invitado')}</b>
         {actual && <span>{actual.nombre}</span>}
         {region && <span className="ayuda">{region}</span>}
       </div>

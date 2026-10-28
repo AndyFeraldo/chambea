@@ -153,6 +153,8 @@ Todo está en `data/`:
 
 **Enlaces oficiales (TODO):** cuando el equipo confirme las direcciones de Empleos Perú y Capacítate Perú, colócalas en `.env` (`EMPLEOS_PERU_URL` y `CAPACITATE_PERU_URL`). Mientras tanto, la app muestra "Enlace por confirmar (TODO)".
 
+**Logos de aliados:** hoy se muestran como marcas de texto. Si el equipo consigue los logos oficiales (con permiso), cópialos en `web/public/aliados/` y pon su ruta en el campo `logo` de `web/src/aliados.ts` (por ejemplo `logo: 'aliados/tether.svg'`).
+
 **Textos de la interfaz:** están en `web/src/i18n/es.json`. Para agregar quechua, se crea `qu.json` con las mismas claves.
 
 ---
@@ -177,6 +179,8 @@ chambea/
 - Primer paso: con cobertura ≥ 0,85 recomienda postular en Empleos Perú (si la persona está en planilla en riesgo, primero el curso). Entre 0,5 y 0,85 recomienda un curso que cubra lo que falta y respete horas, modalidad y costo. Por debajo de 0,5 recomienda un asesor.
 
 ## Registro de cambios
+
+**28/10/2026 (portada nueva, aliados, registro y banco):** página principal rediseñada: portada oscura con un panal vivo (celdas que brotan, abejas vestidas y tarjetas de "Lo demuestra", "Tu mejor ruta" y "Tu primer paso"), dato del reto (7 de cada 10), "Así funciona", "¿Para quién?" con atajo por situación, "A dónde te lleva" (Empleos Perú, Capacíta-T, Centros de Empleo, certificación; integración a gob.pe y QVAC), sección para empresas y aliados. Aliados según las bases (MTPE brinda el reto; Universidad de Lima, Innova Ulima y Tether organizan; QVAC) en la portada y en el pie de las páginas de la plataforma. Registro en 3 pasos (nombres, apellidos, documento, fecha de nacimiento, estudios, celular, correo, región, distrito, discapacidad opcional, PIN y permisos). Banco de talento: nombres como en Yape ("Rosa Q."), nuevo paso "Únete al banco" (experiencia, disponibilidad, documentos, referencia y vista previa antes de publicar), filtros por jornada y "pueden empezar ya", y formulario de contacto para empresas.
 
 **28/10/2026 (adaptable a computadora):** en pantallas anchas, el recorrido se ve como plataforma web: barra superior, panel lateral con los 4 pasos y contenido a lo ancho (situación en 3 tarjetas, ocupaciones en 4 columnas, pregunta y micrófono lado a lado, colmena de 5 columnas, rutas con la abeja a la izquierda y la ficha a la derecha, paso 4 con vista previa al costado, inicio en pantalla dividida). Mi panal final: panal y Descargar al centro; Tu plan y Cómo presentarte a la izquierda; asesor (QR visible), perfil y banco a la derecha. En celular todo sigue en una columna.
 

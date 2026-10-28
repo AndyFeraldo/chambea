@@ -27,3 +27,12 @@ Ejemplo: quien busca *Vendedor/a de tienda* encuentra también a cajeras con 86 
 
 ## Plataforma web
 "Mi panal" y el banco usan un diseño de plataforma: barra superior con **Inicio, Mi panal, Banco de talento, Ingresar y Registrarme**; columna izquierda con el perfil (y % completo), la navegación y la privacidad; columna derecha con el plan, las ofertas y el banco. En celular, todo se apila y la navegación pasa al menú.
+
+## Proceso para unirse (versión del 28/10/2026)
+
+1. **Arma tu panal** (recorrido de 4 pasos).
+2. **Crea tu cuenta** en 3 pasos: tus datos (nombres, apellidos, documento, fecha de nacimiento, estudios), contacto y lugar (celular, correo opcional, región, distrito, discapacidad opcional) y acceso (PIN y permisos).
+3. **Completa tu perfil laboral**: años de experiencia, una frase sobre ti, jornada, horarios, cuándo puedes empezar, distritos donde puedes trabajar, documentos al día (se resaltan los que piden tus rutas), una referencia (solo la ve el asesor) y cómo prefieres que te avisen.
+4. **Revisa y publica**: vista previa de tu tarjeta, lista de lo que se muestra y lo que nunca se muestra, y consentimiento.
+
+En el banco solo se ve el **primer nombre y la inicial del apellido** (como en Yape: "Rosa Q."). Nunca se muestran el apellido completo, el documento, el celular, el correo ni la referencia. En la demo, del documento solo se guardan los últimos 3 números. La empresa pide el contacto con el nombre de su empresa y el puesto; la solicitud iría al Centro de Empleo, que llama a la persona y ella decide.
