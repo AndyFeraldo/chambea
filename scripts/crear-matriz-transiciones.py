@@ -128,7 +128,7 @@ for i, a in enumerate(ocup):
     for j, b in enumerate(ocup):
         r, col = R0 + 1 + i, C0 + 1 + j
         ca, cb = COL_OC[a['id']], COL_OC[b['id']]
-        c = px.cell(r, col, f'=SUMPRODUCT({PES},{rng(ca)},{rng(cb)})/SUMPRODUCT({PES},{rng(cb)})')
+        c = px.cell(r, col, '—' if i == j else f'=SUMPRODUCT({PES},{rng(ca)},{rng(cb)})/SUMPRODUCT({PES},{rng(cb)})')
         c.number_format = '0%'; c.font = fnt(size=10); c.alignment = Alignment(horizontal='center', vertical='center'); c.border = borde
         if i == j: c.fill = fill('D9D9D9'); c.font = fnt(size=10, color='808080')
 area = f'{L(C0 + 1)}{R0 + 1}:{L(C0 + M)}{R0 + M}'
@@ -142,7 +142,7 @@ px.freeze_panes = px.cell(R0 + 1, C0 + 1)
 nota = R0 + M + 2
 px.cell(nota, C0, 'Cómo se calcula (igual que el motor de Chambea):').font = fnt(bold=True)
 px.cell(nota + 1, C0, 'Proximidad(A → B) = suma de pesos de las habilidades de B que A también tiene ÷ suma de pesos de todas las habilidades de B.').font = fnt(size=10)
-px.cell(nota + 2, C0, 'No es simétrica: A → B puede ser distinto de B → A, porque cada ocupación pide habilidades con pesos distintos. La diagonal (gris) es la misma ocupación.').font = fnt(size=10)
+px.cell(nota + 2, C0, 'No es simétrica: A → B puede ser distinto de B → A, porque cada ocupación pide habilidades con pesos distintos. La diagonal (—) es la misma ocupación.').font = fnt(size=10)
 px.cell(nota + 3, C0, 'Colores: blanco = no comparten nada · amarillo = comparten algo · verde = muy cercanas.').font = fnt(size=10)
 PX_AREA = f"Proximidad!${L(C0 + 1)}${R0 + 1}:${L(C0 + M)}${R0 + M}"
 PX_FILAS = f"Proximidad!${L(C0)}${R0 + 1}:${L(C0)}${R0 + M}"
@@ -157,7 +157,7 @@ for k, o in enumerate(ocup):
     c = ec.cell(R0 + 1 + k, C0, o['nombre']); cab(c); c.alignment = Alignment(horizontal='left', vertical='center', wrap_text=True)
 for i, a in enumerate(ocup):
     for j, b in enumerate(ocup):
-        c = ec.cell(R0 + 1 + i, C0 + 1 + j, f'=SUMPRODUCT({rng(COL_OC[a["id"]])},{rng(COL_OC[b["id"]])})')
+        c = ec.cell(R0 + 1 + i, C0 + 1 + j, '—' if i == j else f'=SUMPRODUCT({rng(COL_OC[a["id"]])},{rng(COL_OC[b["id"]])})')
         c.font = fnt(size=10); c.alignment = Alignment(horizontal='center', vertical='center'); c.border = borde
         if i == j: c.fill = fill('D9D9D9'); c.font = fnt(size=10, color='808080')
 ec.conditional_formatting.add(f'{L(C0 + 1)}{R0 + 1}:{L(C0 + M)}{R0 + M}', FormulaRule(formula=[f'ROW()-{R0}=COLUMN()-{C0}'], fill=fill('D9D9D9'), stopIfTrue=True))
