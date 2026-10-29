@@ -93,6 +93,11 @@ export function TarjetaTalento({
             <Icono nombre="libro" tam={14} /> {t('banco.selloCurso')}
           </span>
         )}
+        {p.keet && (
+          <span className="sello">
+            <Icono nombre="chat" tam={14} /> {t('banco.selloKeet')}
+          </span>
+        )}
         {p.ejemplo && <span className="sello sello--ejemplo">{t('banco.selloEjemplo')}</span>}
       </div>
       {alContactar && !tuyo && (

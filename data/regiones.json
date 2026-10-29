@@ -19,7 +19,8 @@
         "teleoperador": "alta",
         "cuidador": "media",
         "conserje": "media"
-      }
+      },
+      "keet_centro_empleo": ""
     },
     {
       "id": "arequipa",
@@ -38,7 +39,8 @@
         "teleoperador": "baja",
         "cuidador": "media",
         "conserje": "media"
-      }
+      },
+      "keet_centro_empleo": ""
     },
     {
       "id": "la-libertad",
@@ -57,7 +59,9 @@
         "teleoperador": "media",
         "cuidador": "baja",
         "conserje": "media"
-      }
+      },
+      "keet_centro_empleo": ""
     }
-  ]
+  ],
+  "nota_keet": "keet_centro_empleo: enlace de invitación de la sala Keet del Centro de Empleo de cada región (en Keet: 'Copy Invite Link', formato pear://keet/...). TODO: el equipo lo completa; vacío = 'por configurar'."
 }

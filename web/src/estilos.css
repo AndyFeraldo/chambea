@@ -1367,3 +1367,20 @@ details.filtros[open] .filtros__abrir { display: none; }
   .hero__qr-texto b { color: var(--blanco); font-family: var(--f-titulo); font-size: 1.25rem; line-height: 1.15; }
   .hero__qr-texto small { color: var(--miel); font-weight: 700; font-size: 0.82rem; margin-top: 2px; }
 }
+
+/* Keet: sala privada P2P con el Centro de Empleo */
+.keet { display: flex; flex-direction: column; gap: 8px; border: 1px solid var(--borde); border-radius: 16px; padding: 12px 14px; background: var(--blanco); }
+.keet--compacto { padding: 10px 12px; }
+.keet__cabeza { display: flex; align-items: center; gap: 10px; }
+.keet__marca { flex: none; font-family: var(--f-logo); font-weight: 800; font-size: 1.05rem; color: var(--blanco); background: var(--negro); border-radius: 8px; padding: 2px 9px 4px; }
+.keet__que { font-size: 0.85rem; color: var(--texto-suave); line-height: 1.35; }
+.boton--keet { background: var(--negro); color: var(--blanco); width: 100%; }
+.boton--keet:hover { background: #22332e; }
+.keet__pendiente { display: flex; align-items: center; gap: 6px; font-size: 0.86rem; font-weight: 600; color: #7a4f00; background: #fdf3d8; border-radius: 10px; padding: 8px 10px; }
+.keet__ayuda { font-size: 0.8rem; color: var(--verde-oscuro); font-weight: 600; }
+.keet__descargar { font-size: 0.82rem; font-weight: 700; color: var(--verde-oscuro); min-height: 32px; display: inline-flex; align-items: center; }
+.keet-asesor { display: flex; flex-direction: column; gap: 8px; }
+.keet-asesor h3 { font-size: 1.05rem; }
+.marca-al--keet { flex-direction: column; align-items: flex-start; gap: 2px; }
+.marca-al--keet b { font-family: var(--f-logo); font-weight: 800; font-size: 1.15rem; letter-spacing: -0.02em; }
+.marca-al--keet small { font-size: 0.6rem; opacity: 0.75; }

@@ -8,6 +8,7 @@ import { generarImagen } from '../imagenPanal';
 import { AvisoCertificacion, Enjambre, Icono, Logo } from '../componentes/comunes';
 import { completitud, Plataforma } from '../componentes/Plataforma';
 import { iniciales, nombreCompleto } from '../cuenta';
+import { SalaKeet } from '../componentes/Keet';
 import { Colmena, Leyenda, ordenar } from './Panal';
 import { enlacesOfertas } from './Rutas';
 
@@ -214,6 +215,7 @@ export function Resumen() {
           <Icono nombre="copiar" tam={18} /> {copiado === 'enlace' ? t('resumen.copiado') : t('resumen.asesor.copiarEnlace')}
         </button>
         <p className="nota">{t('resumen.asesor.privacidad')}</p>
+        <SalaKeet texto={t('keet.enviarPanal')} copiar={enlace} compacto />
       </section>
 
       <section className="lado lado--perfil">

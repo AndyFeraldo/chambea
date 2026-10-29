@@ -21,6 +21,8 @@ export interface PerfilBanco {
   zonas: string;
   documentos: string[];
   presentacion: string;
+  /** Acepta coordinar por Keet (sin mostrar su enlace). */
+  keet?: boolean;
   habilidades: string[];
   enCurso: boolean;
   /** Coincidencia con cada profesión (0..1), incluida la actual. */
@@ -127,6 +129,7 @@ export function perfilPropio(datos: Datos, estado: Estado, cuenta: Cuenta, labor
     zonas: laboral.zonas || cuenta.distrito,
     documentos: laboral.documentos,
     presentacion: laboral.presentacion,
+    keet: laboral.contactoPor === 'keet',
     habilidades: estado.celdas.map((c) => c.id),
     enCurso: estado.primerPaso?.principal.tipo === 'capacitate',
   });

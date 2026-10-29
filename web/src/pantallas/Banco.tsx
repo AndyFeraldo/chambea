@@ -7,6 +7,7 @@ import { perfilesDeEjemplo, perfilPropio, type PerfilBanco } from '../bancoDemo'
 import { JORNADAS, type Jornada } from '../cuenta';
 import { Hoja, Icono } from '../componentes/comunes';
 import { Plataforma } from '../componentes/Plataforma';
+import { SalaKeet } from '../componentes/Keet';
 import { TarjetaTalento } from '../componentes/Talento';
 
 const UMBRAL = 0.5;
@@ -280,6 +281,7 @@ export function Banco() {
                 </select>
               </label>
             </div>
+            <SalaKeet texto={t('keet.coordinar')} compacto />
             <p className="nota">{t('banco.contactoDemo')}</p>
             <button
               type="button"

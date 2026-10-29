@@ -158,6 +158,8 @@ Todo está en `data/`:
 
 **Enlaces oficiales (TODO):** cuando el equipo confirme las direcciones de Empleos Perú y Capacítate Perú, colócalas en `.env` (`EMPLEOS_PERU_URL` y `CAPACITATE_PERU_URL`). Mientras tanto, la app muestra "Enlace por confirmar (TODO)".
 
+**Conectar Keet (sala del Centro de Empleo):** en Keet, crea una sala, toca «Copy Invite Link» y pega ese enlace (empieza con `pear://keet/`) en `data/regiones.json`, campo `keet_centro_empleo` de la región. Para la demo publicada también se puede poner en `web/.env.pages` como `VITE_KEET_SALA=pear://keet/...`. Mientras esté vacío, la app muestra «por configurar».
+
 **Logos de aliados:** hoy se muestran como marcas de texto. Si el equipo consigue los logos oficiales (con permiso), cópialos en `web/public/aliados/` y pon su ruta en el campo `logo` de `web/src/aliados.ts` (por ejemplo `logo: 'aliados/tether.svg'`).
 
 **Textos de la interfaz:** están en `web/src/i18n/es.json`. Para agregar quechua, se crea `qu.json` con las mismas claves.
@@ -184,6 +186,8 @@ chambea/
 - Primer paso: con cobertura ≥ 0,85 recomienda postular en Empleos Perú (si la persona está en planilla en riesgo, primero el curso). Entre 0,5 y 0,85 recomienda un curso que cubra lo que falta y respete horas, modalidad y costo. Por debajo de 0,5 recomienda un asesor.
 
 ## Registro de cambios
+
+**29/10/2026 (Keet):** Chambea se conecta con Keet (Holepunch, ecosistema Tether), chat y videollamadas cifradas de persona a persona. Botones para enviar el panal al asesor por Keet («Llévalo a un asesor»), videollamada privada con un asesor (primer paso), coordinación empresa–Centro de Empleo en el Banco de talento y opción «Keet» al unirse al banco (enlace privado, solo para el asesor). Keet aparece como aliado tecnológico junto a QVAC.
 
 **28/10/2026 (QR en la portada):** en pantallas grandes (laptop, proyector) la portada muestra un QR integrado bajo los botones, con la abeja al centro, para abrir Chambea en el celular o la tablet. Apunta a la web pública (`VITE_URL_PUBLICA`). En celulares y tablets no se muestra.
 

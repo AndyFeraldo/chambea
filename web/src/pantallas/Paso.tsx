@@ -3,6 +3,7 @@ import type { Horas, Modalidad, OpcionPaso, Perfil, ResultadoPrimerPaso, Ruta } 
 import { calcularPrimerPaso } from '@shared/motor';
 import { primerPaso } from '../api';
 import { t } from '../i18n';
+import { SalaKeet } from '../componentes/Keet';
 import { useApp } from '../estado';
 import { AvisoCertificacion, Enjambre, Icono, NotaIlustrativa, Pantalla, type NombreIcono } from '../componentes/comunes';
 
@@ -340,6 +341,11 @@ function Resultado() {
           })}
         </div>
       </div>
+
+      <section className="keet-asesor">
+        <h3>{t('keet.tituloAsesor')}</h3>
+        <SalaKeet texto={t('keet.videollamada')} />
+      </section>
 
       <button type="button" className="boton boton--primario boton--grande" onClick={() => ir('resumen')}>
         {t('paso.verPanal')} <Icono nombre="adelante" />

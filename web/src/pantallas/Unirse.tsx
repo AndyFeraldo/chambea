@@ -18,6 +18,7 @@ import {
   type PerfilLaboral,
 } from '../cuenta';
 import { perfilPropio } from '../bancoDemo';
+import { keetValido } from '../keet';
 import { Icono } from '../componentes/comunes';
 import { Plataforma } from '../componentes/Plataforma';
 import { TarjetaTalento } from '../componentes/Talento';
@@ -71,10 +72,11 @@ export function UnirseBanco() {
   const [documentos, setDocumentos] = useState<string[]>(previo?.documentos ?? ['identidad']);
   const [presentacion, setPresentacion] = useState(previo?.presentacion ?? '');
   const [referencia, setReferencia] = useState(previo?.referencia ?? '');
+  const [keet, setKeet] = useState(previo?.keet ?? '');
   const [acepto, setAcepto] = useState(false);
   const [listo, setListo] = useState(false);
 
-  const laboral: Omit<PerfilLaboral, 'publicado'> = { experiencia, jornada, horarios, inicio, zonas: zonas.trim(), contactoPor, documentos, presentacion: presentacion.trim(), referencia: referencia.trim() };
+  const laboral: Omit<PerfilLaboral, 'publicado'> = { experiencia, jornada, horarios, inicio, zonas: zonas.trim(), contactoPor, documentos, presentacion: presentacion.trim(), referencia: referencia.trim(), keet: contactoPor === 'keet' && keetValido(keet) ? keet.trim() : '' };
   const vista = useMemo(
     () => (cuenta && estado.celdas.length ? perfilPropio(datos, estado, cuenta, laboral) : null),
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -269,6 +271,12 @@ export function UnirseBanco() {
               <Grupo titulo={t('unirse.preguntas.contacto')} ayuda={t('unirse.preguntas.contactoAyuda')}>
                 <Opciones valores={CONTACTOS} prefijo="unirse.contactos" elegido={contactoPor} alElegir={setContactoPor} />
               </Grupo>
+              {contactoPor === 'keet' && (
+                <Grupo titulo={t('unirse.preguntas.keet')} ayuda={t('unirse.preguntas.keetAyuda')}>
+                  <input id="unirse-keet" className="entrada" value={keet} onChange={(e) => setKeet(e.target.value)} placeholder="pear://keet/…" />
+                  {keet.trim() && !keetValido(keet) && <p className="error-voz">{t('unirse.preguntas.keetError')}</p>}
+                </Grupo>
+              )}
             </>
           )}
 
@@ -291,7 +299,7 @@ export function UnirseBanco() {
                     <Icono nombre="ojo_no" tam={18} /> {t('unirse.noSeVe')}
                   </h3>
                   <ul>
-                    {(['apellido', 'documento', 'celular', 'correo', 'referencia'] as const).map((k) => (
+                    {(['apellido', 'documento', 'celular', 'correo', 'referencia', 'keet'] as const).map((k) => (
                       <li key={k}>{t(`unirse.noSeVeLista.${k}`)}</li>
                     ))}
                   </ul>

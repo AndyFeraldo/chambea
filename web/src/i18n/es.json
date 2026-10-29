@@ -519,7 +519,8 @@
     "salirBanco": "Salir del banco",
     "empresa": "Nombre de tu empresa",
     "empresaEjemplo": "Por ejemplo: Minimarket San Juan",
-    "puesto": "Puesto que ofreces"
+    "puesto": "Puesto que ofreces",
+    "selloKeet": "Acepta Keet"
   },
   "recorrido": {
     "pasos": "Pasos del recorrido",
@@ -615,7 +616,8 @@
           "nombre": "Certificación de competencias",
           "texto": "Después, el MTPE puede certificar lo que sabes."
         }
-      }
+      },
+      "keet": "Asesoría por videollamada privada con Keet (Holepunch, ecosistema Tether): de persona a persona, sin servidores."
     },
     "empresas": {
       "etiqueta": "Para empresas y Centros de Empleo",
@@ -642,7 +644,7 @@
       "reto": "Un reto del",
       "organiza": "Organizan",
       "conecta": "Te conecta con",
-      "tecnologia": "IA local con"
+      "tecnologia": "Tecnología"
     },
     "rolesSeccion": {
       "reto": "Brinda el reto",
@@ -713,7 +715,10 @@
       "referenciaAyuda": "Opcional. Nombre y relación. Solo la ve el asesor, nunca se publica.",
       "referenciaEjemplo": "Por ejemplo: Sra. Carmen, dueña del puesto donde trabajé",
       "contacto": "¿Cómo prefieres que te avisen?",
-      "contactoAyuda": "Siempre pasa primero por el Centro de Empleo."
+      "contactoAyuda": "Siempre pasa primero por el Centro de Empleo.",
+      "keet": "Tu enlace de invitación de Keet",
+      "keetAyuda": "Opcional. En Keet: «Copy Invite Link». Solo lo ve el asesor; nunca se publica.",
+      "keetError": "Debe empezar con pear://keet/ o https://keet.io/"
     },
     "experiencia": {
       "menos1": "Menos de 1 año",
@@ -741,7 +746,8 @@
     "contactos": {
       "llamada": "Llamada",
       "whatsapp": "WhatsApp",
-      "centro": "Solo por el Centro de Empleo"
+      "centro": "Solo por el Centro de Empleo",
+      "keet": "Keet (privado, P2P)"
     },
     "documentos": {
       "identidad": "DNI o carné vigente",
@@ -769,12 +775,25 @@
       "documento": "Tu número de documento",
       "celular": "Tu celular",
       "correo": "Tu correo",
-      "referencia": "Tu referencia (solo la ve el asesor)"
+      "referencia": "Tu referencia (solo la ve el asesor)",
+      "keet": "Tu enlace de Keet (solo lo usa el asesor)"
     },
     "acepto": "Acepto aparecer en el Banco de talento",
     "aceptoAyuda": "Puedo editar mi perfil o salir del banco cuando quiera.",
     "publicar": "Publicar mi perfil",
     "actualizar": "Guardar cambios",
     "demo": "Demo: tu perfil se guarda solo en este navegador. En la versión real, el banco estaría en Empleos Perú y el contacto pasaría por el Centro de Empleo."
+  },
+  "keet": {
+    "que": "Chat y videollamada privados, de persona a persona (P2P), sin servidores.",
+    "porConfigurar": "La sala Keet del Centro de Empleo de tu región está por configurar.",
+    "ayudaCopiar": "Copiamos el enlace de tu panal: pégalo en la sala para que el asesor lo vea.",
+    "copiado": "Enlace de tu panal copiado: pégalo en la sala de Keet.",
+    "descargar": "¿No tienes Keet? Descárgalo gratis",
+    "enviarPanal": "Enviar mi panal por Keet",
+    "videollamada": "Videollamada privada con un asesor",
+    "coordinar": "Coordinar con el Centro de Empleo por Keet",
+    "tituloAsesor": "O habla con un asesor sin moverte",
+    "tituloBanco": "Coordinación privada"
   }
 }

@@ -324,6 +324,9 @@ export function Inicio() {
               <li>
                 <Icono nombre="candado" tam={20} /> {t('landing.conecta.qvac')}
               </li>
+              <li>
+                <Icono nombre="chat" tam={20} /> {t('landing.conecta.keet')}
+              </li>
             </ul>
           </div>
           <div className="conecta__mapa">

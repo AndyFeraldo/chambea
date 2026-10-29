@@ -9,7 +9,7 @@ export type Experiencia = 'menos1' | '1a2' | '3a5' | '6a10' | 'mas10';
 export type Jornada = 'completo' | 'medio' | 'horas' | 'fines';
 export type Horario = 'manana' | 'tarde' | 'noche';
 export type Inicio = 'ya' | 'dos_semanas' | 'mes';
-export type ContactoPor = 'llamada' | 'whatsapp' | 'centro';
+export type ContactoPor = 'llamada' | 'whatsapp' | 'keet' | 'centro';
 
 export const TIPOS_DOCUMENTO: TipoDocumento[] = ['dni', 'ce', 'ptp'];
 export const EDUCACION: Educacion[] = ['primaria', 'secundaria_incompleta', 'secundaria', 'tecnica', 'superior_incompleta', 'superior'];
@@ -17,7 +17,7 @@ export const EXPERIENCIA: Experiencia[] = ['menos1', '1a2', '3a5', '6a10', 'mas1
 export const JORNADAS: Jornada[] = ['completo', 'medio', 'horas', 'fines'];
 export const HORARIOS: Horario[] = ['manana', 'tarde', 'noche'];
 export const INICIOS: Inicio[] = ['ya', 'dos_semanas', 'mes'];
-export const CONTACTOS: ContactoPor[] = ['llamada', 'whatsapp', 'centro'];
+export const CONTACTOS: ContactoPor[] = ['llamada', 'whatsapp', 'keet', 'centro'];
 /** Documentos que suelen pedir en trabajos operativos. `clave` se busca en requisitos_minimos. */
 export const DOCUMENTOS: { id: string; clave?: string }[] = [
   { id: 'identidad' },
@@ -41,6 +41,8 @@ export interface PerfilLaboral {
   presentacion: string;
   /** Alguien que puede hablar de su trabajo. Solo la ve el asesor, nunca se publica. */
   referencia: string;
+  /** Enlace de invitación de Keet de la persona (opcional). Solo lo usa el asesor. */
+  keet?: string;
   publicado: string;
 }
 

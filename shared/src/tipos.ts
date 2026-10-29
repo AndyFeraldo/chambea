@@ -73,6 +73,8 @@ export interface Region {
   id: string;
   nombre: string;
   demanda: Record<string, NivelDemanda>;
+  /** Enlace de invitación de la sala Keet del Centro de Empleo (pear://keet/…). Vacío = por configurar. */
+  keet_centro_empleo?: string;
 }
 
 export interface Capacitacion {

@@ -47,6 +47,13 @@ function Marca({ a }: { a: Aliado }) {
           <small aria-hidden="true">by Tether</small>
         </span>
       );
+    case 'keet':
+      return (
+        <span className="marca-al marca-al--keet" aria-label={a.nombre}>
+          <b aria-hidden="true">keet</b>
+          <small aria-hidden="true">by Holepunch</small>
+        </span>
+      );
     case 'gobpe':
       return (
         <span className="marca-al marca-al--gob" aria-label={a.nombre}>

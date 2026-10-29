@@ -30,6 +30,7 @@ export const ALIADOS: Aliado[] = [
   { id: 'capacitat', rol: 'conecta', nombre: 'Capacíta-T', detalle: 'Cursos gratis para lo que te falta.' },
   { id: 'centros', rol: 'conecta', nombre: 'Centros de Empleo', detalle: 'Un asesor te acompaña.' },
   { id: 'qvac', rol: 'tecnologia', nombre: 'QVAC', detalle: 'IA local: tus datos no salen del ecosistema persona–Ministerio.' },
+  { id: 'keet', rol: 'tecnologia', nombre: 'Keet', detalle: 'Chat y videollamadas con el asesor, de persona a persona y cifrados.' },
 ];
 
 export const ROLES: RolAliado[] = ['reto', 'organiza', 'conecta', 'tecnologia'];
